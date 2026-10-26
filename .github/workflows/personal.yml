@@ -22,3 +22,30 @@ jobs:
         with:
           name: simpleui-personal-${{ runner.os }}
           path: dist/*
+
+  publish:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/personal/pw5'
+    needs: regression
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: simpleui-personal-Linux
+          path: dist
+      - name: Publish a new personal version
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(python -c 'import pathlib; print(pathlib.Path("_meta.lua").read_text().split("version")[1].split(chr(34))[1])')
+          tag="v$version"
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Existing release preserved. Bump the personal version to publish changes."
+            exit 0
+          fi
+          gh release create "$tag" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "SimpleUI $version" --notes-file docs/RELEASE_NOTES.md --prerelease \
+            dist/simpleui.koplugin.zip dist/SHA256SUMS dist/file-hashes.json

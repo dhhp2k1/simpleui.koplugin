@@ -13,7 +13,10 @@ def build():
             rel=p.relative_to(ROOT).as_posix()
             if "__pycache__" in p.parts or p.suffix in {".pyc",".bak"}:continue
             data=p.read_bytes()
+            if p.suffix.lower() in {".lua",".po",".pot",".md",".txt",".svg"}:
+                data=data.replace(b"\r\n",b"\n")
             info=zipfile.ZipInfo("simpleui.koplugin/"+rel,(2026,10,26,0,0,0))
+            info.create_system=3
             info.external_attr=0o100644<<16
             z.writestr(info,data,compress_type=zipfile.ZIP_DEFLATED,compresslevel=9)
             entries[rel]=hashlib.sha256(data).hexdigest()
