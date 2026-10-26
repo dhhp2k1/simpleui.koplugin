@@ -100,6 +100,8 @@ function Finished.install()
 
     FileChooser.show_file = function(fc, filename, fullpath)
         if not _orig_show_file(fc, filename, fullpath) then return false end
+        if fullpath and fc.name == "filemanager"
+                and require("features/library/sui_hidden_books").isHidden(fullpath) then return false end
         if fullpath == nil or fc.name ~= "filemanager" or not Finished.isHidden() then
             return true
         end

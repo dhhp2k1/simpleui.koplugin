@@ -5533,3 +5533,23 @@ msgstr[1] "頁已讀"
 
 #~ msgid "Card Opacity"
 #~ msgstr "卡片不透明度"
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "Recently added"
+msgstr "最近加入"
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "Hide from home and library"
+msgstr "從首頁和書庫隱藏"
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "Hidden books and documents"
+msgstr "已隱藏的書籍與文件"
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "Restore visibility"
+msgstr "恢復顯示"
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "No hidden books or documents"
+msgstr "沒有隱藏的書籍或文件"

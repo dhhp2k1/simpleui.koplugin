@@ -893,7 +893,8 @@ function SH.prefetchBooks(show_currently, show_recent, max_recent, opts)
     for i = 1, #(ReadHistory.hist or {}) do
         local entry = ReadHistory.hist[i]
         local fp = entry and entry.file
-        if fp and lfs.attributes(fp, "mode") == "file" then
+        if fp and not require("features/library/sui_hidden_books").isHidden(fp)
+                and lfs.attributes(fp, "mode") == "file" then
             -- A book known to a virtual library is keyed by its virtual path, so
             -- cover extraction, sidecar lookups and opening all go through the
             -- library's own handling.
@@ -967,7 +968,7 @@ function SH.getStaleBooks()
         -- shown the books modules are even enabled.
         _last_books_state = _loadStaleBooksFromDisk()
     end
-    return _last_books_state
+    return require("features/library/sui_hidden_books").filterState(_last_books_state)
 end
 
 

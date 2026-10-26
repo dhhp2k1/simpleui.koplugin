@@ -1025,6 +1025,7 @@ function SimpleUIPlugin:init()
             UIManager:scheduleIn(0, function()
                 local ok_fm, FM = pcall(require, "apps/filemanager/filemanager")
                 if not (ok_fm and FM and FM.instance) then return end
+                require("features/library/sui_hidden_books").registerHoldAction(FM.instance)
                 local ok_tbr, TBR = pcall(require, "modules/module_tbr")
                 if not (ok_tbr and TBR) then return end
 

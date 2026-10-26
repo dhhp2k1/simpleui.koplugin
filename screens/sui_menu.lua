@@ -2920,6 +2920,7 @@ SimpleUIPlugin.addToMainMenu = function(self, menu_items)
         if not ok_fc or not FC then return {} end
         local SUIWallpaper = require("features/sui_wallpaper")
         return {
+            require("features/library/sui_hidden_books").makeMenuItem(),
             -- ── Enable Library Custom Covers ────────────────────────────
             {
                 text           = _("Enable Library Custom Covers"),

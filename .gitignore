@@ -43,3 +43,7 @@ luac.out
 /simpleui.koplugin.zip
 
 .DS_Store
+
+/dist/
+__pycache__/
+.venv/

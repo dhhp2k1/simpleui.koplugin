@@ -670,10 +670,12 @@ end
 -- build()'s cold-cache path and updateStats()'s re-derivation so both
 -- filter identically.
 local function _filterFileList(fps, opts, ctx)
-    if not opts.filterItem then return fps end
+    local Hidden = require("features/library/sui_hidden_books")
     local filtered = {}
     for _, fp in ipairs(fps) do
-        if opts.filterItem(fp, ctx) then filtered[#filtered + 1] = fp end
+        if not Hidden.isHidden(fp) and (not opts.filterItem or opts.filterItem(fp, ctx)) then
+            filtered[#filtered + 1] = fp
+        end
     end
     return filtered
 end

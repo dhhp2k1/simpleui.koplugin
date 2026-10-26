@@ -1631,7 +1631,7 @@ function ScreenWidget:_buildCtx()
         end
     end
 
-    local bs          = self._cached_books_state
+    local bs          = require("features/library/sui_hidden_books").filterState(self._cached_books_state)
     local mod_rg      = Registry.get("reading_goals")
     local mod_rs      = Registry.get("reading_stats")
     local wants_stats = (mod_rg and Registry.isEnabled(mod_rg, self._pfx))

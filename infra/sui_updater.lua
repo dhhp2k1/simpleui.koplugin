@@ -26,20 +26,20 @@ local Text        = require("infra/sui_text")
 -- ---------------------------------------------------------------------------
 -- Configuration
 -- ---------------------------------------------------------------------------
-local GITHUB_OWNER = "doctorhetfield-cmd"
+local GITHUB_OWNER = "dhhp2k1"
 local GITHUB_REPO  = "simpleui.koplugin"
 local ASSET_NAME   = "simpleui.koplugin.zip"
 
 local AUTO_CHECK_INTERVAL = 24 * 3600  -- seconds between automatic checks
 
 -- G_reader_settings keys — prefixed with "sui_upd_" to avoid collisions.
-local GS_LAST_CHECK = "sui_upd_last_check"  -- number (timestamp)
-local GS_HAS_UPDATE = "sui_upd_has_update"  -- boolean
-local GS_LATEST_VER = "sui_upd_latest_ver"  -- string without "v"
-local GS_DL_URL     = "sui_upd_dl_url"      -- string URL
+local GS_LAST_CHECK = "simpleui_personal_upd_last_check"  -- number (timestamp)
+local GS_HAS_UPDATE = "simpleui_personal_upd_has_update"  -- boolean
+local GS_LATEST_VER = "simpleui_personal_upd_latest_ver"  -- string without "v"
+local GS_DL_URL     = "simpleui_personal_upd_dl_url"      -- string URL
 
 local _API_URL = string.format(
-    "https://api.github.com/repos/%s/%s/releases/latest",
+    "https://api.github.com/repos/%s/%s/releases?per_page=20",
     GITHUB_OWNER, GITHUB_REPO
 )
 
@@ -79,25 +79,11 @@ end
 
 -- Returns true if version `a` is strictly greater than `b`.
 -- Supports "v1.2.3", "1.2.3", "1.2.3-beta1" (suffixes are ignored).
-local function _versionGt(a, b)
-    local function parts(v)
-        v = (v or ""):match("^v?(.-)[-+]") or (v or ""):match("^v?(.+)$") or ""
-        local t = {}
-        for n in (v .. "."):gmatch("(%d+)%.") do t[#t + 1] = tonumber(n) or 0 end
-        while #t < 3 do t[#t + 1] = 0 end
-        return t
-    end
-    local pa, pb = parts(a), parts(b)
-    for i = 1, 3 do
-        if pa[i] > pb[i] then return true end
-        if pa[i] < pb[i] then return false end
-    end
-    return false
-end
+local _versionGt = require("infra/sui_version").greater
 
 local function _isValidAssetUrl(url)
-    return type(url) == "string"
-        and url:find("/releases/download/", 1, true) ~= nil
+    local prefix = "https://github.com/" .. GITHUB_OWNER .. "/" .. GITHUB_REPO .. "/releases/download/"
+    return type(url) == "string" and url:sub(1, #prefix) == prefix
 end
 
 -- ---------------------------------------------------------------------------
@@ -261,6 +247,8 @@ local function _parseRelease(body)
     local ok_j, json = pcall(require, "json")
 
     if not ok_j then
+        -- A release list cannot be safely matched with regular expressions.
+        if body:match("^%s*%[") then return nil, "JSON module required for personal releases" end
         -- Regex fallback for KOReader builds that lack the json module.
         logger.warn("simpleui updater: json module unavailable, using regex fallback")
         local function jsonStr(key)
@@ -288,6 +276,21 @@ local function _parseRelease(body)
         return nil, "JSON parse error: " .. tostring(data)
     end
 
+    if not data.tag_name then
+        local chosen
+        for _, release in ipairs(data) do
+            if not release.draft and type(release.tag_name) == "string"
+                    and release.tag_name:find("-personal.", 1, true) then
+                for _, asset in ipairs(release.assets or {}) do
+                    if asset.name == ASSET_NAME and _isValidAssetUrl(asset.browser_download_url) then
+                        if not chosen or _versionGt(release.tag_name, chosen.tag_name) then chosen = release end
+                    end
+                end
+            end
+        end
+        if not chosen then return nil, "No packaged personal release available" end
+        data = chosen
+    end
     local tag = data.tag_name
     if not tag then return nil, "tag_name missing from API response" end
 

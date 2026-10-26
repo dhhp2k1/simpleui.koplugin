@@ -30,13 +30,16 @@ local GridRenderer = require("engines/sui_book_grid")
 local LibraryScan  = require("engines/sui_library_scan")
 local Finished     = require("features/library/sui_finished_books")
 local SH           = require("modules/module_books_shared")
+local PageState    = require("engines/sui_section_label").PageState
 
 local MAX_ITEMS = 5  -- default_cols for the grid — same convention as Collections/Featured Collection
 
 local SORT_KEY    = "flat_library_sort_mode"    -- pfx .. SORT_KEY
 local SHUFFLE_KEY = "flat_library_shuffle_order" -- pfx .. SHUFFLE_KEY
 
-local DEFAULT_SORT = "title_asc"
+-- Preserve explicitly selected sorts; new shelves start with newest files.
+local DEFAULT_SORT = "date_desc"
+local _shelf_snapshots = {}
 local SORT_ORDER   = {
     "title_asc", "title_desc", "author_asc",
     "date_desc", "date_asc", "size_desc", "size_asc", "shuffle",
@@ -162,6 +165,7 @@ local function sortRaw(raw, mode, pfx)
         local mtimes = {}
         for _, r in ipairs(raw) do mtimes[r.fp] = r.mtime end
         table.sort(fps, function(a, b)
+            if mtimes[a] == mtimes[b] then return a < b end
             if mode == "date_desc" then return mtimes[a] > mtimes[b] else return mtimes[a] < mtimes[b] end
         end)
     elseif mode == "size_desc" or mode == "size_asc" then
@@ -192,7 +196,23 @@ local function getFileList(ctx)
     if not home then return {} end
 
     local raw = LibraryScan.getRaw(home)
-    return sortRaw(raw, getSortMode(pfx), pfx)
+    local mode = getSortMode(pfx)
+    local fps = sortRaw(raw, mode, pfx)
+    -- Path snapshots survive ctx rebuilds. Only additions reset newest-first
+    -- shelves; removing/hiding a file must not steal the current page.
+    local previous = _shelf_snapshots[pfx]
+    local seen, arrived = {}, false
+    for _, fp in ipairs(fps) do
+        seen[fp] = true
+        if previous and previous.home == home and not previous.seen[fp] then
+            arrived = true
+        end
+    end
+    if ctx and mode == "date_desc" and arrived then
+        PageState.setPage(ctx, "flat_library", 1)
+    end
+    _shelf_snapshots[pfx] = { home = home, seen = seen }
+    return fps
 end
 
 -- ---------------------------------------------------------------------------
@@ -264,6 +284,9 @@ local mod = GridRenderer.makeModule{
     id          = "flat_library",
     name        = _("Flat Library"),
     label       = _("Books"),
+    label_fn    = function(pfx)
+        return getSortMode(pfx or "") == "date_desc" and _("Recently added") or _("Books")
+    end,
     default_on  = false,
     is_book_mod = true,   -- surgical repaint on swipe between pages; suppresses the generic empty-state
     max_items   = MAX_ITEMS,

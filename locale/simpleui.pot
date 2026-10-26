@@ -5582,3 +5582,23 @@ msgid "page read"
 msgid_plural "pages read"
 msgstr[0] ""
 msgstr[1] ""
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "Recently added"
+msgstr ""
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "Hide from home and library"
+msgstr ""
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "Hidden books and documents"
+msgstr ""
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "Restore visibility"
+msgstr ""
+
+#: features/library/sui_hidden_books.lua modules/module_library.lua
+msgid "No hidden books or documents"
+msgstr ""

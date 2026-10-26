@@ -155,7 +155,10 @@ function LibraryScan.getRaw(home_dir)
     if not home_dir or home_dir == "" then return {} end
     local entry = getEntry(home_dir)
     local copy = {}
-    for i = 1, #entry.list do copy[i] = entry.list[i] end
+    local Hidden = require("features/library/sui_hidden_books")
+    for i = 1, #entry.list do
+        if not Hidden.isHidden(entry.list[i].fp) then copy[#copy + 1] = entry.list[i] end
+    end
     return copy
 end
 
