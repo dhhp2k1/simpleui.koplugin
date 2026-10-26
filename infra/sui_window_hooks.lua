@@ -66,6 +66,7 @@ M.ORDER = {
         NATIVE_SHEETS         = 5,
         NATIVE_ARRANGE        = 6,
         COVER_NOTICE          = 10,
+        NATIVE_WIDGETS        = 15,
         READER_WIRING         = 20,
         READER_RELOAD         = 30,
         READER_COVER          = 40,
@@ -77,10 +78,12 @@ M.ORDER = {
     },
     close = {
         NATIVE_SHEETS         = 5,
+        NATIVE_WIDGETS        = 6,
         NAVBAR_RESTORE        = 10,
         BAR_INJECTION_CLOSE   = 20,
         RELOAD_BLOCKER        = 30,
         LAZY_REFRESH          = 40,
+        EXPOSED_REFRESH       = 45,
         REOPEN_SCREEN         = 50,
     },
 }

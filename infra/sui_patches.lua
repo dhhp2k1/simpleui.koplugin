@@ -16,7 +16,10 @@ local Bottombar = require("screens/sui_bottombar")
 local SUISettings = require("infra/sui_store")
 local SUIStyle    = require("features/sui_style")
 local SUIWallpaper = require("features/sui_wallpaper")
+local Backdrop   = require("infra/sui_backdrop")
 local WindowHooks  = require("infra/sui_window_hooks")
+local Perf         = require("infra/sui_perf")
+local SUIPaths     = require("infra/sui_paths")
 
 -- Lazy: only needed on D-pad devices, inside gesture event handlers.
 local _FocusManager
@@ -245,6 +248,7 @@ end
 -- Caller must guard against HS._instance already being set (warm path).
 local function _showHSCold(plugin_ref, HS_ref, prev_action)
     if isAppExiting() then return end
+    Perf.mark("showHSCold start")
     local tabs = Config.loadTabConfig()
     Bottombar.setActiveAndRefreshFM(plugin_ref, "homescreen", tabs)
     _ensureGoalCallback(plugin_ref)
@@ -722,7 +726,9 @@ function M.patchFileManagerClass(plugin)
         -- onShow: fires once the FM is on the UIManager stack.
         local orig_onShow = fm_self.onShow
         fm_self.onShow = function(this)
+            Perf.mark("FileManager onShow start")
             if orig_onShow then orig_onShow(this) end
+            Perf.mark("FileManager orig onShow done")
             Bottombar.resizePaginationButtons(this.file_chooser or this, Bottombar.getPaginationIconSize())
 
             -- Open the homescreen if it was flagged at setupLayout time (boot or rotation).
@@ -805,6 +811,13 @@ function M.patchFileManagerClass(plugin)
             plugin:_registerTouchZones(this)
             Bottombar.setActiveTab(this, plugin.active_action, t)
             Bottombar.repaintBar(this)
+            -- The menu tab bar overlaps the topbar: refresh the topbar region
+            -- so nothing of the closed menu stays on screen. The box is read
+            -- lazily, once the paint pass has positioned the topbar.
+            local bar_topbar = this._navbar_topbar
+            if bar_topbar then
+                UIManager:setDirty(this, function() return "ui", bar_topbar.dimen end)
+            end
         end
 
         plugin:_registerTouchZones(fm_self)
@@ -2018,8 +2031,8 @@ local function _injectNavbar(ctx)
     UI.applyGesturePriorityHandleEvent(widget)
     _registerMenuZones(widget, plugin)
 
-    local return_button = widget.return_button
-    if return_button and return_button[1] then return_button[1].width = UI.SIDE_M() end
+    -- Native page_return_arrow is suppressed by Titlebar.applyToSub; do not
+    -- re-expand its leading span here.
 
     _wrapDpadFocusExit(widget)
     Bottombar.resizePaginationButtons(widget, Bottombar.getPaginationIconSize())
@@ -2221,6 +2234,21 @@ local function _refreshExposedFileManager()
     UIManager:scheduleIn(0, _refreshLiveFileChooser)
 end
 
+-- A closing screen exposes whatever fullscreen widget lies beneath it, and
+-- UIManager:close queues no refresh of its own: only the regions dirtied by
+-- other code reach the display, leaving the screen's pixels in the gaps.
+local function _closedScreenExposesWidget(widget)
+    return widget.name == "homescreen"
+end
+
+local function _refreshExposedWidget()
+    local stack = UI.getWindowStack()
+    local top = stack[#stack] and stack[#stack].widget
+    if top and top ~= liveFM() and top.covers_fullscreen and not _isReader(top) then
+        UIManager:setDirty(top, "ui")
+    end
+end
+
 -- ── close: screen reopen ────────────────────────────────────────────────────
 
 -- Shows screen `screen_id` (the built-in homescreen when nil) again, unless
@@ -2333,6 +2361,34 @@ local function _reopenAfterReaderClose(plugin, reader)
     end)
 end
 
+-- Methods inspected to tell where a widget's class comes from.
+local WIDGET_SOURCE_METHODS = { "init", "onCloseWidget", "onShow", "onClose" }
+
+-- True when the widget class is implemented by a plugin other than this one.
+-- Native widgets resolve to files under frontend/, so they never match.
+local function _isForeignPluginWidget(widget)
+    local own_dir = SUIPaths.getPluginDir()
+    for _, name in ipairs(WIDGET_SOURCE_METHODS) do
+        local fn = widget[name]
+        local info = type(fn) == "function" and debug.getinfo(fn, "S")
+        local src = info and info.source
+        if src and src:find("plugins/", 1, true) and not src:find(own_dir, 1, true) then
+            return true
+        end
+    end
+    return false
+end
+
+-- A foreign fullscreen widget can leave its pixels on a panel that the
+-- non-flashing refresh of the reopened screen does not clear: flash it once.
+local function _clearExposedGhosting()
+    local stack = UI.getWindowStack()
+    local top = stack[#stack] and stack[#stack].widget
+    if top and top.name == "homescreen" then
+        UIManager:setDirty(nil, "flashui")
+    end
+end
+
 local function _reopenScreen(ctx)
     local widget, plugin = ctx.widget, ctx.plugin
     widget._navbar_hs_scheduled = true
@@ -2342,6 +2398,7 @@ local function _reopenScreen(ctx)
         _reopenAfterReaderClose(plugin, widget)
         return
     end
+    local foreign = _isForeignPluginWidget(widget)
     UIManager:scheduleIn(0, function()
         if isAppExiting() then return end
         local fm = liveFM()
@@ -2349,6 +2406,7 @@ local function _reopenScreen(ctx)
         local reader_module = package.loaded["apps/reader/readerui"]
         if reader_module and reader_module.instance then return end
         _doShowHS(fm, plugin, widget._sui_displaced_screen)
+        if foreign then _clearExposedGhosting() end
     end)
 end
 
@@ -2371,6 +2429,11 @@ local function registerWindowSteps()
     WindowHooks.register{
         id = "cover_open_notice", point = SHOW, order = show.COVER_NOTICE,
         intercept = _interceptOpenNotice,
+    }
+    local NativeWidgets = require("features/dialogs/sui_native_widgets")
+    WindowHooks.register{
+        id = "native_widgets", point = SHOW, order = show.NATIVE_WIDGETS,
+        intercept = NativeWidgets.interceptShow,
     }
     WindowHooks.register{
         id = "reader_wiring", point = SHOW, order = show.READER_WIRING,
@@ -2410,6 +2473,10 @@ local function registerWindowSteps()
         intercept = NativeSheets.interceptClose,
     }
     WindowHooks.register{
+        id = "native_widgets", point = CLOSE, order = close.NATIVE_WIDGETS,
+        intercept = NativeWidgets.interceptClose,
+    }
+    WindowHooks.register{
         id = "navbar_restore", point = CLOSE, order = close.NAVBAR_RESTORE,
         match = _wasNavbarInjected, before = _restoreNavbarTab,
     }
@@ -2424,6 +2491,10 @@ local function registerWindowSteps()
     WindowHooks.register{
         id = "lazy_refresh", point = CLOSE, order = close.LAZY_REFRESH,
         match = _closedScreenExposesFileManager, after = _refreshExposedFileManager,
+    }
+    WindowHooks.register{
+        id = "exposed_refresh", point = CLOSE, order = close.EXPOSED_REFRESH,
+        match = _closedScreenExposesWidget, after = _refreshExposedWidget,
     }
     WindowHooks.register{
         id = "screen_reopen", point = CLOSE, order = close.REOPEN_SCREEN,
@@ -2536,10 +2607,11 @@ local function _libraryRecalculate(menu, ...)
     end
 end
 
--- Display modes whose layout is inset, with the margin each one already
--- applies at the item area edge.
+-- Display modes hooked for the side margin, with the margin each one already
+-- applies at the item area edge. A mode without `native_margin` is hooked but
+-- never inset: the mosaic grid keeps its own margins.
 local SIDE_MARGIN_MODES = {
-    { module = "mosaicmenu", native_margin = function(menu) return menu.item_margin end },
+    { module = "mosaicmenu" },
     { module = "listmenu",   native_margin = function() return 0 end },
 }
 
@@ -2547,6 +2619,9 @@ local SIDE_MARGIN_STATE = "_simpleui_side_margin"
 
 -- Installs the side margin hooks on `DisplayMode` unless already present.
 local function _installSideMargin(DisplayMode, native_margin, owner)
+    local function inset_of(menu)
+        return native_margin and _sideInset(menu, native_margin(menu)) or 0
+    end
     local state = _acquireHooks(DisplayMode, SIDE_MARGIN_STATE, owner)
     if not state then return end
 
@@ -2557,7 +2632,7 @@ local function _installSideMargin(DisplayMode, native_margin, owner)
     -- native_margin(menu) is read after the mode has run _recalculateDimen.
     local function recalculate(menu, ...)
         orig_recalculate(menu, ...)
-        local inset = _sideInset(menu, native_margin(menu))
+        local inset = inset_of(menu)
         menu._sui_side_inset = inset
         if inset > 0 then _withInsetWidth(menu, inset, orig_recalculate, ...) end
     end
@@ -3502,6 +3577,47 @@ function M.unpatchChoiceDialogs(plugin)
 end
 
 -- ---------------------------------------------------------------------------
+-- Text input dialogs of the file manager, the history and the collections
+-- Their inputs (file search and rename, history search, collection name,
+-- collection search and file type filter) are shown through the dialog facade
+-- (features/dialogs/sui_native_inputs.lua). Only the dialog an entry point
+-- shows while it runs is converted.
+-- ---------------------------------------------------------------------------
+-- Per owner: the methods that show an input dialog.
+local INPUT_DIALOGS = {
+    { module = "apps/filemanager/filemanager",             methods = { "showRenameFileDialog" } },
+    { module = "apps/filemanager/filemanagerfilesearcher", methods = { "onShowFileSearch" } },
+    { module = "apps/filemanager/filemanagerhistory",      methods = { "onSearchHistory" } },
+    { module = "apps/filemanager/filemanagercollection",   methods = {
+        "editCollectionName", "showCollFilterTypeDialog", "onShowCollectionsSearchDialog",
+    } },
+}
+
+local INPUT_DIALOGS_STATE = "_simpleui_input_dialogs"
+
+function M.patchInputDialogs(plugin)
+    local NativeInputs = require("features/dialogs/sui_native_inputs")
+    for _i, entry in ipairs(INPUT_DIALOGS) do
+        local ok, Owner = pcall(require, entry.module)
+        local state = ok and Owner and _acquireHooks(Owner, INPUT_DIALOGS_STATE, plugin)
+        if state then
+            for _j, key in ipairs(entry.methods) do
+                if Owner[key] then
+                    _addHook(state, Owner, key, NativeInputs.scoped(Owner[key]))
+                end
+            end
+        end
+    end
+end
+
+function M.unpatchInputDialogs(plugin)
+    for _i, entry in ipairs(INPUT_DIALOGS) do
+        local Owner = package.loaded[entry.module]
+        if Owner then _releaseHooks(Owner, INPUT_DIALOGS_STATE, plugin) end
+    end
+end
+
+-- ---------------------------------------------------------------------------
 -- Global Text Size (Style ▸ Global Text Size)
 -- Patches ui/font.lua's Font:getFace() so Config.getFontScalePct() scales
 -- EVERY KOReader UI text size drawn through it — native menus, dialogs,
@@ -3678,6 +3794,44 @@ end
 function M.unpatchIconNightColors(plugin)
     local ImageWidget = package.loaded["ui/widget/imagewidget"]
     if ImageWidget then _releaseHooks(ImageWidget, ICON_NIGHT_STATE, plugin) end
+end
+
+-- ---------------------------------------------------------------------------
+-- Night mode change
+-- UIManager:ToggleNightMode runs once per change, after the screen has
+-- switched. The wallpaper cache and the homescreen layout are refreshed, the
+-- looks derived from settings are resolved again, and the navbars are rebuilt
+-- when a palette colour is on screen: it is pre-inverted at night and navbar
+-- widgets keep the colour they were built with.
+-- ---------------------------------------------------------------------------
+
+local NIGHT_MODE_STATE = "_simpleui_night_mode"
+
+function M.patchNightMode(plugin)
+    local orig = rawget(UIManager, "ToggleNightMode")
+    if not orig then return end
+    local state = _acquireHooks(UIManager, NIGHT_MODE_STATE, plugin)
+    if not state then return end
+
+    local Accent = require("infra/sui_accent")
+    UIManager.ToggleNightMode = function(self, ...)
+        local results = table.pack(orig(self, ...))
+        SUIWallpaper.onNightModeChanged()
+        SUISettings:invalidateDerived()
+        local live = _live_plugin
+        if live and (Accent.color() or Accent.secondaryColor()) then
+            local ok, err = pcall(live._rebuildAllNavbars, live)
+            if not ok then logger.warn("simpleui: accent navbar rebuild failed:", tostring(err)) end
+            local ok_tb, TB = pcall(require, "screens/sui_titlebar")
+            if ok_tb and TB then pcall(TB.refreshAccent) end
+        end
+        return table.unpack(results, 1, results.n)
+    end
+    _trackHooks(state, { { UIManager, "ToggleNightMode", orig } })
+end
+
+function M.unpatchNightMode(plugin)
+    _releaseHooks(UIManager, NIGHT_MODE_STATE, plugin)
 end
 
 -- ---------------------------------------------------------------------------
@@ -4253,17 +4407,23 @@ local function _wallpaperBg()
     return SUIWallpaper.styleGetBgWidget()
 end
 
+-- Paints the wallpaper behind the status bar and the bottom bar only, for when
+-- a bar is transparent but the wallpaper is not shown on all screens. It
+-- clears what was on screen before (closed menus, other screens) and leaves
+-- the content area to paint itself.
+local function _paintBarBands(bb, x)
+    if _wallpaperBg() or not SUIWallpaper.barsRevealWallpaper() then return end
+    local sw, sh = Screen:getWidth(), Screen:getHeight()
+    local bottom_h = Bottombar.TOTAL_H()
+    SUIWallpaper.paintEraser(bb, x, 0, sw, UI.getTopInset(), 0)
+    SUIWallpaper.paintEraser(bb, x, sh - bottom_h, sw, bottom_h, 0)
+end
+
 -- Recursively nil all COLOR_WHITE backgrounds in a widget tree.
 -- Stops at depth 12 to avoid runaway traversal.
 local function _clearWhiteBackgrounds(w, depth)
     if not w or type(w) ~= "table" or depth > 12 then return end
-    local Blitbuffer = require("ffi/blitbuffer")
-    -- Use pcall to guard against __eq crashing on cdata nil values.
-    -- w.background can be a cdata (e.g. BlitBuffer color) that triggers
-    -- blitbuffer.lua's __eq metamethod, which crashes if either operand
-    -- is an uninitialised/null cdata rather than a proper Lua nil.
-    local ok, is_white = pcall(function() return w.background == SUIStyle.COLOR.surface end)
-    if ok and is_white then
+    if SUIStyle.isSurface(w.background) then
         w.background = nil
     end
     for i = 1, #w do
@@ -4286,7 +4446,17 @@ end
 local function _injectWallpaperIntoWidget(widget)
     if not widget then return end
     local outer = widget[1]   -- simpleui outer FrameContainer
-    if not outer or outer._sui_wallpaper_patched then return end
+    if not outer then return end
+    -- Bar bands are checked live on every paint, so a later setting change applies.
+    if not outer._sui_bands_patched then
+        outer._sui_bands_patched = true
+        local bands_pt = outer.paintTo
+        function outer:paintTo(bb, x, y)
+            _paintBarBands(bb, x)
+            bands_pt(self, bb, x, y)
+        end
+    end
+    if outer._sui_wallpaper_patched or not _wallpaperBg() then return end
     outer._sui_wallpaper_patched = true
 
     -- Clear opaque backgrounds in the widget chain.
@@ -4362,7 +4532,7 @@ function M.patchWallpaperFM(plugin)
     FileManager.paintTo = function(fm_self, bb, x, y)
         -- Only intercept the FileManager instance (not subclasses / other callers).
         local _live_bg_fm = _wallpaperBg()
-        if _live_bg_fm then _paintWallpaper(_live_bg_fm, bb, x, y) end
+        if _live_bg_fm then _paintWallpaper(_live_bg_fm, bb, x, y) else _paintBarBands(bb, x) end
         -- Call the original paintTo (WidgetContainer:paintTo).
         if orig_fm_paintTo then
             orig_fm_paintTo(fm_self, bb, x, y)
@@ -4500,9 +4670,18 @@ function M.patchWallpaperFM(plugin)
     end
 
 
--- Reads the pagination surface (tone, opacity and frame) on every paint, so
--- a menu created before a change still reflects it, and a menu created while
--- the surface was not painted still picks up a later change.
+-- Text colours of content on the pagination surface, or nil when it has no
+-- foreground (plain white or gray): then nothing is recoloured.
+local function _paginationInk()
+    local surface = SUIWallpaper.resolveBar("pagination")
+    if surface.foreground then return Backdrop.contentColors(surface) end
+end
+
+-- Paints the pagination surface (tone, opacity and frame) behind the page
+-- info and draws its text and arrows in the surface's text colour. Both are
+-- read on every paint, so a menu created before a change still reflects it,
+-- and a menu created while the surface was not painted still picks up a later
+-- change.
 local function _applyPaginationScrim(menu_self)
     local page_info = menu_self and menu_self.page_info
     if not page_info or page_info._sui_pagination_scrim then return end
@@ -4515,7 +4694,29 @@ local function _applyPaginationScrim(menu_self)
             h = sz and sz.h or 0
         end
         SUIWallpaper.paintPaginationBar(bb, y, h)
-        return orig_paint(self, bb, x, y)
+        local fg, dim = _paginationInk()
+        if not fg then return orig_paint(self, bb, x, y) end
+        local label = menu_self.page_info_text and menu_self.page_info_text.label_widget
+        local texts = label and not label.update and { label } or {}
+        local icons = {}
+        for _, key in ipairs({ "page_info_first_chev", "page_info_left_chev",
+                               "page_info_right_chev", "page_info_last_chev" }) do
+            icons[#icons + 1] = menu_self[key]
+        end
+        return UI.paintInk(fg, dim, texts, icons, orig_paint, self, bb, x, y)
+    end
+
+    -- The return arrow sits in the same bar but outside the page info.
+    local arrow = menu_self.page_return_arrow
+    if arrow and not arrow._sui_pagination_ink then
+        arrow._sui_pagination_ink = true
+        local orig_arrow_paint = arrow.paintTo
+        function arrow:paintTo(bb, x, y)
+            local fg, dim = _paginationInk()
+            if not fg then return orig_arrow_paint(self, bb, x, y) end
+            return UI.paintInkIcon(self, bb, x, y, self.enabled == false and dim or fg,
+                orig_arrow_paint)
+        end
     end
 end
 
@@ -4589,7 +4790,7 @@ end
         installed[#installed + 1] = { UnderlineContainer, "paintTo", orig_uc_pt }
 
         UnderlineContainer.paintTo = function(uc_self, bb, x, y)
-            if SUIWallpaper.styleGetWallpaperShowInFM() and uc_self.color == SUIStyle.COLOR.surface then
+            if SUIWallpaper.styleGetWallpaperShowInFM() and SUIStyle.isSurface(uc_self.color) then
                 -- Paint only the child, skip the white underline.
                 local container_size = uc_self:getSize()
                 if not uc_self.dimen then
@@ -4632,7 +4833,7 @@ end
 
         TextBoxWidget.paintTo = function(tbw_self, bb, x, y)
             if not (SUIWallpaper.styleGetWallpaperShowInFM()
-                    and tbw_self.bgcolor == SUIStyle.COLOR.surface) then
+                    and SUIStyle.isSurface(tbw_self.bgcolor)) then
                 return orig_tbw_pt(tbw_self, bb, x, y)
             end
 
@@ -4664,7 +4865,7 @@ end
 
         ProgressWidget.paintTo = function(pw_self, bb, x, y)
             if SUIWallpaper.styleGetWallpaperShowInFM()
-                    and pw_self.bgcolor == SUIStyle.COLOR.surface then
+                    and SUIStyle.isSurface(pw_self.bgcolor) then
                 local saved = pw_self.bgcolor
                 pw_self.bgcolor = nil
                 orig_pw_pt(pw_self, bb, x, y)
@@ -4881,7 +5082,6 @@ function M.injectWallpaperIntoFullscreenWidget(widget)
     -- Utility overlays that happen to set covers_fullscreen (SortWidget,
     -- PathChooser, etc.) must be left untouched.
     if not WALLPAPER_NAMES[widget.name] then return end
-    if not _wallpaperBg() then return end
     _injectWallpaperIntoWidget(widget)
 end
 
@@ -4909,8 +5109,10 @@ function M.installAll(plugin)
     M.patchResetSettingsButton(plugin)
     M.patchFileDialogSheets(plugin)
     M.patchChoiceDialogs(plugin)
+    M.patchInputDialogs(plugin)
     M.patchFontGetFace(plugin)
     M.patchIconNightColors(plugin)
+    M.patchNightMode(plugin)
     -- Register the tab icon step in the shared menu hooks so system icon
     -- overrides survive menu rebuilds (FM and Reader).
     local ok_ss, SUIStyle = pcall(require, "features/sui_style")
@@ -5107,8 +5309,10 @@ function M.teardownAll(plugin)
     M.unpatchBookStatusWidget(plugin)
     M.unpatchResetSettingsButton(plugin)
     M.unpatchFileDialogSheets(plugin)
+    M.unpatchInputDialogs(plugin)
     M.unpatchChoiceDialogs(plugin)
     M.unpatchFontGetFace(plugin)
+    M.unpatchNightMode(plugin)
     M.unpatchIconNightColors(plugin)
 
     local FMH = package.loaded["apps/filemanager/filemanagerhistory"]

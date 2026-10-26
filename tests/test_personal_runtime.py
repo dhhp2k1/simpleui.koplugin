@@ -62,7 +62,7 @@ release("v99.0.0-personal.1","https://github.com/other/repo/releases/download/x/
 package.loaded["json"]={decode=function() return releases end}
 package.loaded["ui/uimanager"]={show=function(_,o) shown[#shown+1]=o end,
 close=function() end,scheduleIn=function(_,_,fn) fn() end}
-package.loaded["ui/widget/confirmbox"]={new=function(_,o) return o end}
+package.loaded["features/dialogs/sui_dialogs"]={confirm=function(o) shown[#shown+1]=o end}
 package.loaded["logger"]={info=function() end,warn=function() end,err=function() end}
 package.loaded["util"]={trim=function(s) return s end}
 package.loaded["infra/sui_core"]={Notify={toast=function() return {} end}}
