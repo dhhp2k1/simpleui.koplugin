@@ -151,13 +151,13 @@ end
 --- order (not sorted for display). Callers needing a specific order
 --- (title, date, size, ...) sort a shallow copy themselves; this never
 --- mutates the cache.
-function LibraryScan.getRaw(home_dir)
+function LibraryScan.getRaw(home_dir, include_hidden)
     if not home_dir or home_dir == "" then return {} end
     local entry = getEntry(home_dir)
     local copy = {}
     local Hidden = require("features/library/sui_hidden_books")
     for i = 1, #entry.list do
-        if not Hidden.isHidden(entry.list[i].fp) then copy[#copy + 1] = entry.list[i] end
+        if include_hidden or not Hidden.isHidden(entry.list[i].fp) then copy[#copy + 1] = entry.list[i] end
     end
     return copy
 end

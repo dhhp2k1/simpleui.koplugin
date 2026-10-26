@@ -132,8 +132,10 @@ function Hidden.makeMenuItem()
                         {
                             text = _("Restore visibility"),
                             callback = function()
-                                Hidden.restore(file)
-                                Hidden.refresh()
+                                if Hidden.restore(file) then
+                                    Hidden.refresh()
+                                    require("infra/sui_core").Notify.toast(_("Done") .. ": " .. title, 2)
+                                end
                             end,
                         },
                     },

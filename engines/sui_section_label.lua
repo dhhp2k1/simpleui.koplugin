@@ -38,16 +38,19 @@ local M = {}
 -- Pagination state
 -- ---------------------------------------------------------------------------
 
--- Page and page count per module id, stored in the screen ctx so it lives as
--- long as that ctx does. A module that was never paged reads as 1 of 1.
+-- Keep page state across data-context rebuilds within this KOReader session.
+-- Prefixes separate the built-in home screen from every custom screen.
+local screen_pages = {}
 local PageState = {}
 M.PageState = PageState
 
 local function pageEntry(ctx, id)
     local pages = ctx._pages
     if not pages then
-        pages = {}
+        pages = ctx.pfx and screen_pages[ctx.pfx] or {}
+        if not pages then pages = {} end
         ctx._pages = pages
+        if ctx.pfx then screen_pages[ctx.pfx] = pages end
     end
     local entry = pages[id]
     if not entry then
@@ -59,8 +62,8 @@ end
 
 -- Returns page, npages.
 function PageState.get(ctx, id)
-    local entry = ctx and ctx._pages and ctx._pages[id]
-    if not entry then return 1, 1 end
+    if not ctx then return 1, 1 end
+    local entry = pageEntry(ctx, id)
     return entry.page, entry.npages
 end
 

@@ -17,6 +17,7 @@ jobs:
       - run: python -X utf8 tests/test_hidden_books.py
       - run: python -X utf8 tests/test_arrivals.py
       - run: python -X utf8 tests/test_personal_runtime.py
+      - run: python -X utf8 tests/test_device_regressions.py
       - run: python -X utf8 scripts/package_personal.py
       - uses: actions/upload-artifact@v4
         with:

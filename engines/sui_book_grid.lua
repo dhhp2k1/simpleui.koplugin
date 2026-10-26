@@ -666,7 +666,7 @@ local function _resolveCurrentPage(fps, ctx, id, max_items, want_paged, persist)
     if want_paged and #fps > max_items then
         npages = math.ceil(#fps / max_items)
         page   = PageState.get(ctx, id)
-        if page < 1 or page > npages then page = 1 end
+        page = math.max(1, math.min(page, npages))
         if persist then PageState.setPage(ctx, id, page) end
     end
     local page_start = (page - 1) * max_items + 1

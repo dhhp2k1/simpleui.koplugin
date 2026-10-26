@@ -202,7 +202,10 @@ local function getFileList(ctx)
     -- shelves; removing/hiding a file must not steal the current page.
     local previous = _shelf_snapshots[pfx]
     local seen, arrived = {}, false
-    for _, fp in ipairs(fps) do
+    -- Visibility changes are not arrivals: track the physical inventory,
+    -- including hidden files, while displaying only the visible list above.
+    for _, entry in ipairs(LibraryScan.getRaw(home, true)) do
+        local fp = entry.fp
         seen[fp] = true
         if previous and previous.home == home and not previous.seen[fp] then
             arrived = true
@@ -213,6 +216,18 @@ local function getFileList(ctx)
     end
     _shelf_snapshots[pfx] = { home = home, seen = seen }
     return fps
+end
+
+-- True when a book appeared on disk since getFileList() last ran for pfx.
+-- Books can arrive without any KOReader event (LocalSend, Wi-Fi transfer).
+local function hasUnseenBooks(pfx)
+    local previous = _shelf_snapshots[pfx]
+    local home = LibraryScan.resolveHomeDir()
+    if not previous or previous.home ~= home then return false end
+    for _, entry in ipairs(LibraryScan.getRaw(home, true)) do
+        if not previous.seen[entry.fp] then return true end
+    end
+    return false
 end
 
 -- ---------------------------------------------------------------------------
@@ -325,6 +340,15 @@ local mod = GridRenderer.makeModule{
         resetCaches()
     end,
 }
+
+-- The grid memoizes getFileList() in a kept-alive ctx (page turns, returning
+-- to the home screen), so drop that memo when a book arrived to let
+-- getFileList() see it and reset a newest-first shelf to page 1.
+local _build = mod.build
+function mod.build(w, ctx)
+    if ctx and hasUnseenBooks(ctx.pfx or "") then ctx._row_fps_flat_library = nil end
+    return _build(w, ctx)
+end
 
 -- Exposed for completeness/tests — not called internally by this file.
 function mod.invalidateCache() resetCaches() end

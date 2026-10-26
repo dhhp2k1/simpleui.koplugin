@@ -7,7 +7,22 @@
 
 保留原版界面与配置能力，未加入 AI 或资讯。目标设备为 Paperwhite 5、固件
 5.16.2.1.1；需要 KOReader 2026.03+ 和自带 CoverBrowser 插件。
-已通过桌面回归检查，**尚未完成 Kindle 实机验收**。
+已在 PW5、固件 5.16.2.1.1、KOReader 2026.07.1 上完成开关书籍、休眠唤醒、
+隐藏恢复与批注保留，以及 LocalSend 收书后的书库分页验收。
+
+**当前分支包含尚未发布的实机修复；现有 personal.2 Release 资产不包含这些修复。**
+验证范围与已知限制见 [实机验证记录](docs/DEVICE_VALIDATION.md)。
+
+## 尚未发布的实机修复
+
+- 书库页码在首页数据重建后保留；隐藏、恢复不再跳回第一页。
+- 末页缩短时退到最后一个有效页，不跳到第一页。
+- 新书检测使用包含隐藏文件的磁盘清单，恢复显示不会误判为新书到达。
+- 首页网格复用缓存时，也会在下次重建前检查未见过的文件，支持 LocalSend 等无事件收书。
+- 恢复显示后立即提示书名；修复首次向导无法构建预设列表的导出遗漏。
+
+新书不会在传输完成瞬间强制重绘屏幕；翻页、切回首页或看书返回后的下次重绘才更新。
+不增加定时检查，用户选择的其他排序和普通分页继续保留。
 
 ## 改动
 
@@ -48,6 +63,7 @@ python -m pip install -r requirements-dev.txt
 python -X utf8 tests/test_hidden_books.py
 python -X utf8 tests/test_arrivals.py
 python -X utf8 tests/test_personal_runtime.py
+python -X utf8 tests/test_device_regressions.py
 python -X utf8 scripts/package_personal.py
 ```
 

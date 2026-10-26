@@ -1150,6 +1150,7 @@ return {
     getImportDir    = _getImportDir,
     listImportFiles = SUIPresets.listImportFiles,
     getBuiltinPresets = SUIPresets.getBuiltinPresets,
+    buildListRows = SUIPresets.buildListRows,
         applyBuiltin = SUIPresets.applyBuiltin,
 
     -- Homescreen preset menu items (shared between sui_menu and sui_layout_editor)
