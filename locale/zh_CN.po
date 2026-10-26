@@ -49,7 +49,7 @@ msgstr "阅读进度（降序）"
 
 #: modules/critter/phrases.lua:190
 msgid "%.1f hours read today!"
-msgstr ""
+msgstr "今天读了 %.1f 小时！"
 
 #: modules/module_heatmap.lua:226
 msgid "%1 weeks"
@@ -122,7 +122,7 @@ msgstr ""
 msgid ""
 "0% transparent, 100% solid. Only the background changes; the text stays "
 "solid."
-msgstr ""
+msgstr "0% 为全透明，100% 为不透明。只改变背景，文字始终不透明。"
 
 #: infra/sui_config.lua:1445
 msgid ""
@@ -139,7 +139,7 @@ msgstr "四封面网格（仅限网格视图）"
 
 #: modules/critter/phrases.lua:92
 msgid "A chapter pairs well with a coffee."
-msgstr ""
+msgstr "一章书配一杯咖啡正好。"
 
 #: screens/sui_onboarding.lua:188
 msgid "A folder named \"Books\" will be created and set as the library home."
@@ -153,23 +153,23 @@ msgstr "冻结补签仅可衔接一次紧接有效阅读日之后的缺勤 — �
 
 #: modules/critter/phrases.lua:84
 msgid "A fresh day, a fresh page."
-msgstr ""
+msgstr "新的一天，新的一页。"
 
 #: modules/critter/phrases.lua:240
 msgid "A good book helps."
-msgstr ""
+msgstr "读本好书会好些。"
 
 #: modules/critter/phrases.lua:170
 msgid "A new book awaits!"
-msgstr ""
+msgstr "新书在等你！"
 
 #: modules/critter/phrases.lua:203
 msgid "A new personal best!"
-msgstr ""
+msgstr "新的个人纪录！"
 
 #: modules/critter/phrases.lua:236
 msgid "A new week of stories."
-msgstr ""
+msgstr "新的一周，新的故事。"
 
 #: features/sui_presets.lua:346
 msgid "A preset named \"%s\" already exists."
@@ -218,11 +218,11 @@ msgstr "关于"
 
 #: features/library/sui_label_options.lua:134 features/sui_style.lua:1426
 msgid "Accent"
-msgstr ""
+msgstr "强调色"
 
 #: screens/sui_menu.lua:3218
 msgid "Accent Color"
-msgstr ""
+msgstr "强调色"
 
 #: features/sui_quickactions.lua:2387 features/sui_quickactions.lua:2620
 msgid "Action"
@@ -250,7 +250,7 @@ msgstr "操作不可用：%s"
 
 #: modules/module_tab_grid.lua:642
 msgid "Active Tab Color"
-msgstr ""
+msgstr "当前标签页颜色"
 
 #: screens/sui_quicksettings_bar.lua:1510
 msgid "Add Action"
@@ -258,7 +258,7 @@ msgstr "添加操作"
 
 #: features/sui_manual_books.lua:105
 msgid "Add Book"
-msgstr ""
+msgstr "添加书籍"
 
 #: screens/sui_menu.lua:1417 screens/sui_menu.lua:1455
 msgid "Add Button"
@@ -273,11 +273,11 @@ msgstr "添加项目"
 
 #: features/sui_manual_books.lua:159
 msgid "Add Manual Books"
-msgstr ""
+msgstr "手动添加书籍"
 
 #: features/sui_manual_books.lua:172
 msgid "Add Manual Count"
-msgstr ""
+msgstr "添加手动计数"
 
 #: screens/sui_settings_window.lua:1045 screens/sui_settings_window.lua:1171
 msgid "Add Module"
@@ -289,12 +289,11 @@ msgstr "添加页面"
 
 #: features/sui_manual_books.lua:167
 msgid "Add Single Book"
-msgstr ""
+msgstr "添加单本书"
 
 #: modules/module_tab_grid.lua:869
-#, fuzzy
 msgid "Add Tab"
-msgstr "添加页面"
+msgstr "添加标签页"
 
 #: modules/module_action_list.lua:287 modules/module_quick_actions.lua:349
 #: screens/sui_menu.lua:1916 screens/sui_quicksettings_bar.lua:1509
@@ -307,16 +306,15 @@ msgstr "请至少添加 2 本书以便排序。"
 
 #: modules/critter/module_critter.lua:559
 msgid "Add at least 2 decorations to arrange."
-msgstr ""
+msgstr "至少添加 2 个装饰才能排列。"
 
 #: modules/module_reading_stats.lua:1143
 msgid "Add at least 2 stats to arrange."
 msgstr "请至少添加 2 个统计项以便排序。"
 
 #: modules/module_tab_grid.lua:868 screens/sui_menu.lua:363
-#, fuzzy
 msgid "Add at least 2 tabs to arrange."
-msgstr "请至少添加 2 个统计项以便排序。"
+msgstr "至少添加 2 个标签页才能排列。"
 
 #: modules/module_tbr.lua:342
 msgid "Add to To Be Read"
@@ -324,11 +322,11 @@ msgstr "添加到待读"
 
 #: modules/critter/module_critter.lua:541
 msgid "Add your own critters in %1"
-msgstr ""
+msgstr "在 %1 中添加你自己的小伙伴"
 
 #: modules/critter/module_critter.lua:685
 msgid "Add your own decorations in %1"
-msgstr ""
+msgstr "在 %1 中添加你自己的装饰"
 
 #: screens/sui_menu.lua:2328
 msgid "After closing a book"
@@ -342,7 +340,7 @@ msgstr "对齐方式"
 
 #: screens/sui_menu.lua:3278 screens/sui_menu.lua:3937
 msgid "All caps"
-msgstr ""
+msgstr "全部大写"
 
 #: engines/sui_window.lua:4294 screens/sui_settings_window.lua:813
 msgid "All items have already been added."
@@ -358,7 +356,7 @@ msgstr "近期书籍已全部读完。"
 
 #: modules/module_reading_stats.lua:248
 msgid "All time"
-msgstr ""
+msgstr "全部时间"
 
 #: modules/module_reading_stats.lua:249
 msgid "All time — Books"
@@ -386,7 +384,7 @@ msgstr "年度阅读目标"
 
 #: modules/critter/phrases.lua:215
 msgid "Annual goal reached!"
-msgstr ""
+msgstr "年度目标达成！"
 
 #: features/sui_module_chrome.lua:251 features/sui_module_chrome.lua:272
 #: infra/sui_config.lua:1201 modules/module_heatmap.lua:354
@@ -416,7 +414,7 @@ msgstr "4月"
 
 #: features/dialogs/sui_dialogs.lua:221
 msgid "Are you sure you want to reboot the device?"
-msgstr ""
+msgstr "确定要重启设备吗？"
 
 #: features/sui_arrange.lua:384 infra/sui_config.lua:2208
 msgid "Arrange"
@@ -429,7 +427,7 @@ msgstr "整理 %s"
 
 #: screens/sui_quicksettings_bar.lua:1581
 msgid "Arrange Book Details"
-msgstr ""
+msgstr "整理书籍详情"
 
 #: screens/sui_menu.lua:1373 screens/sui_menu.lua:1380
 #: screens/sui_menu.lua:1557 screens/sui_menu.lua:1572
@@ -532,11 +530,11 @@ msgstr "每页均值"
 
 #: modules/module_reading_stats.lua:260
 msgid "Average session"
-msgstr ""
+msgstr "平均单次阅读"
 
 #: modules/critter/phrases.lua:268
 msgid "Aww, you're here!"
-msgstr ""
+msgstr "哇，你来啦！"
 
 #: screens/sui_titlebar.lua:114 screens/sui_titlebar.lua:120
 msgid "Back"
@@ -634,9 +632,8 @@ msgid "Behaviour"
 msgstr "行为"
 
 #: engines/sui_group_cell.lua:231
-#, fuzzy
 msgid "Below Cover"
-msgstr "单封面"
+msgstr "封面下方"
 
 #: screens/sui_stats_windows.lua:1990 screens/sui_stats_windows.lua:2010
 msgid "Best streak"
@@ -656,7 +653,7 @@ msgstr "粗斜体"
 
 #: screens/sui_quicksettings_bar.lua:1603
 msgid "Book"
-msgstr ""
+msgstr "书籍"
 
 #: screens/sui_menu.lua:2479
 msgid "Book Cover Transition"
@@ -664,7 +661,7 @@ msgstr "书籍封面过渡"
 
 #: screens/sui_quicksettings_bar.lua:1580
 msgid "Book Details"
-msgstr ""
+msgstr "书籍详情"
 
 #: screens/sui_menu.lua:2333
 msgid "Book Folder"
@@ -680,11 +677,11 @@ msgstr "图书菜单"
 
 #: features/sui_cover_elements.lua:107
 msgid "Book Stack"
-msgstr ""
+msgstr "书堆"
 
 #: screens/sui_menu.lua:2891
 msgid "Book Stack Style"
-msgstr ""
+msgstr "书堆样式"
 
 #: screens/sui_stats_windows.lua:3666
 msgid "Book Statistics"
@@ -717,11 +714,11 @@ msgstr "书籍"
 
 #: modules/critter/phrases.lua:261
 msgid "Books are tiny adventures."
-msgstr ""
+msgstr "书是小小的冒险。"
 
 #: modules/critter/phrases.lua:44
 msgid "Books this year"
-msgstr ""
+msgstr "今年读的书"
 
 #: infra/sui_goals.lua:46
 msgid "Books to read in %s:"
@@ -873,7 +870,7 @@ msgstr "检查更新中…"
 
 #: features/sui_accent_picker.lua:80
 msgid "Choose a color"
-msgstr ""
+msgstr "选择颜色"
 
 #: screens/sui_onboarding.lua:192
 msgid "Choose a different folder"
@@ -911,7 +908,7 @@ msgstr ""
 msgid ""
 "Choose the menus that open directly on the Quick Settings tab instead of the "
 "last used tab."
-msgstr ""
+msgstr "选择哪些菜单直接打开快捷设置标签页，而不是上次使用的标签页。"
 
 #: screens/sui_menu.lua:2210
 msgid "Choose wallpaper"
@@ -931,7 +928,7 @@ msgstr "经典"
 
 #: features/sui_accent_picker.lua:101 screens/sui_menu.lua:3220
 msgid "Clear"
-msgstr ""
+msgstr "清除"
 
 #: features/sui_presets.lua:172 features/sui_presets.lua:236
 #: infra/sui_config.lua:199 modules/module_clock.lua:194
@@ -945,7 +942,7 @@ msgstr "时钟样式"
 
 #: modules/module_currently.lua:1439
 msgid "Clock icon"
-msgstr ""
+msgstr "时钟图标"
 
 #: screens/sui_titlebar.lua:119
 msgid "Close"
@@ -1017,7 +1014,7 @@ msgstr "颜色"
 
 #: screens/sui_menu.lua:3995
 msgid "Colors"
-msgstr ""
+msgstr "颜色"
 
 #: infra/sui_config.lua:1711 infra/sui_config.lua:1713
 msgid "Column Width (Bento Grid)"
@@ -1082,7 +1079,7 @@ msgstr "无法写入备份文件"
 msgid ""
 "Count manually tracked books in the all-time total of books finished. They "
 "always count towards the year they belong to."
-msgstr ""
+msgstr "将手动记录的书计入历年读完总数。它们始终计入所属年份。"
 
 #: features/sui_presets.lua:192 features/sui_presets.lua:210
 #: modules/module_coverdeck.lua:837
@@ -1113,7 +1110,7 @@ msgstr "封面样式"
 
 #: features/sui_cover_elements.lua:331
 msgid "Cover Type"
-msgstr ""
+msgstr "封面类型"
 
 #: engines/sui_group_cell.lua:587 modules/module_collections.lua:315
 msgid "Cover for \"%s\""
@@ -1163,15 +1160,15 @@ msgstr "正在创建备份…"
 
 #: modules/critter/module_critter.lua:522
 msgid "Critter"
-msgstr ""
+msgstr "小伙伴"
 
 #: features/sui_backup.lua:161
 msgid "Critter images and phrases from sui_critters/"
-msgstr ""
+msgstr "来自 sui_critters/ 的小伙伴图片和台词"
 
 #: modules/critter/module_critter.lua:670
 msgid "Critter position"
-msgstr ""
+msgstr "小伙伴位置"
 
 #: screens/sui_stats_windows.lua:1988 screens/sui_stats_windows.lua:2008
 msgid "Current streak"
@@ -1225,7 +1222,7 @@ msgstr "自定义操作、操作行与调度器绑定"
 
 #: features/sui_backup.lua:160
 msgid "Custom critters"
-msgstr ""
+msgstr "自定义小伙伴"
 
 #: features/sui_backup.lua:154
 msgid "Custom icons"
@@ -1245,7 +1242,7 @@ msgstr "更多自定义设置"
 
 #: features/library/sui_hold_rows.lua:254
 msgid "Cut"
-msgstr ""
+msgstr "剪切"
 
 #: screens/sui_stats_windows.lua:2506 screens/sui_stats_windows.lua:3080
 msgid "DAY STREAK"
@@ -1261,7 +1258,7 @@ msgstr "每日阅读目标"
 
 #: modules/module_reading_stats.lua:244 modules/module_reading_stats.lua:245
 msgid "Daily average"
-msgstr ""
+msgstr "日平均"
 
 #: modules/module_reading_stats.lua:245
 msgid "Daily avg — Pages"
@@ -1273,7 +1270,7 @@ msgstr "每日平均 — 时间"
 
 #: modules/critter/phrases.lua:219 modules/critter/phrases.lua:226
 msgid "Daily goal reached!"
-msgstr ""
+msgstr "每日目标达成！"
 
 #: features/library/sui_label_options.lua:131 features/sui_style.lua:1482
 msgid "Dark"
@@ -1313,7 +1310,7 @@ msgstr "天数"
 
 #: modules/critter/phrases.lua:47
 msgid "Days and months"
-msgstr ""
+msgstr "日子与月份"
 
 #: infra/sui_book_stats.lua:177
 msgid "Days of reading"
@@ -1405,7 +1402,7 @@ msgstr "删除快捷操作“%s”？"
 
 #: features/sui_manual_books.lua:89
 msgid "Delete this book?"
-msgstr ""
+msgstr "删除这本书？"
 
 #: modules/module_currently.lua:280 modules/module_currently.lua:1376
 msgid "Description"
@@ -1433,11 +1430,11 @@ msgstr "详细"
 
 #: modules/module_reading_stats.lua:1186
 msgid "Detailed Cards"
-msgstr ""
+msgstr "详细卡片"
 
 #: modules/critter/module_critter.lua:697
 msgid "Details"
-msgstr ""
+msgstr "详情"
 
 #: features/sui_quickactions.lua:2204
 msgid "Dictionary Lookup"
@@ -1473,7 +1470,7 @@ msgstr "在夜间模式下不反转彩色图标"
 
 #: modules/critter/phrases.lua:108
 msgid "Don't forget to rest."
-msgstr ""
+msgstr "别忘了休息。"
 
 #: features/sui_quickactions.lua:2582
 msgid "Done"
@@ -1509,7 +1506,7 @@ msgstr "编辑"
 
 #: features/sui_manual_books.lua:105
 msgid "Edit Book"
-msgstr ""
+msgstr "编辑书籍"
 
 #: screens/sui_menu.lua:623 screens/sui_menu.lua:625 screens/sui_menu.lua:854
 msgid "Edit Custom Text"
@@ -1541,7 +1538,7 @@ msgstr "空"
 
 #: features/library/sui_foldercovers.lua:1431
 msgid "Empty folder"
-msgstr ""
+msgstr "空文件夹"
 
 #: infra/sui_compat_check.lua:132
 msgid "Enable"
@@ -1585,7 +1582,7 @@ msgstr "启用自定义界面字体"
 
 #: features/sui_accent_picker.lua:54
 msgid "Enter a color like #2F6FDB."
-msgstr ""
+msgstr "输入颜色值，例如 #2F6FDB。"
 
 #: features/sui_quickactions.lua:2096
 msgid ""
@@ -1633,7 +1630,7 @@ msgstr "安装图标包时出错："
 
 #: modules/critter/phrases.lua:265
 msgid "Every page counts."
-msgstr ""
+msgstr "每一页都算数。"
 
 #: screens/sui_stats_windows.lua:1158
 msgid "Exclude from goals"
@@ -1645,11 +1642,11 @@ msgstr "已排除"
 
 #: screens/sui_quicksettings_bar.lua:1008
 msgid "Exit"
-msgstr ""
+msgstr "退出"
 
 #: features/sui_style.lua:202
 msgid "Exit Book Button"
-msgstr ""
+msgstr "退出书籍按钮"
 
 #: features/sui_backup.lua:1118
 msgid "Export"
@@ -1677,7 +1674,7 @@ msgstr "超小"
 
 #: features/sui_manual_books.lua:129
 msgid "Extra books read in %d, on top of the automatic count:"
-msgstr ""
+msgstr "%d 年额外读完的书（不含自动统计）："
 
 #: infra/sui_updater.lua:442
 msgid "Extraction error: "
@@ -1693,7 +1690,7 @@ msgstr "恢复出厂设置"
 
 #: features/library/sui_finished_books.lua:62
 msgid "Fade"
-msgstr ""
+msgstr "淡化"
 
 #: screens/sui_menu.lua:2676
 msgid "Fade Intensity"
@@ -1703,7 +1700,7 @@ msgstr "淡化强度"
 msgid ""
 "Fades finished book covers in the file browser. Other lists show them as "
 "usual."
-msgstr ""
+msgstr "在文件浏览器中淡化已读完书籍的封面，其他列表照常显示。"
 
 #: screens/sui_menu.lua:2677
 msgid ""
@@ -1723,7 +1720,7 @@ msgstr "将壁纸淡化为白色，以提高文本的可读性。"
 
 #: modules/critter/phrases.lua:118
 msgid "Fancy a chapter or two?"
-msgstr ""
+msgstr "来一两章吗？"
 
 #: features/sui_quickactions.lua:851 features/sui_quickactions.lua:2200
 #: infra/sui_config.lua:132 modules/module_coverdeck.lua:1495
@@ -1764,7 +1761,7 @@ msgstr "五十"
 
 #: screens/sui_quicksettings_bar.lua:1678
 msgid "File Browser"
-msgstr ""
+msgstr "文件浏览器"
 
 #: features/sui_quickactions.lua:839
 msgid "File Manager not available."
@@ -1796,7 +1793,7 @@ msgstr "按名称筛选…"
 
 #: features/sui_manual_books.lua:111
 msgid "Finished"
-msgstr ""
+msgstr "已读完"
 
 #: features/library/sui_finished_books.lua:84 features/sui_stats_menu.lua:133
 msgid "Finished Books"
@@ -1820,11 +1817,11 @@ msgstr "平面书库"
 
 #: features/library/sui_label_options.lua:140 screens/sui_menu.lua:1098
 msgid "Floating"
-msgstr ""
+msgstr "悬浮"
 
 #: modules/module_coverdeck.lua:1485
 msgid "Flow"
-msgstr ""
+msgstr "流动"
 
 #: features/sui_quickactions.lua:2595
 msgid "Folder"
@@ -1832,7 +1829,7 @@ msgstr "文件夹"
 
 #: features/sui_cover_elements.lua:89
 msgid "Folder Count"
-msgstr ""
+msgstr "文件夹数量"
 
 #: features/sui_style.lua:1268
 msgid "Folder Covers"
@@ -1867,20 +1864,20 @@ msgstr "文件夹封面、浏览模式与丛书分组"
 
 #: screens/sui_menu.lua:2843
 msgid "Folders"
-msgstr ""
+msgstr "文件夹"
 
 #: engines/sui_book_grid.lua:1973 modules/module_coverdeck.lua:1650
 #: modules/module_currently.lua:1407
 msgid "Follow Style"
-msgstr ""
+msgstr "跟随样式"
 
 #: screens/sui_menu.lua:3237
 msgid "Follow accent"
-msgstr ""
+msgstr "跟随强调色"
 
 #: screens/sui_menu.lua:3240
 msgid "Follows accent"
-msgstr ""
+msgstr "跟随强调色"
 
 #: infra/sui_config.lua:1021 screens/sui_quicksettings_bar.lua:1646
 msgid "Font"
@@ -1948,15 +1945,15 @@ msgstr "此设备不支持前光。"
 
 #: features/library/sui_label_options.lua:141
 msgid "Full Width"
-msgstr ""
+msgstr "全宽"
 
 #: screens/sui_menu.lua:1097
 msgid "Full-width"
-msgstr ""
+msgstr "全宽"
 
 #: modules/critter/phrases.lua:48
 msgid "General"
-msgstr ""
+msgstr "常规"
 
 #: features/sui_backup.lua:681
 msgid "General — %d settings"
@@ -2012,48 +2009,48 @@ msgstr "目标与连续阅读"
 
 #: modules/critter/phrases.lua:87
 msgid "Good afternoon!"
-msgstr ""
+msgstr "下午好！"
 
 #: modules/critter/phrases.lua:117
 msgid "Good afternoon, %s!"
-msgstr ""
+msgstr "下午好，%s！"
 
 #: modules/critter/phrases.lua:95
 msgid "Good evening!"
-msgstr ""
+msgstr "晚上好！"
 
 #: modules/critter/phrases.lua:121
 msgid "Good evening, %s!"
-msgstr ""
+msgstr "晚上好，%s！"
 
 #: modules/critter/phrases.lua:79
 msgid "Good morning!"
-msgstr ""
+msgstr "早上好！"
 
 #: modules/critter/phrases.lua:113
 msgid "Good morning, %s!"
-msgstr ""
+msgstr "早上好，%s！"
 
 #: modules/critter/phrases.lua:103
 msgid "Good night!"
-msgstr ""
+msgstr "晚安！"
 
 #: modules/critter/phrases.lua:125
 msgid "Good night, %s!"
-msgstr ""
+msgstr "晚安，%s！"
 
 #: features/library/sui_label_options.lua:130 infra/sui_config.lua:1482
 #: modules/module_tab_grid.lua:647
 msgid "Gray"
-msgstr ""
+msgstr "灰色"
 
 #: modules/critter/phrases.lua:145
 msgid "Great going, %s!"
-msgstr ""
+msgstr "干得好，%s！"
 
 #: modules/critter/phrases.lua:42
 msgid "Greetings"
-msgstr ""
+msgstr "问候"
 
 #: engines/sui_book_grid.lua:1898 engines/sui_book_grid.lua:1909
 #: modules/module_reading_stats.lua:1158 modules/module_reading_stats.lua:1161
@@ -2065,9 +2062,8 @@ msgid "Group"
 msgstr "分组"
 
 #: modules/module_tab_grid.lua:923
-#, fuzzy
 msgid "Group Covers"
-msgstr "封面"
+msgstr "分组封面"
 
 #: screens/sui_menu.lua:2725
 msgid "Group by Book Series"
@@ -2095,19 +2091,19 @@ msgstr ""
 
 #: modules/critter/phrases.lua:235
 msgid "Happy Monday!"
-msgstr ""
+msgstr "周一快乐！"
 
 #: modules/critter/phrases.lua:229
 msgid "Happy New Year!"
-msgstr ""
+msgstr "新年快乐！"
 
 #: modules/critter/phrases.lua:247
 msgid "Happy weekend!"
-msgstr ""
+msgstr "周末愉快！"
 
 #: modules/critter/phrases.lua:80
 msgid "Have a great %s."
-msgstr ""
+msgstr "祝你%s愉快。"
 
 #: screens/sui_menu.lua:1104
 msgid ""
@@ -2137,15 +2133,15 @@ msgstr ""
 
 #: modules/critter/phrases.lua:276
 msgid "Hello, %s!"
-msgstr ""
+msgstr "你好，%s！"
 
 #: modules/critter/phrases.lua:257
 msgid "Hello, reader!"
-msgstr ""
+msgstr "你好，读者！"
 
 #: features/sui_accent_picker.lua:56
 msgid "Hex Color"
-msgstr ""
+msgstr "十六进制颜色"
 
 #: engines/sui_group_cell.lua:285 modules/module_tab_grid.lua:588
 #: screens/sui_menu.lua:460 screens/sui_menu.lua:519
@@ -2247,7 +2243,7 @@ msgstr ""
 
 #: modules/module_heatmap.lua:225 modules/module_heatmap.lua:342
 msgid "Hours of day"
-msgstr ""
+msgstr "一天中的时段"
 
 #: infra/sui_goals.lua:56
 msgid "Hours per month:"
@@ -2266,11 +2262,11 @@ msgstr ""
 
 #: features/sui_accent_picker.lua:84
 msgid "Hue"
-msgstr ""
+msgstr "色相"
 
 #: modules/critter/phrases.lua:280
 msgid "I missed you, %s!"
-msgstr ""
+msgstr "我想你了，%s！"
 
 #: features/sui_quickactions.lua:2355 features/sui_quickactions.lua:2359
 msgid "Icon"
@@ -2337,24 +2333,23 @@ msgstr "导入预设"
 
 #: features/sui_stats_menu.lua:102
 msgid "Include Manual Books in All Time Total"
-msgstr ""
+msgstr "历年总数包含手动添加的书"
 
 #: modules/critter/module_critter.lua:612
 msgid "Included"
-msgstr ""
+msgstr "内置"
 
 #: modules/critter/module_critter.lua:613
 msgid "Included and mine"
-msgstr ""
+msgstr "内置和我的"
 
 #: infra/sui_compat_check.lua:219
 msgid "Incompatible items have been disabled:"
 msgstr "不兼容的项目已禁用："
 
 #: engines/sui_group_cell.lua:232
-#, fuzzy
 msgid "Inside Cover"
-msgstr "单封面"
+msgstr "封面内"
 
 #: screens/sui_menu.lua:3463
 msgid "Install pack from ZIP"
@@ -2398,7 +2393,7 @@ msgstr "夜间模式下反转颜色"
 
 #: modules/critter/phrases.lua:243
 msgid "It's Friday!"
-msgstr ""
+msgstr "周五啦！"
 
 #: features/sui_style.lua:2487
 msgid "Italic"
@@ -2448,15 +2443,15 @@ msgstr "KOReader"
 
 #: modules/critter/phrases.lua:132
 msgid "Keep it going."
-msgstr ""
+msgstr "继续保持。"
 
 #: modules/critter/phrases.lua:166
 msgid "Keep turning pages."
-msgstr ""
+msgstr "继续翻页吧。"
 
 #: modules/critter/phrases.lua:149
 msgid "Keep your streak alive!"
-msgstr ""
+msgstr "别让连续阅读断了！"
 
 #: screens/sui_stats_windows.lua:3067
 msgid "LAST %d DAYS"
@@ -2489,7 +2484,7 @@ msgstr "标签大小"
 
 #: infra/sui_config.lua:2060
 msgid "Label inside background"
-msgstr ""
+msgstr "标签置于背景内"
 
 #: screens/sui_menu.lua:2392
 msgid "Labels"
@@ -2524,7 +2519,7 @@ msgstr "布局编辑"
 msgid ""
 "Layout of the Quick Settings panel in the reader. The file browser always "
 "uses the classic layout."
-msgstr ""
+msgstr "阅读器中快捷设置面板的布局。文件浏览器始终使用经典布局。"
 
 #: features/sui_backup.lua:118
 msgid "Layout, modules, custom screens, presets"
@@ -2550,11 +2545,11 @@ msgstr "较少"
 
 #: modules/critter/phrases.lua:273 modules/critter/phrases.lua:281
 msgid "Let's read something."
-msgstr ""
+msgstr "我们读点什么吧。"
 
 #: screens/sui_menu.lua:3305 screens/sui_menu.lua:3307
 msgid "Letter Spacing"
-msgstr ""
+msgstr "字间距"
 
 #: features/library/sui_library_browse.lua:76 features/sui_backup.lua:127
 #: features/sui_quickactions.lua:677 infra/sui_config.lua:125
@@ -2569,7 +2564,7 @@ msgstr "书库"
 
 #: screens/sui_menu.lua:2912
 msgid "Library Badges"
-msgstr ""
+msgstr "书库徽章"
 
 #: screens/sui_menu.lua:1775 screens/sui_menu.lua:1778
 msgid "Library Buttons"
@@ -2577,7 +2572,7 @@ msgstr "书库按钮"
 
 #: screens/sui_menu.lua:2743
 msgid "Library Captions"
-msgstr ""
+msgstr "书库说明文字"
 
 #: features/sui_presets.lua:209
 msgid "Library View"
@@ -2587,14 +2582,14 @@ msgstr "书库视图"
 msgid ""
 "Library captions are enabled. Folder names are shown in the caption strip "
 "under each cover instead of on the cover."
-msgstr ""
+msgstr "书库说明文字已启用。文件夹名称显示在每个封面下方的说明栏中，而不是封面上。"
 
 #: screens/sui_menu.lua:2739
 msgid ""
 "Library captions changed.\n"
 "\n"
 "Restart now?"
-msgstr ""
+msgstr "书库说明文字已更改。\n\n立即重启？"
 
 #: features/library/sui_label_options.lua:129 features/sui_style.lua:1483
 msgid "Light"
@@ -2633,11 +2628,11 @@ msgstr "长按以自定义"
 
 #: modules/module_reading_stats.lua:257
 msgid "Longest session"
-msgstr ""
+msgstr "最长单次阅读"
 
 #: screens/sui_quicksettings_bar.lua:1611
 msgid "Look of the frontlight and warmth sliders."
-msgstr ""
+msgstr "前光和色温滑块的外观。"
 
 #: features/sui_backup.lua:553 features/sui_backup.lua:602
 #: features/sui_presets.lua:544 features/sui_presets.lua:556
@@ -2667,11 +2662,11 @@ msgstr "管理预设"
 
 #: features/sui_manual_books.lua:145 screens/sui_stats_windows.lua:766
 msgid "Manual Yearly Count"
-msgstr ""
+msgstr "手动年度计数"
 
 #: features/sui_manual_books.lua:128
 msgid "Manual Yearly Count — %d"
-msgstr ""
+msgstr "手动年度计数 — %d"
 
 #: modules/module_collections.lua:215
 msgid "Manual order"
@@ -2695,7 +2690,7 @@ msgstr "5月"
 
 #: modules/critter/phrases.lua:230
 msgid "May your year be full of good books."
-msgstr ""
+msgstr "愿你这一年好书不断。"
 
 #: screens/sui_titlebar.lua:113 screens/sui_titlebar.lua:118
 msgid "Menu"
@@ -2707,7 +2702,7 @@ msgstr "菜单按钮"
 
 #: modules/critter/module_critter.lua:697
 msgid "Message"
-msgstr ""
+msgstr "消息"
 
 #: modules/module_clock.lua:324
 msgid "Midnight"
@@ -2715,7 +2710,7 @@ msgstr "午夜"
 
 #: modules/critter/phrases.lua:46
 msgid "Milestones and goals"
-msgstr ""
+msgstr "里程碑与目标"
 
 #: features/sui_presets.lua:171
 msgid "Mindful Reading"
@@ -2723,11 +2718,11 @@ msgstr "正念阅读"
 
 #: modules/critter/module_critter.lua:614
 msgid "Mine only"
-msgstr ""
+msgstr "仅我的"
 
 #: screens/sui_quicksettings_bar.lua:1615
 msgid "Minimal"
-msgstr ""
+msgstr "极简"
 
 #: screens/sui_menu.lua:370
 msgid "Minimum 1 tab required in navpager mode."
@@ -2743,7 +2738,7 @@ msgstr "每天分钟数："
 
 #: modules/critter/phrases.lua:272
 msgid "Missed me?"
-msgstr ""
+msgstr "想我了吗？"
 
 #: screens/sui_menu.lua:436
 msgid "Mode"
@@ -2751,7 +2746,7 @@ msgstr "模式"
 
 #: screens/sui_menu.lua:3292 screens/sui_menu.lua:3935
 msgid "Module Labels"
-msgstr ""
+msgstr "模块标签"
 
 #: screens/sui_menu.lua:2373
 msgid "Module Scale"
@@ -2796,7 +2791,7 @@ msgstr "星期一"
 
 #: modules/critter/phrases.lua:239
 msgid "Mondays, right?"
-msgstr ""
+msgstr "周一啊，是吧？"
 
 #: infra/sui_goals.lua:54
 msgid "Monthly Goal"
@@ -2816,7 +2811,7 @@ msgstr "更多 %s 的作品（%d）"
 
 #: modules/critter/phrases.lua:177
 msgid "More than halfway there!"
-msgstr ""
+msgstr "已经过半了！"
 
 #: engines/sui_window.lua:3706
 msgid "Move down"
@@ -2952,7 +2947,7 @@ msgstr "新的书单名字"
 
 #: modules/critter/phrases.lua:251
 msgid "New month, new chapters!"
-msgstr ""
+msgstr "新的月份，新的章节！"
 
 #: features/sui_manual_books.lua:151 screens/sui_bottombar.lua:457
 msgid "Next"
@@ -2960,7 +2955,7 @@ msgstr "下一页"
 
 #: modules/critter/phrases.lua:192
 msgid "Nice work."
-msgstr ""
+msgstr "干得漂亮。"
 
 #: features/sui_quickactions.lua:939 infra/sui_config.lua:137
 msgid "Night Mode"
@@ -3025,7 +3020,7 @@ msgstr "历史记录中没有书籍。"
 
 #: screens/sui_stats_windows.lua:673
 msgid "No books finished"
-msgstr ""
+msgstr "还没有读完的书"
 
 #: screens/sui_stats_windows.lua:786
 msgid "No books finished in %s"
@@ -3058,9 +3053,8 @@ msgid "No books in this collection."
 msgstr "此书单中没有书籍。"
 
 #: modules/module_tab_grid.lua:506
-#, fuzzy
 msgid "No books in this tab"
-msgstr "历史记录中没有书籍。"
+msgstr "此标签页中没有书"
 
 #: engines/sui_screen_engine.lua:271
 msgid "No books opened yet"
@@ -3109,7 +3103,7 @@ msgstr "暂无自定义屏幕。"
 
 #: modules/critter/module_critter.lua:558
 msgid "No decorations selected."
-msgstr ""
+msgstr "未选择装饰。"
 
 #: infra/sui_updater.lua:498
 msgid ""
@@ -3142,9 +3136,8 @@ msgid "No fonts found."
 msgstr "未找到字体。"
 
 #: modules/module_tab_grid.lua:506
-#, fuzzy
 msgid "No groups in this tab"
-msgstr "此书单中没有书籍。"
+msgstr "此标签页中没有分组"
 
 #: modules/module_quote.lua:1014
 msgid "No highlights found. Open a book and highlight some passages."
@@ -3238,16 +3231,15 @@ msgstr "未找到系统操作。"
 
 #: modules/module_tab_grid.lua:1037 modules/module_tab_grid.lua:1118
 msgid "No tabs"
-msgstr ""
+msgstr "没有标签页"
 
 #: modules/module_tab_grid.lua:1037
-#, fuzzy
 msgid "No tabs  —  long press to configure"
-msgstr "未选择任何统计项 — 长按以配置"
+msgstr "没有标签页  —  长按进行配置"
 
 #: modules/module_tab_grid.lua:867
 msgid "No tabs."
-msgstr ""
+msgstr "没有标签页。"
 
 #: screens/sui_menu.lua:2233
 msgid "No wallpapers found."
@@ -3294,9 +3286,8 @@ msgid "Number of Books"
 msgstr "图书数量"
 
 #: modules/module_tab_grid.lua:586
-#, fuzzy
 msgid "Numbers"
-msgstr "11月"
+msgstr "数字"
 
 #: modules/module_clock.lua:345
 msgid "O'Clock"
@@ -3345,11 +3336,11 @@ msgstr "一"
 
 #: modules/critter/phrases.lua:100
 msgid "One more chapter before bed."
-msgstr ""
+msgstr "睡前再读一章。"
 
 #: modules/critter/phrases.lua:198
 msgid "One page at a time."
-msgstr ""
+msgstr "一页一页来。"
 
 #: engines/sui_screen_engine.lua:590 features/library/sui_library_search.lua:56
 #: features/library/sui_library_search.lua:129
@@ -3360,7 +3351,7 @@ msgstr "打开"
 
 #: screens/sui_quicksettings_bar.lua:1690
 msgid "Open Menu on Quick Settings"
-msgstr ""
+msgstr "直接打开快捷设置的菜单"
 
 #: engines/sui_group_cell.lua:606
 msgid "Open Module Settings"
@@ -3400,7 +3391,7 @@ msgstr "覆盖"
 
 #: features/sui_presets.lua:353
 msgid "Overwrite preset"
-msgstr ""
+msgstr "覆盖预设"
 
 #: features/sui_presets.lua:963 features/sui_presets.lua:1037
 msgid "Overwrite preset \"%s\" with the current homescreen settings?"
@@ -3432,7 +3423,7 @@ msgstr "无法访问包文件夹："
 
 #: infra/sui_book_stats.lua:175
 msgid "Page"
-msgstr ""
+msgstr "页"
 
 #: engines/sui_screen_engine.lua:1952 engines/sui_window.lua:1742
 #: infra/sui_patches.lua:2038 infra/sui_patches.lua:2809
@@ -3446,7 +3437,7 @@ msgstr "第 %d 页"
 
 #: infra/sui_book_stats.lua:188
 msgid "Page %s/%s"
-msgstr ""
+msgstr "第 %s/%s 页"
 
 #: screens/sui_settings_window.lua:578 screens/sui_settings_window.lua:690
 #: screens/sui_settings_window.lua:1056
@@ -3455,7 +3446,7 @@ msgstr "第 1 页（主页）"
 
 #: modules/critter/phrases.lua:264
 msgid "Page by page!"
-msgstr ""
+msgstr "一页又一页！"
 
 #: features/sui_cover_elements.lua:53 screens/sui_stats_windows.lua:891
 #: screens/sui_stats_windows.lua:3382
@@ -3476,16 +3467,15 @@ msgstr "每日页数"
 
 #: modules/module_reading_stats.lua:263
 msgid "Pages per hour"
-msgstr ""
+msgstr "每小时页数"
 
 #: screens/sui_stats_windows.lua:2234 screens/sui_stats_windows.lua:2250
 msgid "Pages read"
 msgstr "已读页数"
 
 #: modules/module_tab_grid.lua:581
-#, fuzzy
 msgid "Pagination"
-msgstr "分页栏"
+msgstr "分页"
 
 #: features/sui_style.lua:1266 screens/sui_menu.lua:2636
 msgid "Pagination Bar"
@@ -3559,7 +3549,7 @@ msgstr "已读百分比"
 
 #: modules/critter/module_critter.lua:610
 msgid "Phrases"
-msgstr ""
+msgstr "台词"
 
 #: screens/sui_onboarding.lua:193
 msgid "Pick any existing folder to use as the library home."
@@ -3567,7 +3557,7 @@ msgstr "请选择任意现有文件夹作为书库主目录。"
 
 #: modules/critter/phrases.lua:252
 msgid "Pick your next read."
-msgstr ""
+msgstr "挑选下一本书吧。"
 
 #: modules/module_quote.lua:1407
 msgid "Place .lua files in the plugin's sui_quotes/ folder"
@@ -3592,9 +3582,8 @@ msgid "Placeholder Cover for Bookless Folders"
 msgstr "空文件夹的占位封面"
 
 #: engines/sui_group_cell.lua:228
-#, fuzzy
 msgid "Placement"
-msgstr "请将图片放入："
+msgstr "位置"
 
 #: infra/sui_compat_check.lua:155
 msgid ""
@@ -3612,15 +3601,15 @@ msgstr "请输入预设名称。"
 
 #: features/sui_manual_books.lua:56
 msgid "Please enter a start or finish date."
-msgstr ""
+msgstr "请输入开始或读完日期。"
 
 #: features/sui_manual_books.lua:50
 msgid "Please enter a title."
-msgstr ""
+msgstr "请输入书名。"
 
 #: features/sui_manual_books.lua:53
 msgid "Please enter dates as YYYY-MM-DD or YYYY."
-msgstr ""
+msgstr "请按 YYYY-MM-DD 或 YYYY 格式输入日期。"
 
 #: infra/sui_compat_check.lua:122
 msgid "Please restart KOReader for the change to take effect."
@@ -3632,7 +3621,7 @@ msgstr "请选择一个操作。"
 
 #: modules/critter/phrases.lua:248
 msgid "Plenty of time for reading."
-msgstr ""
+msgstr "有大把时间读书。"
 
 #: features/sui_quickactions.lua:2494 features/sui_quickactions.lua:2598
 msgid "Plugin"
@@ -3806,7 +3795,7 @@ msgstr "快捷操作行"
 
 #: features/sui_style.lua:1269
 msgid "Quick Settings"
-msgstr ""
+msgstr "快捷设置"
 
 #: screens/sui_menu.lua:2638 screens/sui_quicksettings_bar.lua:1427
 msgid "Quick Settings Bar"
@@ -3852,23 +3841,23 @@ msgstr "随机"
 
 #: modules/critter/phrases.lua:150
 msgid "Read a little today to reach day %d."
-msgstr ""
+msgstr "今天读一点，就到第 %d 天了。"
 
 #: modules/critter/phrases.lua:155
 msgid "Read a little today to start a new one."
-msgstr ""
+msgstr "今天读一点，开启新的连续阅读。"
 
 #: modules/critter/phrases.lua:142
 msgid "Read again tomorrow to keep it going."
-msgstr ""
+msgstr "明天再读一点就能继续。"
 
 #: screens/sui_quicksettings_bar.lua:1677
 msgid "Reader"
-msgstr ""
+msgstr "阅读器"
 
 #: screens/sui_quicksettings_bar.lua:1599
 msgid "Reader Layout"
-msgstr ""
+msgstr "阅读器布局"
 
 #: features/sui_presets.lua:192 features/sui_presets.lua:237
 #: features/sui_stats_menu.lua:138 modules/module_reading_goals.lua:794
@@ -3896,15 +3885,15 @@ msgstr "阅读目标、连续模式与冻结额度"
 
 #: modules/module_reading_stats.lua:268
 msgid "Reading sessions"
-msgstr ""
+msgstr "阅读次数"
 
 #: modules/critter/phrases.lua:43
 msgid "Reading streak"
-msgstr ""
+msgstr "连续阅读"
 
 #: modules/critter/phrases.lua:258 modules/critter/phrases.lua:277
 msgid "Ready for a good story?"
-msgstr ""
+msgstr "准备好听个好故事了吗？"
 
 #: features/sui_stats_menu.lua:65
 msgid "Real streak only"
@@ -3927,7 +3916,7 @@ msgstr "最近书籍"
 #: modules/module_reading_stats.lua:256 modules/module_reading_stats.lua:259
 #: modules/module_reading_stats.lua:262 modules/module_reading_stats.lua:267
 msgid "Records"
-msgstr ""
+msgstr "纪录"
 
 #: modules/module_reading_stats.lua:259
 msgid "Records — Average session"
@@ -4095,7 +4084,7 @@ msgstr "圆环"
 
 #: modules/critter/phrases.lua:83
 msgid "Rise and read!"
-msgstr ""
+msgstr "起床读书啦！"
 
 #: modules/module_quick_actions.lua:457 screens/sui_quicksettings_bar.lua:1657
 msgid "Round"
@@ -4106,9 +4095,8 @@ msgid "Round Overlay"
 msgstr "圆形叠加层"
 
 #: modules/module_tab_grid.lua:633
-#, fuzzy
 msgid "Round Pill"
-msgstr "圆形"
+msgstr "圆角胶囊"
 
 #: modules/module_quick_actions.lua:458 screens/sui_quicksettings_bar.lua:1658
 msgid "Rounded Square"
@@ -4124,7 +4112,7 @@ msgstr "星期六"
 
 #: features/sui_accent_picker.lua:88
 msgid "Saturation"
-msgstr ""
+msgstr "饱和度"
 
 #: infra/sui_datenames.lua:49
 msgid "Saturday"
@@ -4173,7 +4161,7 @@ msgstr "缩放"
 msgid ""
 "Scale for the badges (progress, pages, etc.).\n"
 "100% is the default size."
-msgstr ""
+msgstr "徽章（进度、页数等）的缩放。\n默认大小为 100%。"
 
 #: modules/module_currently.lua:1266
 msgid ""
@@ -4214,9 +4202,8 @@ msgstr ""
 "默认大小为 100%。"
 
 #: engines/sui_group_cell.lua:313
-#, fuzzy
 msgid "Scale for the group count badge."
-msgstr "书单计数徽章的缩放。"
+msgstr "分组计数徽章的缩放。"
 
 #: screens/sui_quicksettings_bar.lua:1639
 msgid ""
@@ -4276,7 +4263,7 @@ msgid ""
 "Scales the module label text above each module, on top of the size set in "
 "Style > Module Labels.\n"
 "100% is the default size."
-msgstr ""
+msgstr "缩放每个模块上方的标签文字，在「样式 > 模块标签」设置的大小基础上叠加。\n默认大小为 100%。"
 
 #: screens/sui_menu.lua:3040
 msgid "Scan Subfolders for Covers"
@@ -4318,11 +4305,11 @@ msgstr "搜索结果：%1"
 
 #: features/library/sui_label_options.lua:135 features/sui_style.lua:1429
 msgid "Secondary"
-msgstr ""
+msgstr "辅助色"
 
 #: screens/sui_menu.lua:3235
 msgid "Secondary Color"
-msgstr ""
+msgstr "辅助色"
 
 #: engines/sui_window.lua:2347 engines/sui_window.lua:3697
 #: features/library/sui_hold_rows.lua:246
@@ -4378,16 +4365,15 @@ msgstr "设定目标"
 
 #: features/library/sui_folder_hold_dialog.lua:36
 msgid "Set as HOME folder"
-msgstr ""
+msgstr "设为主目录"
 
 #: modules/module_collections.lua:332
 msgid "Set collection cover"
 msgstr "设置书单封面"
 
 #: engines/sui_group_cell.lua:580
-#, fuzzy
 msgid "Set cover"
-msgstr "设置文件夹封面"
+msgstr "设置封面"
 
 #: features/library/sui_foldercovers.lua:561
 #: features/library/sui_library_browse.lua:879
@@ -4419,7 +4405,7 @@ msgstr "长按打开设置"
 
 #: modules/critter/phrases.lua:122
 msgid "Settle in with a good book."
-msgstr ""
+msgstr "窝进一本好书里吧。"
 
 #: modules/module_clock.lua:255
 msgid "Seven"
@@ -4442,7 +4428,7 @@ msgstr ""
 #: features/library/sui_finished_books.lua:59
 #: features/sui_cover_elements.lua:236 screens/sui_menu.lua:2747
 msgid "Show"
-msgstr ""
+msgstr "显示"
 
 #: modules/module_clock.lua:1067
 msgid "Show Battery"
@@ -4489,7 +4475,7 @@ msgstr "显示已读完书籍"
 
 #: modules/module_reading_stats.lua:1206
 msgid "Show icons"
-msgstr ""
+msgstr "显示图标"
 
 #: modules/module_heatmap.lua:359
 msgid "Show legend"
@@ -4511,7 +4497,7 @@ msgstr "显示分区标签"
 msgid ""
 "Show the frontlight and warmth sliders below the book details in the Book "
 "layout."
-msgstr ""
+msgstr "在书籍布局中，于书籍详情下方显示前光和色温滑块。"
 
 #: screens/sui_menu.lua:2259
 msgid "Show wallpaper on all screens"
@@ -4519,7 +4505,7 @@ msgstr "在所有屏幕显示壁纸"
 
 #: screens/sui_menu.lua:2851
 msgid "Shown in captions"
-msgstr ""
+msgstr "在说明文字中显示"
 
 #: screens/sui_menu.lua:593
 msgid ""
@@ -4659,7 +4645,7 @@ msgstr "大小"
 msgid ""
 "Size of the module labels.\n"
 "100% is the default size."
-msgstr ""
+msgstr "模块标签的大小。\n默认大小为 100%。"
 
 #: screens/sui_menu.lua:1129
 msgid ""
@@ -4678,19 +4664,16 @@ msgstr ""
 "默认大小为 100%。"
 
 #: modules/module_tab_grid.lua:668
-#, fuzzy
 msgid ""
 "Size of the tab labels.\n"
 "100% matches the homescreen section labels."
-msgstr ""
-"标签文本的大小。\n"
-"默认大小为 100%。"
+msgstr "标签页文字的大小。\n100% 与主页分区标签一致。"
 
 #: screens/sui_menu.lua:1723
 msgid ""
 "Size of the title bar buttons and tabs.\n"
 "100% is the default size."
-msgstr ""
+msgstr "标题栏按钮和标签页的大小。\n默认大小为 100%。"
 
 #: engines/sui_book_grid.lua:2165 modules/critter/module_critter.lua:698
 #: modules/module_action_list.lua:356 modules/module_clock.lua:1084
@@ -4711,15 +4694,15 @@ msgstr "休眠"
 
 #: modules/critter/phrases.lua:104
 msgid "Sleep well. The book will keep."
-msgstr ""
+msgstr "好好睡。书跑不了。"
 
 #: screens/sui_quicksettings_bar.lua:1610
 msgid "Slider Style"
-msgstr ""
+msgstr "滑块样式"
 
 #: screens/sui_quicksettings_bar.lua:1625
 msgid "Sliders in Book Layout"
-msgstr ""
+msgstr "书籍布局中的滑块"
 
 #: screens/sui_menu.lua:556
 msgid "Small"
@@ -4750,7 +4733,7 @@ msgstr ""
 msgid ""
 "Space between the characters of a module label, as a percentage of its text "
 "size."
-msgstr ""
+msgstr "模块标签字符之间的间距，以文字大小的百分比表示。"
 
 #: modules/module_spacer.lua:58 modules/module_spacer.lua:112
 msgid "Spacer"
@@ -4766,7 +4749,7 @@ msgstr "间距"
 
 #: modules/module_tab_grid.lua:634
 msgid "Square Pill"
-msgstr ""
+msgstr "方角胶囊"
 
 #: screens/sui_onboarding.lua:447
 msgid "Start using Simple UI"
@@ -4783,7 +4766,7 @@ msgstr "从预设布局开始，后续均可自由调整。"
 
 #: features/sui_manual_books.lua:110
 msgid "Started"
-msgstr ""
+msgstr "开始阅读"
 
 #: modules/module_coverdeck.lua:127 modules/module_coverdeck.lua:1584
 #: modules/module_coverdeck.lua:1604 modules/module_coverdeck.lua:1611
@@ -4860,7 +4843,7 @@ msgstr "状态栏、标题栏、导航栏与分页栏"
 
 #: modules/critter/phrases.lua:107
 msgid "Still awake?"
-msgstr ""
+msgstr "还没睡？"
 
 #: features/sui_stats_menu.lua:134 modules/module_reading_stats.lua:250
 #: screens/sui_stats_windows.lua:3227
@@ -4873,7 +4856,7 @@ msgstr "连续模式"
 
 #: modules/critter/phrases.lua:141
 msgid "Streak started!"
-msgstr ""
+msgstr "连续阅读开始了！"
 
 #: screens/sui_menu.lua:2269
 msgid "Stretch to fill screen"
@@ -4902,12 +4885,11 @@ msgstr "星期日"
 
 #: modules/critter/phrases.lua:126
 msgid "Sweet dreams and good books."
-msgstr ""
+msgstr "好梦，好书。"
 
 #: modules/module_tab_grid.lua:587
-#, fuzzy
 msgid "Swipe Bar"
-msgstr "滑动指示器"
+msgstr "滑动条"
 
 #: screens/sui_menu.lua:988
 msgid "Swipe Indicator"
@@ -4925,7 +4907,7 @@ msgstr "系统图标"
 
 #: features/sui_presets.lua:296
 msgid "System Presets"
-msgstr ""
+msgstr "系统预设"
 
 #: features/sui_quickactions.lua:2978
 msgid "System action error: %s"
@@ -4998,7 +4980,7 @@ msgstr "选项卡：工具"
 #: features/sui_presets.lua:158 modules/module_tab_grid.lua:930
 #: modules/module_tab_grid.lua:1100
 msgid "Tabbed Grid"
-msgstr ""
+msgstr "标签页网格"
 
 #: modules/module_tab_grid.lua:635 modules/module_tab_grid.lua:863
 #: modules/module_tab_grid.lua:866 screens/sui_menu.lua:350
@@ -5025,7 +5007,7 @@ msgstr "标签"
 
 #: modules/critter/phrases.lua:91
 msgid "Taking a break?"
-msgstr ""
+msgstr "在休息吗？"
 
 #: screens/sui_settings_window.lua:487
 msgid "Tap \"Create Screen\" below to add one."
@@ -5051,7 +5033,7 @@ msgstr "仅文本"
 
 #: modules/critter/phrases.lua:269
 msgid "That makes me happy."
-msgstr ""
+msgstr "我好开心。"
 
 #: screens/sui_quicksettings_bar.lua:1493
 msgid ""
@@ -5080,7 +5062,7 @@ msgstr ""
 
 #: modules/critter/module_critter.lua:589
 msgid "The critter may use it in what it says."
-msgstr ""
+msgstr "小伙伴说话时可能会用到它。"
 
 #: main.lua:1395 screens/sui_bottombar.lua:1861
 msgid "The navigation bar is already available on this screen."
@@ -5088,11 +5070,11 @@ msgstr "此屏幕已提供导航栏。"
 
 #: modules/critter/phrases.lua:96
 msgid "The perfect time to unwind with a book."
-msgstr ""
+msgstr "正适合读本书放松一下。"
 
 #: features/sui_manual_books.lua:62
 msgid "The start date is after the finish date."
-msgstr ""
+msgstr "开始日期晚于读完日期。"
 
 #: screens/sui_menu.lua:1714
 msgid ""
@@ -5106,7 +5088,7 @@ msgstr ""
 
 #: modules/critter/phrases.lua:244
 msgid "The weekend is made for reading."
-msgstr ""
+msgstr "周末就是用来读书的。"
 
 #: infra/sui_patches.lua:1181
 msgid "The «To Be Read» collection cannot be renamed."
@@ -5142,7 +5124,7 @@ msgstr ""
 
 #: modules/module_reading_stats.lua:246 modules/module_reading_stats.lua:247
 msgid "This month"
-msgstr ""
+msgstr "本月"
 
 #: modules/module_reading_stats.lua:247
 msgid "This month — Pages"
@@ -5159,7 +5141,7 @@ msgstr "该名称已被内置预设占用。"
 #: modules/module_reading_stats.lua:242 modules/module_reading_stats.lua:243
 #: modules/module_reading_stats.lua:270
 msgid "This week"
-msgstr ""
+msgstr "本周"
 
 #: modules/module_reading_stats.lua:243
 msgid "This week — Pages"
@@ -5191,7 +5173,7 @@ msgstr "星期四"
 
 #: modules/critter/phrases.lua:88
 msgid "Time for a few pages?"
-msgstr ""
+msgstr "来读几页吗？"
 
 #: modules/module_heatmap.lua:224 modules/module_heatmap.lua:341
 msgid "Time of day"
@@ -5207,7 +5189,7 @@ msgstr "剩余时间"
 
 #: modules/critter/module_critter.lua:349
 msgid "Tiny Critter"
-msgstr ""
+msgstr "迷你小伙伴"
 
 #: features/sui_manual_books.lua:108 modules/module_coverdeck.lua:124
 #: modules/module_coverdeck.lua:1611 modules/module_currently.lua:277
@@ -5234,7 +5216,7 @@ msgstr "标题栏不透明度"
 
 #: screens/sui_menu.lua:1722
 msgid "Title Bar Size"
-msgstr ""
+msgstr "标题栏大小"
 
 #: screens/sui_menu.lua:1751
 msgid ""
@@ -5276,7 +5258,7 @@ msgstr "今天 — 时间"
 
 #: modules/critter/phrases.lua:45
 msgid "Today's reading"
-msgstr ""
+msgstr "今日阅读"
 
 #: engines/sui_window.lua:3715
 msgid "Toggle"
@@ -5297,7 +5279,7 @@ msgstr "上边距"
 
 #: modules/critter/module_critter.lua:625
 msgid "Topics"
-msgstr ""
+msgstr "话题"
 
 #: screens/sui_stats_windows.lua:887 screens/sui_stats_windows.lua:3378
 msgid "Total"
@@ -5401,7 +5383,7 @@ msgstr "未找到更新模块。"
 
 #: modules/critter/module_critter.lua:595
 msgid "Use at most %1 characters."
-msgstr ""
+msgstr "最多 %1 个字符。"
 
 #: screens/sui_stats_windows.lua:2814
 msgid "Use freeze"
@@ -5494,19 +5476,19 @@ msgstr "欢迎使用 SimpleUI"
 
 #: modules/critter/phrases.lua:220
 msgid "Well done today."
-msgstr ""
+msgstr "今天表现很棒。"
 
 #: modules/critter/phrases.lua:225
 msgid "Well done, %s!"
-msgstr ""
+msgstr "干得好，%s！"
 
 #: modules/critter/phrases.lua:212
 msgid "What a habit!"
-msgstr ""
+msgstr "好习惯！"
 
 #: modules/critter/phrases.lua:114
 msgid "What shall we read today?"
-msgstr ""
+msgstr "今天我们读点什么？"
 
 #: infra/sui_updater.lua:493
 msgid "What's new:"
@@ -5570,7 +5552,7 @@ msgstr ""
 
 #: infra/sui_config.lua:1481 modules/module_tab_grid.lua:646
 msgid "White"
-msgstr ""
+msgstr "白色"
 
 #: features/sui_quickactions.lua:914 infra/sui_config.lua:135
 msgid "Wi-Fi"
@@ -5594,7 +5576,7 @@ msgstr "维基百科查询"
 
 #: modules/critter/phrases.lua:99
 msgid "Winding down?"
-msgstr ""
+msgstr "准备歇了？"
 
 #: modules/module_currently.lua:1421
 msgid "With percentage"
@@ -5606,11 +5588,11 @@ msgstr "单词"
 
 #: features/sui_manual_books.lua:102
 msgid "YYYY-MM-DD or YYYY"
-msgstr ""
+msgstr "YYYY-MM-DD 或 YYYY"
 
 #: features/sui_manual_books.lua:146
 msgid "Year:"
-msgstr ""
+msgstr "年份："
 
 #: screens/sui_stats_windows.lua:1159
 msgid "Yes"
@@ -5638,11 +5620,11 @@ msgstr ""
 
 #: modules/critter/phrases.lua:135
 msgid "You're on a roll!"
-msgstr ""
+msgstr "你状态正好！"
 
 #: modules/critter/phrases.lua:171
 msgid "Your first one this year is waiting."
-msgstr ""
+msgstr "今年的第一本书在等你。"
 
 #: modules/module_quote.lua:1016
 msgid "Your highlights"
@@ -5651,11 +5633,11 @@ msgstr "你的高亮标注"
 #: modules/critter/module_critter.lua:583
 #: modules/critter/module_critter.lua:588
 msgid "Your name"
-msgstr ""
+msgstr "你的名字"
 
 #: modules/critter/phrases.lua:154
 msgid "Your streak is on a break."
-msgstr ""
+msgstr "连续阅读暂停了。"
 
 #: modules/module_reading_stats.lua:282
 msgid "abandoned"
@@ -5679,7 +5661,7 @@ msgstr "8月"
 
 #: modules/module_reading_stats.lua:259
 msgid "average session (90 days)"
-msgstr ""
+msgstr "平均单次阅读（90 天）"
 
 #: modules/module_reading_stats.lua:249 screens/sui_stats_windows.lua:2110
 msgid "books finished"
@@ -5765,12 +5747,12 @@ msgstr "6月"
 
 #: modules/module_reading_stats.lua:244 modules/module_reading_stats.lua:245
 msgid "last 7 days"
-msgstr ""
+msgstr "近 7 天"
 
 #: modules/module_reading_stats.lua:257 modules/module_reading_stats.lua:260
 #: modules/module_reading_stats.lua:263 modules/module_reading_stats.lua:268
 msgid "last 90 days"
-msgstr ""
+msgstr "近 90 天"
 
 #: infra/sui_updater.lua:680
 msgid "latest"
@@ -5778,7 +5760,7 @@ msgstr "最新版"
 
 #: modules/module_reading_stats.lua:256
 msgid "longest session (90 days)"
-msgstr ""
+msgstr "最长单次阅读（90 天）"
 
 #: screens/sui_stats_windows.lua:311 screens/sui_stats_windows.lua:1348
 msgid "mar"
@@ -5822,7 +5804,7 @@ msgstr "10月"
 #: modules/module_reading_stats.lua:246 modules/module_reading_stats.lua:248
 #: modules/module_reading_stats.lua:271
 msgid "of reading"
-msgstr ""
+msgstr "阅读时长"
 
 #: modules/module_reading_stats.lua:246
 msgid "of reading this month"
@@ -5868,11 +5850,11 @@ msgstr "页/天（7天）"
 
 #: modules/module_reading_stats.lua:262
 msgid "pages/hour (90 days)"
-msgstr ""
+msgstr "页/小时（90 天）"
 
 #: modules/module_reading_stats.lua:267
 msgid "reading sessions (90 days)"
-msgstr ""
+msgstr "阅读次数（90 天）"
 
 #: screens/sui_stats_windows.lua:2400
 msgid "reading time"
@@ -5919,7 +5901,8 @@ msgstr[1] "%d 本书"
 #: modules/critter/phrases.lua:71
 msgid "%d book finished this year"
 msgid_plural "%d books finished this year"
-msgstr[0] ""
+msgstr[0] "今年已读完 %d 本书"
+msgstr[1] "今年已读完 %d 本书"
 
 #: modules/module_reading_goals.lua:1138
 msgid "%d book in %s"
@@ -5930,12 +5913,14 @@ msgstr[1] "读 %d 本书在 %s 年"
 #: screens/sui_stats_windows.lua:1217
 msgid "%d book read"
 msgid_plural "%d books read"
-msgstr[0] ""
+msgstr[0] "已读 %d 本书"
+msgstr[1] "已读 %d 本书"
 
 #: modules/critter/phrases.lua:164
 msgid "%d book to go for your goal."
 msgid_plural "%d books to go for your goal."
-msgstr[0] ""
+msgstr[0] "离目标还差 %d 本书。"
+msgstr[1] "离目标还差 %d 本书。"
 
 #: infra/sui_book_stats.lua:190 screens/sui_stats_windows.lua:1975
 #: screens/sui_stats_windows.lua:1977
@@ -5947,17 +5932,20 @@ msgstr[1] "%d 天"
 #: modules/critter/phrases.lua:137
 msgid "%d day of reading in a row."
 msgid_plural "%d days of reading in a row."
-msgstr[0] ""
+msgstr[0] "已连续阅读 %d 天。"
+msgstr[1] "已连续阅读 %d 天。"
 
 #: modules/critter/phrases.lua:67
 msgid "%d day strong!"
 msgid_plural "%d days strong!"
-msgstr[0] ""
+msgstr[0] "已坚持 %d 天！"
+msgstr[1] "已坚持 %d 天！"
 
 #: modules/critter/phrases.lua:205
 msgid "%d day, your longest streak yet."
 msgid_plural "%d days, your longest streak yet."
-msgstr[0] ""
+msgstr[0] "%d 天，你最长的连续阅读。"
+msgstr[1] "%d 天，你最长的连续阅读。"
 
 #: screens/sui_stats_windows.lua:3132
 msgid "%d freeze available"
@@ -5975,17 +5963,20 @@ msgstr[1] "%d 个项目"
 #: modules/critter/phrases.lua:188
 msgid "%d minute read today!"
 msgid_plural "%d minutes read today!"
-msgstr[0] ""
+msgstr[0] "今天读了 %d 分钟！"
+msgstr[1] "今天读了 %d 分钟！"
 
 #: modules/critter/phrases.lua:179
 msgid "%d of %d book."
 msgid_plural "%d of %d books."
-msgstr[0] ""
+msgstr[0] "%d/%d 本书。"
+msgstr[1] "%d/%d 本书。"
 
 #: modules/critter/phrases.lua:196
 msgid "%d page turned today!"
 msgid_plural "%d pages turned today!"
-msgstr[0] ""
+msgstr[0] "今天翻了 %d 页！"
+msgstr[1] "今天翻了 %d 页！"
 
 #: screens/sui_stats_windows.lua:1995 screens/sui_stats_windows.lua:1997
 msgid "%d week"
@@ -6026,7 +6017,8 @@ msgstr[1] "最多 %d 个槽位，请先移除一个。"
 #: modules/critter/phrases.lua:210
 msgid "Milestone: %d day!"
 msgid_plural "Milestone: %d days!"
-msgstr[0] ""
+msgstr[0] "里程碑：%d 天！"
+msgstr[1] "里程碑：%d 天！"
 
 #: screens/sui_menu.lua:36
 msgid ""
@@ -6055,7 +6047,8 @@ msgid ""
 "The maximum of %d decoration per side has been reached. Remove one first."
 msgid_plural ""
 "The maximum of %d decorations per side has been reached. Remove one first."
-msgstr[0] ""
+msgstr[0] "每侧最多 %d 个装饰，已达上限。请先移除一个。"
+msgstr[1] "每侧最多 %d 个装饰，已达上限。请先移除一个。"
 
 #: features/sui_quickactions.lua:1636 features/sui_quickactions.lua:2844
 msgid "The maximum of %d quick action has been reached. Delete one first."
@@ -6073,7 +6066,8 @@ msgstr[1] "最多 %d 个标签，请先移除一个。"
 #: modules/module_reading_stats.lua:255
 msgid "day"
 msgid_plural "days"
-msgstr[0] ""
+msgstr[0] "天"
+msgstr[1] "天"
 
 #: screens/sui_stats_windows.lua:1820
 msgid "day read"
@@ -6213,3 +6207,2041 @@ msgstr "恢复显示"
 #: features/library/sui_hidden_books.lua modules/module_library.lua
 msgid "No hidden books or documents"
 msgstr "没有隐藏的书籍或文档"
+
+#: engines/sui_screen_engine.lua:2103
+msgid "Edit Home Screen page"
+msgstr "编辑主页页面"
+
+#: features/dialogs/sui_bento_sheet.lua:59 modules/reading_stats/width_sheet.lua:152
+msgid "%1 adjusted to %2"
+msgstr "%1 已调整为 %2"
+
+#: features/dialogs/sui_bento_sheet.lua:62
+msgid "Neighbouring modules adjusted"
+msgstr "已调整相邻模块"
+
+#: features/dialogs/sui_bento_sheet.lua:158
+msgid "Move row"
+msgstr "移动行"
+
+#: features/dialogs/sui_bento_sheet.lua:178 modules/reading_stats/width_sheet.lua:271
+msgid "Row %1 of %2"
+msgstr "第 %1 行，共 %2 行"
+
+#: features/dialogs/sui_bento_sheet.lua:183 modules/reading_stats/width_sheet.lua:298
+msgid "Width"
+msgstr "宽度"
+
+#: features/dialogs/sui_bento_sheet.lua:188
+msgid "Adjust row automatically"
+msgstr "自动调整整行"
+
+#: features/dialogs/sui_bento_sheet.lua:207
+msgid "Remove"
+msgstr "移除"
+
+#: features/dialogs/sui_bento_sheet.lua:220 infra/sui_config.lua:1830
+msgid "Width and Position"
+msgstr "宽度与位置"
+
+#: features/dialogs/sui_bento_sheet.lua:222 features/dialogs/sui_bento_sheet.lua:223
+msgid "Home Screen row preview"
+msgstr "主页行预览"
+
+#: features/sui_arrange.lua:749
+msgid "Invalid arrangement."
+msgstr "排列无效。"
+
+#: infra/sui_config.lua:1750
+msgid "1/3"
+msgstr "1/3"
+
+#: infra/sui_config.lua:1751
+msgid "1/2"
+msgstr "1/2"
+
+#: infra/sui_config.lua:1752
+msgid "2/3"
+msgstr "2/3"
+
+#: infra/sui_config.lua:1753
+msgid "Full"
+msgstr "全宽"
+
+#: infra/sui_datenames.lua:57
+msgid "Afternoon"
+msgstr "下午"
+
+#: infra/sui_datenames.lua:57
+msgid "Evening"
+msgstr "晚上"
+
+#: infra/sui_datenames.lua:57
+msgid "Morning"
+msgstr "早上"
+
+#: infra/sui_datenames.lua:57
+msgid "Night"
+msgstr "深夜"
+
+#: modules/critter/challenge.lua:201
+msgid "Read %d minute today?"
+msgid_plural "Read %d minutes today?"
+msgstr[0] "今天读 %d 分钟？"
+msgstr[1] "今天读 %d 分钟？"
+
+#: modules/critter/challenge.lua:203
+msgid "Read %d page today?"
+msgid_plural "Read %d pages today?"
+msgstr[0] "今天读 %d 页？"
+msgstr[1] "今天读 %d 页？"
+
+#: modules/critter/challenge.lua:205
+msgid "Read a little today to keep your streak?"
+msgstr "今天读一会儿，保住连续阅读？"
+
+#: modules/critter/challenge.lua:207
+msgid "Read before %d:00?"
+msgstr "%d:00 前开始读？"
+
+#: modules/critter/challenge.lua:213
+msgid "%d of %d minute so far."
+msgid_plural "%d of %d minutes so far."
+msgstr[0] "已读 %d/%d 分钟。"
+msgstr[1] "已读 %d/%d 分钟。"
+
+#: modules/critter/challenge.lua:216
+msgid "%d of %d page so far."
+msgid_plural "%d of %d pages so far."
+msgstr[0] "已读 %d/%d 页。"
+msgstr[1] "已读 %d/%d 页。"
+
+#: modules/critter/challenge.lua:219
+msgid "Read a little today and your streak is safe."
+msgstr "今天读一会儿，连续阅读就保住了。"
+
+#: modules/critter/challenge.lua:221
+msgid "Start reading before %d:00 and it's yours."
+msgstr "%d:00 前开始读，挑战就完成啦。"
+
+#: modules/critter/dialog.lua:48
+msgid "Not now"
+msgstr "下次吧"
+
+#: modules/critter/dialog.lua:53
+msgid "You've opened every book you own."
+msgstr "你的每本书都打开过了。"
+
+#: modules/critter/dialog.lua:54
+msgid "Impressive. And a bit worrying."
+msgstr "厉害。也有点让人担心。"
+
+#: modules/critter/dialog.lua:56
+msgid "Not one unopened book. Show-off."
+msgstr "一本没开过的都没有。真会炫。"
+
+#: modules/critter/dialog.lua:57
+msgid "Every book opened! Look at you!"
+msgstr "每本都打开过！你真行！"
+
+#: modules/critter/dialog.lua:58
+msgid "You've opened them all. I'm so proud."
+msgstr "你全都打开过了。我好骄傲。"
+
+#: modules/critter/dialog.lua:65
+msgid "Okay. They'll wait."
+msgstr "好吧。它们会等你的。"
+
+#: modules/critter/dialog.lua:67
+msgid "Fine. The books can wait. So can I."
+msgstr "行吧。书可以等，我也可以。"
+
+#: modules/critter/dialog.lua:68
+msgid "No rush. The shelf isn't going anywhere."
+msgstr "不急。书架又不会跑。"
+
+#: modules/critter/dialog.lua:69
+msgid "Whenever you're ready."
+msgstr "等你准备好再说。"
+
+#: modules/critter/dialog.lua:79
+msgid "Psst, %s. Can I ask you something?"
+msgstr "嘘，%s。能问你个事吗？"
+
+#: modules/critter/dialog.lua:81
+msgid "Psst. Can I ask you something?"
+msgstr "嘘。能问你个事吗？"
+
+#: modules/critter/dialog.lua:85
+msgid "Of course."
+msgstr "当然。"
+
+#: modules/critter/dialog.lua:88
+msgid "When you close a book, do the characters wait?"
+msgstr "合上书以后，书里的人会等你吗？"
+
+#: modules/critter/dialog.lua:89
+msgid "I'd hate to keep them waiting."
+msgstr "我可不想让他们久等。"
+
+#: modules/critter/dialog.lua:91
+msgid "Can I stay up while you read tonight?"
+msgstr "今晚你读书时，我能熬夜陪你吗？"
+
+#: modules/critter/dialog.lua:96
+msgid "Is it about books?"
+msgstr "跟书有关吗？"
+
+#: modules/critter/dialog.lua:99
+msgid "Everything is about books."
+msgstr "什么都跟书有关。"
+
+#: modules/critter/dialog.lua:100
+msgid "Eventually."
+msgstr "早晚的事。"
+
+#: modules/critter/dialog.lua:103
+msgid "Only a small one."
+msgstr "就一个小问题。"
+
+#: modules/critter/dialog.lua:106
+msgid "I only have small ones."
+msgstr "我只有小问题。"
+
+#: modules/critter/dialog.lua:107
+msgid "Look at me."
+msgstr "你看看我这个头。"
+
+#: modules/critter/dialog.lua:110
+msgid "Not now."
+msgstr "现在不行。"
+
+#: modules/critter/dialog.lua:113
+msgid "Saving it for later, then."
+msgstr "那就留着以后问。"
+
+#: modules/critter/dialog.lua:115
+msgid "Fine. It'll keep."
+msgstr "行吧。反正它跑不了。"
+
+#: modules/critter/dialog.lua:122
+msgid "Do you think books get lonely?"
+msgstr "你觉得书会寂寞吗？"
+
+#: modules/critter/dialog.lua:125
+msgid "Do you get lonely?"
+msgstr "你会寂寞吗？"
+
+#: modules/critter/dialog.lua:128
+msgid "Not when you're reading."
+msgstr "你在读书时就不会。"
+
+#: modules/critter/dialog.lua:129
+msgid "I can hear the pages."
+msgstr "我能听见翻页声。"
+
+#: modules/critter/dialog.lua:131
+msgid "A little. Thanks for asking."
+msgstr "有一点。谢谢你问。"
+
+#: modules/critter/dialog.lua:135
+msgid "The unread ones, maybe."
+msgstr "没读过的那些，也许会。"
+
+#: modules/critter/dialog.lua:138
+msgid "I visit them at night."
+msgstr "我晚上会去看看它们。"
+
+#: modules/critter/dialog.lua:139
+msgid "Someone has to."
+msgstr "总得有人去。"
+
+#: modules/critter/dialog.lua:141
+msgid "Then let's pick one to visit."
+msgstr "那我们挑一本去看看吧。"
+
+#: modules/critter/dialog.lua:142
+msgid "Great. Now I'll worry all night."
+msgstr "好极了。这下我要担心一整晚了。"
+
+#: modules/critter/dialog.lua:147
+msgid "Mine are well looked after."
+msgstr "我的书都被照顾得很好。"
+
+#: modules/critter/dialog.lua:150
+msgid "I've noticed. Not a speck of dust."
+msgstr "看出来了。一点灰都没有。"
+
+#: modules/critter/dialog.lua:151
+msgid "Almost."
+msgstr "差不多吧。"
+
+#: modules/critter/dialog.lua:154
+msgid "Books don't have feelings."
+msgstr "书又没有感情。"
+
+#: modules/critter/dialog.lua:157
+msgid "Tell that to the ending of that one book."
+msgstr "这话你去跟那本书的结局说。"
+
+#: modules/critter/dialog.lua:158
+msgid "You know which one."
+msgstr "你知道是哪本。"
+
+#: modules/critter/dialog.lua:160
+msgid "Shh. They can hear you."
+msgstr "嘘。它们听得见。"
+
+#: modules/critter/dialog.lua:167
+msgid "I found something between the pages."
+msgstr "我在书页间发现了个东西。"
+
+#: modules/critter/dialog.lua:170
+msgid "What was it?"
+msgstr "是什么？"
+
+#: modules/critter/dialog.lua:173
+msgid "An old bus ticket."
+msgstr "一张旧公交车票。"
+
+#: modules/critter/dialog.lua:174
+msgid "This book has been places."
+msgstr "这本书去过不少地方。"
+
+#: modules/critter/dialog.lua:177
+msgid "Was it my bookmark?"
+msgstr "是我的书签吗？"
+
+#: modules/critter/dialog.lua:180
+msgid "Oh. I was using it as a blanket."
+msgstr "哦。我拿它当被子盖了。"
+
+#: modules/critter/dialog.lua:181
+msgid "I'll give it back. Warm."
+msgstr "会还你的。还热乎着。"
+
+#: modules/critter/dialog.lua:183
+msgid "Yes. I'll sleep on the cover, then."
+msgstr "是的。那我只好睡封面上了。"
+
+#: modules/critter/dialog.lua:188
+msgid "Leave it where it is."
+msgstr "就放那儿吧。"
+
+#: modules/critter/dialog.lua:191
+msgid "Done. It was holding someone's place."
+msgstr "好了。它在替谁记着读到哪儿。"
+
+#: modules/critter/dialog.lua:194
+msgid "Throw it away."
+msgstr "扔掉吧。"
+
+#: modules/critter/dialog.lua:197
+msgid "Never. Things in books are clues."
+msgstr "绝不。书里的东西都是线索。"
+
+#: modules/critter/dialog.lua:203
+msgid "If I were in a book, what kind would it be?"
+msgstr "如果我在书里，会是哪种书？"
+
+#: modules/critter/dialog.lua:206
+msgid "An adventure."
+msgstr "冒险故事。"
+
+#: modules/critter/dialog.lua:209
+msgid "Small critter, tall shelf, very long ladder."
+msgstr "小不点，高书架，超长的梯子。"
+
+#: modules/critter/dialog.lua:211
+msgid "A map! A sword! A tiny backpack!"
+msgstr "地图！宝剑！小背包！"
+
+#: modules/critter/dialog.lua:215
+msgid "A cosy one."
+msgstr "温馨的那种。"
+
+#: modules/critter/dialog.lua:218
+msgid "Tea, a blanket and nothing bad happening."
+msgstr "一杯茶，一条毯子，什么坏事都不发生。"
+
+#: modules/critter/dialog.lua:219
+msgid "Perfect."
+msgstr "完美。"
+
+#: modules/critter/dialog.lua:221
+msgid "A cosy one. Mostly naps."
+msgstr "温馨的那种。主要是打盹。"
+
+#: modules/critter/dialog.lua:225
+msgid "A mystery."
+msgstr "推理故事。"
+
+#: modules/critter/dialog.lua:228
+msgid "The case of the missing bookmark."
+msgstr "书签失踪案。"
+
+#: modules/critter/dialog.lua:229
+msgid "I have a suspect."
+msgstr "我心里有个嫌疑人。"
+
+#: modules/critter/dialog.lua:232
+msgid "A very short one."
+msgstr "很短很短的那种。"
+
+#: modules/critter/dialog.lua:235
+msgid "Short books are the best ones."
+msgstr "短书才是最好的书。"
+
+#: modules/critter/dialog.lua:236
+msgid "Ask anyone my size."
+msgstr "不信问问跟我一样小的。"
+
+#: modules/critter/dialog.lua:242
+msgid "Where do you like to read the most?"
+msgstr "你最喜欢在哪儿读书？"
+
+#: modules/critter/dialog.lua:245
+msgid "Anywhere I can."
+msgstr "哪儿都行。"
+
+#: modules/critter/dialog.lua:248
+msgid "Queues, buses, kitchens. I've seen you."
+msgstr "排队、坐车、厨房，我都看见了。"
+
+#: modules/critter/dialog.lua:250
+msgid "That's my favourite kind of reader."
+msgstr "我最喜欢这样的读者。"
+
+#: modules/critter/dialog.lua:254
+msgid "On the go."
+msgstr "在路上。"
+
+#: modules/critter/dialog.lua:257
+msgid "Reading and travelling at once."
+msgstr "一边读书一边旅行。"
+
+#: modules/critter/dialog.lua:258
+msgid "Twice the places."
+msgstr "一次去两个地方。"
+
+#: modules/critter/dialog.lua:261
+msgid "On the sofa."
+msgstr "在沙发上。"
+
+#: modules/critter/dialog.lua:264
+msgid "Sofas were invented for books."
+msgstr "沙发就是为读书发明的。"
+
+#: modules/critter/dialog.lua:265
+msgid "Sitting came later."
+msgstr "坐着是后来才有的用途。"
+
+#: modules/critter/dialog.lua:268
+msgid "In bed."
+msgstr "在床上。"
+
+#: modules/critter/dialog.lua:271
+msgid "Careful. Books fall on faces."
+msgstr "小心，书会砸到脸上。"
+
+#: modules/critter/dialog.lua:272
+msgid "I speak from experience."
+msgstr "我是过来人。"
+
+#: modules/critter/dialog.lua:278
+msgid "Be honest: do you read the last page first?"
+msgstr "说实话：你会先看最后一页吗？"
+
+#: modules/critter/dialog.lua:281
+msgid "Never!"
+msgstr "绝不！"
+
+#: modules/critter/dialog.lua:284
+msgid "A purist. I knew I liked you."
+msgstr "原教旨读者。我就知道我喜欢你。"
+
+#: modules/critter/dialog.lua:286
+msgid "Good. Some rules matter."
+msgstr "很好。有些规矩得守。"
+
+#: modules/critter/dialog.lua:287
+msgid "I knew it. The good kind of reader."
+msgstr "我就知道。是好读者。"
+
+#: modules/critter/dialog.lua:291
+msgid "Only when I'm nervous."
+msgstr "只在紧张的时候。"
+
+#: modules/critter/dialog.lua:294
+msgid "Same. I check that the dog survives."
+msgstr "我也是。我会先确认狗狗活着。"
+
+#: modules/critter/dialog.lua:295
+msgid "Every time."
+msgstr "每次都是。"
+
+#: modules/critter/dialog.lua:298
+msgid "Sometimes."
+msgstr "有时候。"
+
+#: modules/critter/dialog.lua:301
+msgid "Your secret is safe with the shelf."
+msgstr "你的秘密书架替你保守。"
+
+#: modules/critter/dialog.lua:304
+msgid "Always."
+msgstr "一直都是。"
+
+#: modules/critter/dialog.lua:307
+msgid "Bold. You like to know who makes it."
+msgstr "胆子真大。你想先知道谁能活下来。"
+
+#: modules/critter/dialog.lua:308
+msgid "I won't tell anyone."
+msgstr "我不会告诉别人的。"
+
+#: modules/critter/dialog.lua:310
+msgid "Chaos. I respect it."
+msgstr "随心所欲。我尊重。"
+
+#: modules/critter/dialog.lua:319
+msgid "Morning! How did you sleep?"
+msgstr "早上好！睡得怎么样？"
+
+#: modules/critter/dialog.lua:320
+msgid "How's the afternoon going?"
+msgstr "下午过得怎么样？"
+
+#: modules/critter/dialog.lua:321
+msgid "How was your day?"
+msgstr "今天过得怎么样？"
+
+#: modules/critter/dialog.lua:322
+msgid "Still up? How was your day?"
+msgstr "还没睡？今天过得怎么样？"
+
+#: modules/critter/dialog.lua:326
+msgid "Pretty good."
+msgstr "挺好的。"
+
+#: modules/critter/dialog.lua:329
+msgid "Good. Let's keep it that way."
+msgstr "很好。继续保持。"
+
+#: modules/critter/dialog.lua:330
+msgid "A chapter helps."
+msgstr "读一章会更好。"
+
+#: modules/critter/dialog.lua:332
+msgid "I had a feeling it would be."
+msgstr "我就觉得会是这样。"
+
+#: modules/critter/dialog.lua:337
+msgid "Could be better."
+msgstr "还可以更好。"
+
+#: modules/critter/dialog.lua:340
+msgid "Then let's end it with a good chapter."
+msgstr "那就用一个好章节收尾吧。"
+
+#: modules/critter/dialog.lua:341
+msgid "Books are good at that."
+msgstr "书最擅长这个了。"
+
+#: modules/critter/dialog.lua:343
+msgid "Then you get the comfiest book tonight."
+msgstr "那今晚你就读最舒服的那本。"
+
+#: modules/critter/dialog.lua:348
+msgid "Tiring."
+msgstr "好累。"
+
+#: modules/critter/dialog.lua:351
+msgid "Then read something easy."
+msgstr "那就读点轻松的。"
+
+#: modules/critter/dialog.lua:352
+msgid "Nothing with maps."
+msgstr "别读带地图的。"
+
+#: modules/critter/dialog.lua:355
+msgid "I'd rather not talk."
+msgstr "我不太想聊。"
+
+#: modules/critter/dialog.lua:358
+msgid "Okay. I'll just sit here."
+msgstr "好。我就在这儿坐着。"
+
+#: modules/critter/dialog.lua:359
+msgid "Quietly."
+msgstr "安安静静地。"
+
+#: modules/critter/dialog.lua:367
+msgid "It's %s. Reading day, surely?"
+msgstr "今天是%s。肯定是读书日吧？"
+
+#: modules/critter/dialog.lua:369
+msgid "It's %s. Any reading planned?"
+msgstr "今天是%s。打算读点什么吗？"
+
+#: modules/critter/dialog.lua:373
+msgid "Every day is a reading day."
+msgstr "每天都是读书日。"
+
+#: modules/critter/dialog.lua:376
+msgid "Correct. You get a gold star."
+msgstr "答对了。奖励你一颗金星。"
+
+#: modules/critter/dialog.lua:377
+msgid "I'm out of stars. Imagine one."
+msgstr "金星用完了。你就想象一颗吧。"
+
+#: modules/critter/dialog.lua:379
+msgid "Correct. Don't get smug."
+msgstr "答对了。别得意。"
+
+#: modules/critter/dialog.lua:383
+msgid "Yes, a few chapters."
+msgstr "是的，读几章。"
+
+#: modules/critter/dialog.lua:386
+msgid "Perfect. I won't look."
+msgstr "完美。我不偷看。"
+
+#: modules/critter/dialog.lua:387
+msgid "I'll look."
+msgstr "我会偷看的。"
+
+#: modules/critter/dialog.lua:390
+msgid "If I find the time."
+msgstr "有空的话。"
+
+#: modules/critter/dialog.lua:393
+msgid "Ten minutes count. I checked."
+msgstr "十分钟也算数。我查过了。"
+
+#: modules/critter/dialog.lua:394
+msgid "I'm the one who counts."
+msgstr "数数的就是我。"
+
+#: modules/critter/dialog.lua:396
+msgid "Ten minutes count. Even sleepy ones."
+msgstr "十分钟也算数。犯困的也算。"
+
+#: modules/critter/dialog.lua:401 modules/critter/dialog.lua:583
+msgid "Not today."
+msgstr "今天不读。"
+
+#: modules/critter/dialog.lua:404
+msgid "That's allowed. Books are patient."
+msgstr "可以的。书很有耐心。"
+
+#: modules/critter/dialog.lua:405
+msgid "So am I. Mostly."
+msgstr "我也是。大多数时候。"
+
+#: modules/critter/dialog.lua:413
+msgid "Our streak is at %d day. No pressure."
+msgid_plural "Our streak is at %d days. No pressure."
+msgstr[0] "我们已经连续阅读 %d 天了。没压力哦。"
+msgstr[1] "我们已经连续阅读 %d 天了。没压力哦。"
+
+#: modules/critter/dialog.lua:418
+msgid "Let's keep it going."
+msgstr "继续保持吧。"
+
+#: modules/critter/dialog.lua:421
+msgid "That's the spirit. I'll keep count."
+msgstr "就是这股劲儿。我帮你记着。"
+
+#: modules/critter/dialog.lua:422
+msgid "I love counting."
+msgstr "我最喜欢数数了。"
+
+#: modules/critter/dialog.lua:425 modules/critter/dialog.lua:427
+msgid "Day %d, here we come!"
+msgstr "第 %d 天，我们来了！"
+
+#: modules/critter/dialog.lua:428
+msgid "Good. I'd hate to start over."
+msgstr "很好。我可不想从头再来。"
+
+#: modules/critter/dialog.lua:433
+msgid "No pressure? Really?"
+msgstr "没压力？真的？"
+
+#: modules/critter/dialog.lua:436
+msgid "None at all. I'm just writing it on the wall."
+msgstr "完全没有。我只是把它写在墙上。"
+
+#: modules/critter/dialog.lua:437
+msgid "In big letters."
+msgstr "用大字。"
+
+#: modules/critter/dialog.lua:440
+msgid "What if I miss a day?"
+msgstr "要是我漏了一天呢？"
+
+#: modules/critter/dialog.lua:443
+msgid "Then we start again. I'll still be here."
+msgstr "那就重新开始。我还会在这儿。"
+
+#: modules/critter/dialog.lua:446
+msgid "Stop counting."
+msgstr "别数了。"
+
+#: modules/critter/dialog.lua:449
+msgid "Sorry. Counting is how I show I care."
+msgstr "抱歉。数数是我关心你的方式。"
+
+#: modules/critter/dialog.lua:455
+msgid "The streak took a little break."
+msgstr "连续阅读稍微歇了一下。"
+
+#: modules/critter/dialog.lua:458
+msgid "Let's start again today."
+msgstr "今天重新开始吧。"
+
+#: modules/critter/dialog.lua:461
+msgid "Day one. My favourite kind."
+msgstr "第一天。我最喜欢的那种。"
+
+#: modules/critter/dialog.lua:462
+msgid "Everything starts here."
+msgstr "一切都从这里开始。"
+
+#: modules/critter/dialog.lua:464
+msgid "Day one. Again. Fine."
+msgstr "第一天。又来。行吧。"
+
+#: modules/critter/dialog.lua:465
+msgid "Day one with you. My favourite."
+msgstr "和你一起的第一天。我最喜欢。"
+
+#: modules/critter/dialog.lua:470
+msgid "I'll be back soon."
+msgstr "我很快就回来。"
+
+#: modules/critter/dialog.lua:473
+msgid "I'll keep your place."
+msgstr "我帮你记着读到哪儿。"
+
+#: modules/critter/dialog.lua:474
+msgid "I'm good at that."
+msgstr "这个我很拿手。"
+
+#: modules/critter/dialog.lua:477
+msgid "It needed a rest."
+msgstr "它需要休息一下。"
+
+#: modules/critter/dialog.lua:480
+msgid "Fair. Even streaks get tired."
+msgstr "也对。连续阅读也会累。"
+
+#: modules/critter/dialog.lua:481
+msgid "I nap all the time."
+msgstr "我天天打盹。"
+
+#: modules/critter/dialog.lua:484
+msgid "Don't remind me."
+msgstr "别提了。"
+
+#: modules/critter/dialog.lua:487
+msgid "Forgotten. What streak?"
+msgstr "忘了。什么连续阅读？"
+
+#: modules/critter/dialog.lua:495
+msgid "%d book this year. How's the goal looking?"
+msgid_plural "%d books this year. How's the goal looking?"
+msgstr[0] "今年读了 %d 本书。目标进展如何？"
+msgstr[1] "今年读了 %d 本书。目标进展如何？"
+
+#: modules/critter/dialog.lua:500
+msgid "Right on track."
+msgstr "完全按计划。"
+
+#: modules/critter/dialog.lua:503
+msgid "I knew it. I've seen the shelf."
+msgstr "我就知道。我看过书架了。"
+
+#: modules/critter/dialog.lua:505
+msgid "On track. Quietly proud of you."
+msgstr "按计划进行。我默默为你骄傲。"
+
+#: modules/critter/dialog.lua:506
+msgid "On track! I'm telling the whole shelf."
+msgstr "按计划进行！我要告诉整个书架。"
+
+#: modules/critter/dialog.lua:510
+msgid "What should I read next?"
+msgstr "我接下来该读什么？"
+
+#: modules/critter/dialog.lua:513
+msgid "A bit behind."
+msgstr "有点落后。"
+
+#: modules/critter/dialog.lua:516
+msgid "There's still time. Short books count."
+msgstr "还有时间。短书也算数。"
+
+#: modules/critter/dialog.lua:517
+msgid "I checked the rules."
+msgstr "我查过规则了。"
+
+#: modules/critter/dialog.lua:520
+msgid "I forgot I had one."
+msgstr "我都忘了我还有目标。"
+
+#: modules/critter/dialog.lua:523
+msgid "It didn't forget you."
+msgstr "它可没忘了你。"
+
+#: modules/critter/dialog.lua:524
+msgid "Goals are like that."
+msgstr "目标就是这样。"
+
+#: modules/critter/dialog.lua:532
+msgid "%d page today. Where did it take you?"
+msgid_plural "%d pages today. Where did they take you?"
+msgstr[0] "今天读了 %d 页。它们带你去了哪儿？"
+msgstr[1] "今天读了 %d 页。它们带你去了哪儿？"
+
+#: modules/critter/dialog.lua:537
+msgid "Somewhere far away."
+msgstr "很远的地方。"
+
+#: modules/critter/dialog.lua:540
+msgid "Lucky. I've never left this shelf."
+msgstr "真好。我从没离开过这个书架。"
+
+#: modules/critter/dialog.lua:541
+msgid "Tell me about it sometime."
+msgstr "改天讲给我听吧。"
+
+#: modules/critter/dialog.lua:543
+msgid "Lucky. I stayed here. On the shelf."
+msgstr "真好。我留在这儿了。书架上。"
+
+#: modules/critter/dialog.lua:548
+msgid "Can't say. Spoilers."
+msgstr "不能说。会剧透。"
+
+#: modules/critter/dialog.lua:551
+msgid "Fair. I'll find out myself one day."
+msgstr "也对。总有一天我自己去看。"
+
+#: modules/critter/dialog.lua:554
+msgid "Nowhere exciting yet."
+msgstr "暂时还没什么精彩的。"
+
+#: modules/critter/dialog.lua:557
+msgid "Some chapters are corridors."
+msgstr "有些章节就像走廊。"
+
+#: modules/critter/dialog.lua:558
+msgid "They lead somewhere."
+msgstr "总会通向某个地方。"
+
+#: modules/critter/dialog.lua:564
+msgid "No reading yet today. Shall we fix that?"
+msgstr "今天还没读书。要不要补上？"
+
+#: modules/critter/dialog.lua:567
+msgid "Yes, right now."
+msgstr "好，现在就读。"
+
+#: modules/critter/dialog.lua:570
+msgid "Wonderful. I'll hold the lamp."
+msgstr "太好了。我来举灯。"
+
+#: modules/critter/dialog.lua:572
+msgid "Yes! Lamp on. Pages ready."
+msgstr "好！灯已开，书页就位。"
+
+#: modules/critter/dialog.lua:576
+msgid "Later tonight."
+msgstr "今晚晚些时候。"
+
+#: modules/critter/dialog.lua:579
+msgid "I'll remind you."
+msgstr "我会提醒你的。"
+
+#: modules/critter/dialog.lua:580
+msgid "Gently."
+msgstr "轻轻地。"
+
+#: modules/critter/dialog.lua:586
+msgid "That's fine. Rest days count too."
+msgstr "没关系。休息日也算数。"
+
+#: modules/critter/dialog.lua:589
+msgid "Stop nagging."
+msgstr "别唠叨了。"
+
+#: modules/critter/dialog.lua:592
+msgid "Sorry. I just like it when you read."
+msgstr "抱歉。我就是喜欢看你读书。"
+
+#: modules/critter/dialog.lua:600
+msgid "Want me to pick your next book?"
+msgstr "要我帮你挑下一本书吗？"
+
+#: modules/critter/dialog.lua:603
+msgid "Yes, pick one"
+msgstr "好，挑一本"
+
+#: modules/critter/dialog.lua:617
+msgid "Challenge accepted"
+msgstr "接受挑战"
+
+#: modules/critter/dialog.lua:620
+msgid "Deal. I'll keep an eye on it."
+msgstr "一言为定。我会盯着的。"
+
+#: modules/critter/dialog.lua:621
+msgid "A friendly eye."
+msgstr "友善地盯着。"
+
+#: modules/critter/dialog.lua:623
+msgid "Bold. Let's see."
+msgstr "有胆量。看你的了。"
+
+#: modules/critter/dialog.lua:624
+msgid "Yes! You've got this!"
+msgstr "好耶！你一定行！"
+
+#: modules/critter/dialog.lua:625
+msgid "I knew you'd say yes."
+msgstr "我就知道你会答应。"
+
+#: modules/critter/dialog.lua:629
+msgid "Maybe later"
+msgstr "以后再说"
+
+#: modules/critter/dialog.lua:632
+msgid "The offer stands until midnight."
+msgstr "这个提议到午夜前都有效。"
+
+#: modules/critter/dialog.lua:634
+msgid "Suit yourself."
+msgstr "随你吧。"
+
+#: modules/critter/dialog.lua:635
+msgid "Of course. No pressure."
+msgstr "当然。没压力。"
+
+#: modules/critter/dialog.lua:644
+msgid "On it!"
+msgstr "这就去！"
+
+#: modules/critter/dialog.lua:647
+msgid "Go! I'll be here, counting."
+msgstr "去吧！我在这儿帮你数着。"
+
+#: modules/critter/dialog.lua:649
+msgid "Less talking. More reading."
+msgstr "少说话，多读书。"
+
+#: modules/critter/dialog.lua:650
+msgid "You're unstoppable today."
+msgstr "你今天势不可挡。"
+
+#: modules/critter/dialog.lua:654
+msgid "Tough one…"
+msgstr "有点难……"
+
+#: modules/critter/dialog.lua:657
+msgid "One page at a time. They all count."
+msgstr "一页一页来。每页都算数。"
+
+#: modules/critter/dialog.lua:659
+msgid "You can do it. One page at a time."
+msgstr "你能行的。一页一页来。"
+
+#: modules/critter/dialog.lua:660
+msgid "Then slowly. Very slowly."
+msgstr "那就慢慢来。非常慢地来。"
+
+#: modules/critter/dialog.lua:736
+msgid "Try “%s”, by %s."
+msgstr "试试《%s》，作者 %s。"
+
+#: modules/critter/dialog.lua:737
+msgid "Try “%s”."
+msgstr "试试《%s》。"
+
+#: modules/critter/dialog.lua:740
+msgid "Open it"
+msgstr "打开它"
+
+#: modules/critter/dialog.lua:741
+msgid "Another one"
+msgstr "换一本"
+
+#: modules/critter/module_critter.lua:741
+msgid "Decorations"
+msgstr "装饰"
+
+#: modules/critter/module_critter.lua:803
+msgid "Bubble style"
+msgstr "气泡样式"
+
+#: modules/critter/module_critter.lua:805
+msgid "Pixel"
+msgstr "像素"
+
+#: modules/critter/module_critter.lua:806
+msgid "Smooth"
+msgstr "平滑"
+
+#: modules/critter/module_critter.lua:855
+msgid "React to events"
+msgstr "对事件做出反应"
+
+#: modules/critter/reaction_lines.lua:60
+msgid "%s, finished!"
+msgstr "《%s》，读完了！"
+
+#: modules/critter/reaction_lines.lua:61 modules/critter/reaction_lines.lua:83
+msgid "Take a bow. I'll hold the applause."
+msgstr "鞠个躬吧。掌声我先替你攒着。"
+
+#: modules/critter/reaction_lines.lua:63
+msgid "You finished %s."
+msgstr "你读完了《%s》。"
+
+#: modules/critter/reaction_lines.lua:64 modules/critter/reaction_lines.lua:86
+msgid "I'm not crying. It's dust."
+msgstr "我没哭。是灰尘。"
+
+#: modules/critter/reaction_lines.lua:66
+msgid "%s is over. Good for you."
+msgstr "《%s》读完了。挺好。"
+
+#: modules/critter/reaction_lines.lua:67
+msgid "%s! DONE! Incredible!"
+msgstr "《%s》！读完了！太厉害了！"
+
+#: modules/critter/reaction_lines.lua:70
+msgid "Another book on the done pile."
+msgstr "已读书堆又多了一本。"
+
+#: modules/critter/reaction_lines.lua:71
+msgid "%s was a good one."
+msgstr "《%s》是本好书。"
+
+#: modules/critter/reaction_lines.lua:73
+msgid "A book finished. I need to lie down."
+msgstr "读完一本书。我得躺一会儿。"
+
+#: modules/critter/reaction_lines.lua:74
+msgid "A new chapter of your legend is complete!"
+msgstr "你的传奇又完成了一章！"
+
+#: modules/critter/reaction_lines.lua:75
+msgid "%s will be sung about."
+msgstr "《%s》会被传颂的。"
+
+#: modules/critter/reaction_lines.lua:78 modules/critter/reaction_lines.lua:100
+msgid "So, how did it end?"
+msgstr "所以，结局怎么样？"
+
+#: modules/critter/reaction_lines.lua:79
+msgid "Tell me about %s. No spoilers. Okay, spoilers."
+msgstr "讲讲《%s》吧。不许剧透。好吧，剧透也行。"
+
+#: modules/critter/reaction_lines.lua:82
+msgid "Book finished!"
+msgstr "读完一本书！"
+
+#: modules/critter/reaction_lines.lua:85
+msgid "You finished a book."
+msgstr "你读完了一本书。"
+
+#: modules/critter/reaction_lines.lua:88
+msgid "A book is over. Good for you."
+msgstr "一本书读完了。挺好。"
+
+#: modules/critter/reaction_lines.lua:89
+msgid "DONE! Incredible!"
+msgstr "读完了！太厉害了！"
+
+#: modules/critter/reaction_lines.lua:92
+msgid "Another one for the done pile."
+msgstr "已读书堆又多了一本。"
+
+#: modules/critter/reaction_lines.lua:93
+msgid "That was a good one."
+msgstr "那是本好书。"
+
+#: modules/critter/reaction_lines.lua:95
+msgid "One more finished. I need to lie down."
+msgstr "又读完一本。我得躺一会儿。"
+
+#: modules/critter/reaction_lines.lua:96
+msgid "Another chapter of your legend is complete!"
+msgstr "你的传奇又完成了一章！"
+
+#: modules/critter/reaction_lines.lua:97
+msgid "It will be sung about."
+msgstr "它会被传颂的。"
+
+#: modules/critter/reaction_lines.lua:101
+msgid "No spoilers. Okay, spoilers."
+msgstr "不许剧透。好吧，剧透也行。"
+
+#: modules/critter/reaction_lines.lua:108
+msgid "A quick peek?"
+msgstr "偷偷看一眼？"
+
+#: modules/critter/reaction_lines.lua:109
+msgid "%d minute. A sneaky one."
+msgid_plural "%d minutes. A sneaky one."
+msgstr[0] "%d 分钟。偷偷读的。"
+msgstr[1] "%d 分钟。偷偷读的。"
+
+#: modules/critter/reaction_lines.lua:111
+msgid "Short and sweet."
+msgstr "短小精悍。"
+
+#: modules/critter/reaction_lines.lua:112
+msgid "Even a few pages count."
+msgstr "几页也算数。"
+
+#: modules/critter/reaction_lines.lua:114
+msgid "That was short. I blinked and missed it."
+msgstr "好短。我一眨眼就错过了。"
+
+#: modules/critter/reaction_lines.lua:115
+msgid "Every page counts! Hooray for pages!"
+msgstr "每一页都算数！为书页欢呼！"
+
+#: modules/critter/reaction_lines.lua:118
+msgid "Just a little one today."
+msgstr "今天就读了一点点。"
+
+#: modules/critter/reaction_lines.lua:119
+msgid "Little reads add up."
+msgstr "读一点点，积少成多。"
+
+#: modules/critter/reaction_lines.lua:121
+msgid "A short one. My kind of effort."
+msgstr "短短一会儿。我喜欢的努力程度。"
+
+#: modules/critter/reaction_lines.lua:122
+msgid "A brief, brilliant visit to another world!"
+msgstr "去另一个世界短暂而精彩的一游！"
+
+#: modules/critter/reaction_lines.lua:125
+msgid "A page here, a page there."
+msgstr "这儿一页，那儿一页。"
+
+#: modules/critter/reaction_lines.lua:126
+msgid "That's how libraries get built."
+msgstr "图书馆就是这么建起来的。"
+
+#: modules/critter/reaction_lines.lua:129
+msgid "%d minute of reading."
+msgid_plural "%d minutes of reading."
+msgstr[0] "读了 %d 分钟。"
+msgstr[1] "读了 %d 分钟。"
+
+#: modules/critter/reaction_lines.lua:130
+msgid "A proper stretch."
+msgstr "读了好一阵。"
+
+#: modules/critter/reaction_lines.lua:132
+msgid "Nice little session!"
+msgstr "不错的一小段阅读！"
+
+#: modules/critter/reaction_lines.lua:133
+msgid "The book is warm now."
+msgstr "书都被你捂热了。"
+
+#: modules/critter/reaction_lines.lua:135
+msgid "Fine. A decent session. Don't let it go to your head."
+msgstr "行吧。读得还可以。别骄傲。"
+
+#: modules/critter/reaction_lines.lua:136
+msgid "What a lovely session! Bravo!"
+msgstr "多美好的阅读时光！好棒！"
+
+#: modules/critter/reaction_lines.lua:139
+msgid "Look who's got staying power."
+msgstr "看看谁这么有耐力。"
+
+#: modules/critter/reaction_lines.lua:140
+msgid "Same time tomorrow?"
+msgstr "明天同一时间？"
+
+#: modules/critter/reaction_lines.lua:142
+msgid "A decent session. I almost stayed awake."
+msgstr "读得还可以。我差点没撑住醒着。"
+
+#: modules/critter/reaction_lines.lua:143
+msgid "A session worthy of the great libraries!"
+msgstr "堪比伟大图书馆的一次阅读！"
+
+#: modules/critter/reaction_lines.lua:146
+msgid "That was cosy."
+msgstr "好惬意。"
+
+#: modules/critter/reaction_lines.lua:147
+msgid "The book and you make a good team."
+msgstr "你和这本书是好搭档。"
+
+#: modules/critter/reaction_lines.lua:150
+msgid "%d minute! Did you eat?"
+msgid_plural "%d minutes! Did you eat?"
+msgstr[0] "%d 分钟！你吃饭了吗？"
+msgstr[1] "%d 分钟！你吃饭了吗？"
+
+#: modules/critter/reaction_lines.lua:151
+msgid "Drink some water, hero."
+msgstr "喝点水吧，英雄。"
+
+#: modules/critter/reaction_lines.lua:153
+msgid "Marathon reader!"
+msgstr "马拉松读者！"
+
+#: modules/critter/reaction_lines.lua:154
+msgid "%d minute without surfacing."
+msgid_plural "%d minutes without surfacing."
+msgstr[0] "%d 分钟没抬过头。"
+msgstr[1] "%d 分钟没抬过头。"
+
+#: modules/critter/reaction_lines.lua:156
+msgid "A marathon. I'm tired just watching."
+msgstr "一场马拉松。我光看着都累了。"
+
+#: modules/critter/reaction_lines.lua:157
+msgid "A MARATHON! You're unstoppable!"
+msgstr "马拉松！你势不可挡！"
+
+#: modules/critter/reaction_lines.lua:160
+msgid "The world can wait."
+msgstr "世界可以等一等。"
+
+#: modules/critter/reaction_lines.lua:161
+msgid "The book clearly deserved it."
+msgstr "这本书显然值得。"
+
+#: modules/critter/reaction_lines.lua:163
+msgid "All that reading. Wake me when it's over."
+msgstr "读了这么久。结束了叫醒我。"
+
+#: modules/critter/reaction_lines.lua:164
+msgid "An epic voyage! The sagas will remember it!"
+msgstr "史诗般的远航！史书会记住它！"
+
+#: modules/critter/reaction_lines.lua:167
+msgid "Was it that good?"
+msgstr "有那么好看吗？"
+
+#: modules/critter/reaction_lines.lua:168
+msgid "You must tell me everything."
+msgstr "你得全都讲给我听。"
+
+#: modules/critter/reaction_lines.lua:175
+msgid "I'm at %d%%."
+msgstr "我只剩 %d%% 了。"
+
+#: modules/critter/reaction_lines.lua:176
+msgid "Not to be dramatic, but find a charger."
+msgstr "不是我夸张，快去找充电器。"
+
+#: modules/critter/reaction_lines.lua:178
+msgid "Running on fumes."
+msgstr "快没电了。"
+
+#: modules/critter/reaction_lines.lua:179
+msgid "%d%% left. I'll be brave."
+msgstr "还剩 %d%%。我会勇敢的。"
+
+#: modules/critter/reaction_lines.lua:181
+msgid "Low battery. Typical."
+msgstr "电量低。果然。"
+
+#: modules/critter/reaction_lines.lua:182
+msgid "Battery low! Quick, adventure's calling!"
+msgstr "电量低！快，冒险在召唤！"
+
+#: modules/critter/reaction_lines.lua:185
+msgid "Feeling a bit faint."
+msgstr "有点头晕。"
+
+#: modules/critter/reaction_lines.lua:186
+msgid "A charger would be lovely."
+msgstr "来个充电器就好了。"
+
+#: modules/critter/reaction_lines.lua:188
+msgid "Low battery. Finally, a reason to nap."
+msgstr "电量低。终于有理由打盹了。"
+
+#: modules/critter/reaction_lines.lua:189
+msgid "My light is fading! Fetch the charger, brave soul!"
+msgstr "我的光芒正在消逝！勇士，快取充电器！"
+
+#: modules/critter/reaction_lines.lua:192
+msgid "Psst. The battery is low."
+msgstr "嘘。电量不多了。"
+
+#: modules/critter/reaction_lines.lua:193
+msgid "I didn't want to say anything."
+msgstr "我本来不想说的。"
+
+#: modules/critter/reaction_lines.lua:196
+msgid "Ooh, that's nice."
+msgstr "哦，好舒服。"
+
+#: modules/critter/reaction_lines.lua:197
+msgid "Slurp. Thank you."
+msgstr "咕噜。谢谢你。"
+
+#: modules/critter/reaction_lines.lua:199
+msgid "Charging. Bliss."
+msgstr "充电中。真幸福。"
+
+#: modules/critter/reaction_lines.lua:200
+msgid "I'll just rest my eyes."
+msgstr "我就闭目养神一下。"
+
+#: modules/critter/reaction_lines.lua:202
+msgid "Charging. About time."
+msgstr "充电中。早该充了。"
+
+#: modules/critter/reaction_lines.lua:203
+msgid "Power! Glorious power!"
+msgstr "电力！伟大的电力！"
+
+#: modules/critter/reaction_lines.lua:206
+msgid "You plugged me in."
+msgstr "你给我插上电了。"
+
+#: modules/critter/reaction_lines.lua:207
+msgid "You're my favourite human."
+msgstr "你是我最喜欢的人类。"
+
+#: modules/critter/reaction_lines.lua:209
+msgid "Charging. Wake me at 100%."
+msgstr "充电中。到 100% 叫醒我。"
+
+#: modules/critter/reaction_lines.lua:210
+msgid "Energy flows! I am reborn!"
+msgstr "能量涌动！我重生了！"
+
+#: modules/critter/reaction_lines.lua:213
+msgid "Snack time!"
+msgstr "加餐时间！"
+
+#: modules/critter/reaction_lines.lua:214
+msgid "Electrons, my favourite."
+msgstr "电子，我的最爱。"
+
+#: modules/critter/reaction_lines.lua:221
+msgid "Happy new year!"
+msgstr "新年快乐！"
+
+#: modules/critter/reaction_lines.lua:222
+msgid "A whole year of unread pages awaits."
+msgstr "一整年的未读书页在等你。"
+
+#: modules/critter/reaction_lines.lua:224
+msgid "New year, new shelf."
+msgstr "新年，新书架。"
+
+#: modules/critter/reaction_lines.lua:225
+msgid "What shall we read first?"
+msgstr "我们先读什么？"
+
+#: modules/critter/reaction_lines.lua:227
+msgid "Another year. The pile is still there."
+msgstr "又一年。那堆书还在。"
+
+#: modules/critter/reaction_lines.lua:228
+msgid "HAPPY NEW YEAR! Let's read everything!"
+msgstr "新年快乐！把书全读了吧！"
+
+#: modules/critter/reaction_lines.lua:231
+msgid "Resolutions?"
+msgstr "新年愿望？"
+
+#: modules/critter/reaction_lines.lua:232
+msgid "Mine is to nap more. Yours?"
+msgstr "我的是多打盹。你的呢？"
+
+#: modules/critter/reaction_lines.lua:234
+msgid "A new year. Wake me in January. Oh, wait."
+msgstr "新年了。一月叫醒我。哦，等等。"
+
+#: modules/critter/reaction_lines.lua:235
+msgid "A new year, a new saga! Onward!"
+msgstr "新的一年，新的传奇！出发！"
+
+#: modules/critter/reaction_lines.lua:238
+msgid "The year turns like a page."
+msgstr "一年就像翻过一页。"
+
+#: modules/critter/reaction_lines.lua:239
+msgid "Let's make it a good chapter."
+msgstr "让它成为精彩的一章。"
+
+#: modules/critter/reaction_lines.lua:242
+msgid "Happy World Book Day!"
+msgstr "世界读书日快乐！"
+
+#: modules/critter/reaction_lines.lua:243
+msgid "Today we celebrate you and your shelves."
+msgstr "今天为你和你的书架庆祝。"
+
+#: modules/critter/reaction_lines.lua:245
+msgid "It's World Book Day!"
+msgstr "今天是世界读书日！"
+
+#: modules/critter/reaction_lines.lua:246
+msgid "Reading today is practically mandatory."
+msgstr "今天读书几乎是必须的。"
+
+#: modules/critter/reaction_lines.lua:248
+msgid "World Book Day. Fine. Read something."
+msgstr "世界读书日。行吧。读点什么。"
+
+#: modules/critter/reaction_lines.lua:249
+msgid "WORLD BOOK DAY! The best day of the year!"
+msgstr "世界读书日！一年中最棒的一天！"
+
+#: modules/critter/reaction_lines.lua:252
+msgid "A day for books, at last."
+msgstr "终于，属于书的一天。"
+
+#: modules/critter/reaction_lines.lua:253
+msgid "I've been waiting all year."
+msgstr "我等了一整年。"
+
+#: modules/critter/reaction_lines.lua:255
+msgid "Book Day. A holiday for my favourite thing: sitting."
+msgstr "读书日。我最爱的事也放假了：坐着。"
+
+#: modules/critter/reaction_lines.lua:256
+msgid "Today the whole world kneels to the book!"
+msgstr "今天全世界都向书致敬！"
+
+#: modules/critter/reaction_lines.lua:259
+msgid "Happy Book Day!"
+msgstr "读书日快乐！"
+
+#: modules/critter/reaction_lines.lua:260
+msgid "Go on, pick something shiny."
+msgstr "去吧，挑一本亮眼的。"
+
+#: modules/critter/reaction_lines.lua:263
+msgid "%d year together!"
+msgid_plural "%d years together!"
+msgstr[0] "我们在一起 %d 年了！"
+msgstr[1] "我们在一起 %d 年了！"
+
+#: modules/critter/reaction_lines.lua:264
+msgid "Look at us."
+msgstr "看看我们。"
+
+#: modules/critter/reaction_lines.lua:266
+msgid "Happy anniversary!"
+msgstr "周年快乐！"
+
+#: modules/critter/reaction_lines.lua:267
+msgid "%d year of pages and snacks."
+msgid_plural "%d years of pages and snacks."
+msgstr[0] "%d 年的书页和零食。"
+msgstr[1] "%d 年的书页和零食。"
+
+#: modules/critter/reaction_lines.lua:269
+msgid "An anniversary. I suppose I'm fond of you."
+msgstr "周年纪念。我想我还挺喜欢你的。"
+
+#: modules/critter/reaction_lines.lua:270
+msgid "HAPPY ANNIVERSARY! I love us!"
+msgstr "周年快乐！我爱我们！"
+
+#: modules/critter/reaction_lines.lua:273
+msgid "I remember the day we met."
+msgstr "我还记得我们相遇那天。"
+
+#: modules/critter/reaction_lines.lua:274
+msgid "You had a book in your hand."
+msgstr "你手里拿着一本书。"
+
+#: modules/critter/reaction_lines.lua:276
+msgid "An anniversary. Cake? No? Nap, then."
+msgstr "周年纪念。蛋糕？没有？那就打盹。"
+
+#: modules/critter/reaction_lines.lua:277
+msgid "Our story is the finest of all libraries!"
+msgstr "我们的故事是所有图书馆里最好的！"
+
+#: modules/critter/reaction_lines.lua:280
+msgid "Another lap around the sun."
+msgstr "又绕太阳转了一圈。"
+
+#: modules/critter/reaction_lines.lua:281
+msgid "Together, with books."
+msgstr "一起，和书一起。"
+
+#: modules/critter/reaction_lines.lua:284
+msgid "Welcome to %s!"
+msgstr "欢迎来到%s！"
+
+#: modules/critter/reaction_lines.lua:285
+msgid "A fresh month, a fresh stack."
+msgstr "新的月份，新的书堆。"
+
+#: modules/critter/reaction_lines.lua:287
+msgid "%s already?"
+msgstr "已经%s了？"
+
+#: modules/critter/reaction_lines.lua:288
+msgid "Time flies when you're reading."
+msgstr "读书时时间过得真快。"
+
+#: modules/critter/reaction_lines.lua:290
+msgid "%s. Another month of the same pile."
+msgstr "%s。又一个月对着同一堆书。"
+
+#: modules/critter/reaction_lines.lua:291
+msgid "%s! New month, new adventures!"
+msgstr "%s！新的月份，新的冒险！"
+
+#: modules/critter/reaction_lines.lua:294
+msgid "The calendar flipped a page."
+msgstr "日历翻了一页。"
+
+#: modules/critter/reaction_lines.lua:295
+msgid "Let's see what %s brings."
+msgstr "看看%s会带来什么。"
+
+#: modules/critter/reaction_lines.lua:297
+msgid "It's %s. I barely noticed."
+msgstr "%s了。我都没注意到。"
+
+#: modules/critter/reaction_lines.lua:298
+msgid "%s arrives! A new act begins!"
+msgstr "%s来了！新的一幕开始了！"
+
+#: modules/critter/reaction_lines.lua:301
+msgid "New month, new goals."
+msgstr "新的月份，新的目标。"
+
+#: modules/critter/reaction_lines.lua:302
+msgid "Or the same ones. I'm not picky."
+msgstr "或者还是老目标。我不挑。"
+
+#: modules/critter/reaction_lines.lua:309
+msgid "Look who's back!"
+msgstr "看看谁回来了！"
+
+#: modules/critter/reaction_lines.lua:310
+msgid "%d day away. I counted."
+msgid_plural "%d days away. I counted."
+msgstr[0] "离开了 %d 天。我数着呢。"
+msgstr[1] "离开了 %d 天。我数着呢。"
+
+#: modules/critter/reaction_lines.lua:312
+msgid "I kept your place."
+msgstr "我帮你记着读到哪儿了。"
+
+#: modules/critter/reaction_lines.lua:313
+msgid "Right where you left it."
+msgstr "就在你离开的地方。"
+
+#: modules/critter/reaction_lines.lua:315
+msgid "Oh, you remember me."
+msgstr "哦，你还记得我啊。"
+
+#: modules/critter/reaction_lines.lua:316
+msgid "You're back! I missed you!"
+msgstr "你回来了！我好想你！"
+
+#: modules/critter/reaction_lines.lua:319
+msgid "A short holiday?"
+msgstr "短暂的假期？"
+
+#: modules/critter/reaction_lines.lua:320
+msgid "Hope the books were jealous."
+msgstr "希望书们吃醋了。"
+
+#: modules/critter/reaction_lines.lua:322
+msgid "You're back. I was napping, honest."
+msgstr "你回来了。我刚在打盹，真的。"
+
+#: modules/critter/reaction_lines.lua:323
+msgid "The wanderer returns to the library!"
+msgstr "流浪者回到了图书馆！"
+
+#: modules/critter/reaction_lines.lua:326
+msgid "Welcome back!"
+msgstr "欢迎回来！"
+
+#: modules/critter/reaction_lines.lua:327
+msgid "The shelves missed you."
+msgstr "书架们想你了。"
+
+#: modules/critter/reaction_lines.lua:330
+msgid "%d day! Where were you?"
+msgid_plural "%d days! Where were you?"
+msgstr[0] "%d 天！你去哪儿了？"
+msgstr[1] "%d 天！你去哪儿了？"
+
+#: modules/critter/reaction_lines.lua:331
+msgid "The books were worried."
+msgstr "书们都担心了。"
+
+#: modules/critter/reaction_lines.lua:333
+msgid "It's been a while."
+msgstr "好久不见。"
+
+#: modules/critter/reaction_lines.lua:334
+msgid "I dusted the shelves twice."
+msgstr "我把书架掸了两遍灰。"
+
+#: modules/critter/reaction_lines.lua:336
+msgid "So you remember where I live."
+msgstr "原来你还记得我住哪儿。"
+
+#: modules/critter/reaction_lines.lua:337
+msgid "You're back! Best day ever!"
+msgstr "你回来了！最棒的一天！"
+
+#: modules/critter/reaction_lines.lua:340
+msgid "What did I miss?"
+msgstr "我错过了什么？"
+
+#: modules/critter/reaction_lines.lua:341
+msgid "Tell me everything. Slowly."
+msgstr "全都告诉我。慢慢说。"
+
+#: modules/critter/reaction_lines.lua:343
+msgid "You're back. Finally. I got so bored I napped."
+msgstr "你终于回来了。我无聊得都睡着了。"
+
+#: modules/critter/reaction_lines.lua:344
+msgid "The reader returns! Let the feast begin!"
+msgstr "读者回来了！开席！"
+
+#: modules/critter/reaction_lines.lua:347
+msgid "I started talking to the bookcase."
+msgstr "我开始跟书柜聊天了。"
+
+#: modules/critter/reaction_lines.lua:348
+msgid "It's a good listener."
+msgstr "它很会倾听。"
+
+#: modules/critter/reaction_lines.lua:351
+msgid "%d day! I thought you'd moved."
+msgid_plural "%d days! I thought you'd moved."
+msgstr[0] "%d 天！我以为你搬走了。"
+msgstr[1] "%d 天！我以为你搬走了。"
+
+#: modules/critter/reaction_lines.lua:352
+msgid "Welcome home."
+msgstr "欢迎回家。"
+
+#: modules/critter/reaction_lines.lua:354
+msgid "You came back."
+msgstr "你回来了。"
+
+#: modules/critter/reaction_lines.lua:355 modules/critter/reaction_lines.lua:408
+msgid "I never doubted you. Much."
+msgstr "我从没怀疑过你。基本没有。"
+
+#: modules/critter/reaction_lines.lua:357
+msgid "A month. I kept busy. Mostly sulking."
+msgstr "一个月。我挺忙的。主要在生闷气。"
+
+#: modules/critter/reaction_lines.lua:358
+msgid "YOU'RE BACK! Confetti, everyone!"
+msgstr "你回来了！大家撒彩带！"
+
+#: modules/critter/reaction_lines.lua:361
+msgid "It's been so long."
+msgstr "好久好久了。"
+
+#: modules/critter/reaction_lines.lua:362
+msgid "The dust and I have become friends."
+msgstr "我和灰尘都成朋友了。"
+
+#: modules/critter/reaction_lines.lua:364
+msgid "You're back. I slept through half of it."
+msgstr "你回来了。我睡过了一半。"
+
+#: modules/critter/reaction_lines.lua:365
+msgid "The hero returns after a long quest!"
+msgstr "英雄结束漫长的远征归来！"
+
+#: modules/critter/reaction_lines.lua:368
+msgid "Welcome back, stranger!"
+msgstr "欢迎回来，陌生人！"
+
+#: modules/critter/reaction_lines.lua:369
+msgid "Shall we pick up where we left off?"
+msgstr "我们从上次停下的地方继续？"
+
+#: modules/critter/reaction_lines.lua:407
+msgid "Challenge met!"
+msgstr "挑战完成！"
+
+#: modules/critter/reaction_lines.lua:410
+msgid "Fine. You did it. Don't expect a parade."
+msgstr "行吧。你做到了。别指望游行庆祝。"
+
+#: modules/critter/reaction_lines.lua:411
+msgid "Challenge crushed! Take a bow, champion!"
+msgstr "挑战完胜！鞠个躬吧，冠军！"
+
+#: modules/critter/reaction_lines.lua:414
+msgid "You said you would, and you did."
+msgstr "你说到做到。"
+
+#: modules/critter/reaction_lines.lua:415
+msgid "That's the best kind of promise."
+msgstr "这才是最好的承诺。"
+
+#: modules/critter/reaction_lines.lua:417
+msgid "Done and dusted."
+msgstr "搞定收工。"
+
+#: modules/critter/reaction_lines.lua:418
+msgid "Shall I pick a harder one tomorrow?"
+msgstr "明天要不要来个难点的？"
+
+#: modules/critter/reaction_lines.lua:420
+msgid "Done. Now I need a nap."
+msgstr "搞定。现在我得打个盹。"
+
+#: modules/critter/reaction_lines.lua:421
+msgid "Done and dusted! Look at you go!"
+msgstr "搞定收工！瞧你多厉害！"
+
+#: modules/critter/reaction_lines.lua:424
+msgid "A small goal, a big grin."
+msgstr "小目标，大笑脸。"
+
+#: modules/critter/reaction_lines.lua:425
+msgid "I'm keeping count, you know."
+msgstr "我可一直在记着哦。"
+
+#: modules/critter/talk.lua:117
+msgid "Say something else…"
+msgstr "换个话题……"
+
+#: modules/reading_stats/module_reading_stats.lua:409 modules/reading_stats/module_reading_stats.lua:413
+msgid "%dm"
+msgstr "%d分钟"
+
+#: modules/reading_stats/module_reading_stats.lua:411
+msgid "%dh %dm"
+msgstr "%d小时%d分"
+
+#: modules/reading_stats/module_reading_stats.lua:412
+msgid "%dh"
+msgstr "%d小时"
+
+#: modules/reading_stats/module_reading_stats.lua:422
+msgid "AM"
+msgstr "上午"
+
+#: modules/reading_stats/module_reading_stats.lua:422
+msgid "PM"
+msgstr "下午"
+
+#: modules/reading_stats/module_reading_stats.lua:443
+msgid "Reading time today"
+msgstr "今日阅读时长"
+
+#: modules/reading_stats/module_reading_stats.lua:444
+msgid "Pages read today"
+msgstr "今日阅读页数"
+
+#: modules/reading_stats/module_reading_stats.lua:445
+msgid "Reading time this week"
+msgstr "本周阅读时长"
+
+#: modules/reading_stats/module_reading_stats.lua:446
+msgid "Pages read this week"
+msgstr "本周阅读页数"
+
+#: modules/reading_stats/module_reading_stats.lua:447
+msgid "Reading time this year"
+msgstr "今年阅读时长"
+
+#: modules/reading_stats/module_reading_stats.lua:447
+msgid "This year"
+msgstr "今年"
+
+#: modules/reading_stats/module_reading_stats.lua:447
+msgid "of reading this year"
+msgstr "今年阅读时长"
+
+#: modules/reading_stats/module_reading_stats.lua:448
+msgid "Daily average, last 7 days"
+msgstr "日平均（近 7 天）"
+
+#: modules/reading_stats/module_reading_stats.lua:449
+msgid "Pages per day, last 7 days"
+msgstr "每日页数（近 7 天）"
+
+#: modules/reading_stats/module_reading_stats.lua:450
+msgid "Reading time this month"
+msgstr "本月阅读时长"
+
+#: modules/reading_stats/module_reading_stats.lua:451
+msgid "Pages read this month"
+msgstr "本月阅读页数"
+
+#: modules/reading_stats/module_reading_stats.lua:452
+msgid "Total reading time"
+msgstr "总阅读时长"
+
+#: modules/reading_stats/module_reading_stats.lua:453 screens/sui_stats_windows.lua:1908
+msgid "Books finished"
+msgstr "读完的书"
+
+#: modules/reading_stats/module_reading_stats.lua:460
+msgid "Longest session, 90 days"
+msgstr "最长单次阅读（近 90 天）"
+
+#: modules/reading_stats/module_reading_stats.lua:463
+msgid "Average session, 90 days"
+msgstr "平均单次阅读（近 90 天）"
+
+#: modules/reading_stats/module_reading_stats.lua:466
+msgid "Reading speed, 90 days"
+msgstr "阅读速度（近 90 天）"
+
+#: modules/reading_stats/module_reading_stats.lua:471
+msgid "Reading sessions, 90 days"
+msgstr "阅读次数（近 90 天）"
+
+#: modules/reading_stats/module_reading_stats.lua:474 modules/reading_stats/module_reading_stats.lua:474
+msgid "Peak reading hour"
+msgstr "阅读高峰时段"
+
+#: modules/reading_stats/module_reading_stats.lua:474
+msgid "peak reading hour"
+msgstr "阅读高峰时段"
+
+#: modules/reading_stats/module_reading_stats.lua:477 modules/reading_stats/module_reading_stats.lua:477
+msgid "Most-read weekday"
+msgstr "最常阅读的星期"
+
+#: modules/reading_stats/module_reading_stats.lua:477
+msgid "most-read weekday"
+msgstr "最常阅读的星期"
+
+#: modules/reading_stats/module_reading_stats.lua:483 screens/insights/sui_insights_charts.lua:138
+msgid "Activity"
+msgstr "活跃度"
+
+#: modules/reading_stats/module_reading_stats.lua:483
+msgid "Reading days, 12 weeks"
+msgstr "阅读天数（近 12 周）"
+
+#: modules/reading_stats/module_reading_stats.lua:483
+msgid "days read (12 weeks)"
+msgstr "阅读天数（12 周）"
+
+#: modules/reading_stats/module_reading_stats.lua:484
+msgid "last 12 weeks"
+msgstr "近 12 周"
+
+#: modules/reading_stats/module_reading_stats.lua:487
+msgid "Change against last week"
+msgstr "与上周相比的变化"
+
+#: modules/reading_stats/module_reading_stats.lua:487
+msgid "Weekly change"
+msgstr "每周变化"
+
+#: modules/reading_stats/module_reading_stats.lua:487
+msgid "vs last week"
+msgstr "与上周相比"
+
+#: modules/reading_stats/module_reading_stats.lua:488
+msgid "vs the same days last week"
+msgstr "与上周同期相比"
+
+#: modules/reading_stats/module_reading_stats.lua:494
+msgid "Most-read time of day"
+msgstr "最常阅读的时段"
+
+#: modules/reading_stats/module_reading_stats.lua:494
+msgid "most-read time of day"
+msgstr "最常阅读的时段"
+
+#: modules/reading_stats/module_reading_stats.lua:501
+msgid "Books not started"
+msgstr "未开始的书"
+
+#: modules/reading_stats/module_reading_stats.lua:502
+msgid "Books in progress"
+msgstr "在读的书"
+
+#: modules/reading_stats/module_reading_stats.lua:503
+msgid "Books abandoned"
+msgstr "搁置的书"
+
+#: modules/reading_stats/module_reading_stats.lua:660
+msgid "Reading time"
+msgstr "阅读时长"
+
+#: modules/reading_stats/module_reading_stats.lua:663
+msgid "Habits"
+msgstr "习惯"
+
+#: modules/reading_stats/module_reading_stats.lua:1195 modules/reading_stats/module_reading_stats.lua:1627
+msgid "Edit card"
+msgstr "编辑卡片"
+
+#: modules/reading_stats/module_reading_stats.lua:1698
+msgid "Highlight color"
+msgstr "突出显示颜色"
+
+#: modules/reading_stats/module_reading_stats.lua:1704 modules/reading_stats/module_reading_stats.lua:1715
+msgid "Black"
+msgstr "黑色"
+
+#: modules/reading_stats/module_reading_stats.lua:1727
+msgid "Row alignment"
+msgstr "行对齐"
+
+#: modules/reading_stats/width_sheet.lua:64
+msgid "Large"
+msgstr "大"
+
+#: modules/reading_stats/width_sheet.lua:64
+msgid "Medium"
+msgstr "中"
+
+#: modules/reading_stats/width_sheet.lua:69
+msgid "Full row"
+msgstr "整行"
+
+#: modules/reading_stats/width_sheet.lua:100
+msgid "%1 column"
+msgid_plural "%1 columns"
+msgstr[0] "%1 列"
+msgstr[1] "%1 列"
+
+#: modules/reading_stats/width_sheet.lua:154
+msgid "Neighbouring stats adjusted"
+msgstr "已调整相邻统计项"
+
+#: modules/reading_stats/width_sheet.lua:165
+msgid "Row preview"
+msgstr "行预览"
+
+#: modules/reading_stats/width_sheet.lua:192
+msgid "Moved to row %1 to keep its width"
+msgstr "已移到第 %1 行以保持宽度"
+
+#: modules/reading_stats/width_sheet.lua:294
+msgid "Highlight card"
+msgstr "突出显示卡片"
+
+#: screens/insights/sui_insights_charts.lua:96
+msgid "%s against the same days last week"
+msgstr "%s（与上周同期相比）"
+
+#: screens/insights/sui_insights_charts.lua:99
+msgid "No reading on the same days last week"
+msgstr "上周同期没有阅读"
+
+#: screens/insights/sui_insights_charts.lua:102
+msgid "This week vs last week"
+msgstr "本周与上周对比"
+
+#: screens/insights/sui_insights_charts.lua:119
+msgid "This month by day"
+msgstr "本月每日"
+
+#: screens/insights/sui_insights_charts.lua:121
+msgid "%s a day on average"
+msgstr "平均每天 %s"
+
+#: screens/insights/sui_insights_charts.lua:140
+msgid "Last %d weeks"
+msgstr "近 %d 周"
+
+#: screens/insights/sui_insights_charts.lua:141
+msgid "%d day read"
+msgid_plural "%d days read"
+msgstr[0] "阅读了 %d 天"
+msgstr[1] "阅读了 %d 天"
+
+#: screens/insights/sui_insights_charts.lua:153
+msgid "By hour of the day"
+msgstr "按一天中的小时"
+
+#: screens/insights/sui_insights_charts.lua:161
+msgid "By day of the week"
+msgstr "按星期"
+
+#: screens/insights/sui_insights_charts.lua:187
+msgid "By time of day"
+msgstr "按时段"
+
+#: screens/sui_settings_window.lua:536
+msgid "Incomplete row"
+msgstr "未填满的行"
+
+#: screens/sui_settings_window.lua:548
+msgid "Module settings"
+msgstr "模块设置"
+
+#: screens/sui_stats_windows.lua:1733
+msgid "Day streak"
+msgstr "连续阅读天数"
+
+#: screens/sui_stats_windows.lua:1736
+msgid "Week streak"
+msgstr "连续阅读周数"
+
+#: screens/sui_stats_windows.lua:1882 screens/sui_stats_windows.lua:1884
+msgid "Last 7 days"
+msgstr "近 7 天"
+
+#: screens/sui_stats_windows.lua:1903
+msgid "When you read"
+msgstr "阅读时间分布"
+
+#: screens/sui_stats_windows.lua:1906 screens/sui_stats_windows.lua:1913
+msgid "Hours read"
+msgstr "阅读小时数"
+
+#: screens/sui_stats_windows.lua:1917
+msgid "Day read"
+msgid_plural "Days read"
+msgstr[0] "阅读天数"
+msgstr[1] "阅读天数"
+
+#: screens/sui_stats_windows.lua:1930
+msgid "Page read"
+msgid_plural "Pages read"
+msgstr[0] "阅读页数"
+msgstr[1] "阅读页数"
+
+#: screens/sui_stats_windows.lua:1937
+msgid "By month"
+msgstr "按月"
+
+#: screens/sui_stats_windows.lua:1941
+msgid "By year"
+msgstr "按年"
+
+#: screens/sui_stats_windows.lua:2416
+msgid "Last %d days"
+msgstr "近 %d 天"
+
+#: screens/sui_stats_windows.lua:2437
+msgid "Freeze available"
+msgid_plural "Freezes available"
+msgstr[0] "可用冻结权"
+msgstr[1] "可用冻结权"
