@@ -31,6 +31,15 @@ local GITHUB_OWNER = "dhhp2k1"
 local GITHUB_REPO  = "simpleui.koplugin"
 local ASSET_NAME   = "simpleui.koplugin.zip"
 
+-- GitHub download proxies tried in order when GitHub's own download host
+-- cannot be reached (often the case from mainland China). Only used when the
+-- API gave the package's SHA-256, so a proxy cannot alter what is installed.
+local DOWNLOAD_MIRRORS = {
+    "https://gh-proxy.com/",
+    "https://ghfast.top/",
+    "https://ghproxy.net/",
+}
+
 local AUTO_CHECK_INTERVAL = 24 * 3600  -- seconds between automatic checks
 
 -- G_reader_settings keys — prefixed with "sui_upd_" to avoid collisions.
@@ -226,18 +235,55 @@ local function _httpGetToFile(url, dest_path)
         code == socketutil.SSL_HANDSHAKE_CODE or
         code == socketutil.SINK_TIMEOUT_CODE
     ) then
+        pcall(fh.close, fh)  -- a failed request never ends the sink
         pcall(os.remove, dest_path)
         return nil, "timeout (" .. tostring(code) .. ")"
     end
 
     if headers == nil then
+        pcall(fh.close, fh)
         pcall(os.remove, dest_path)
         return nil, "network error (" .. tostring(code or status) .. ")"
     end
 
     if code == 200 then return true end
+    pcall(fh.close, fh)
     pcall(os.remove, dest_path)
     return nil, string.format("HTTP %s", tostring(code))
+end
+
+-- SHA-256 of a file as lowercase hex, or nil when it cannot be read.
+local function _sha256File(path)
+    local fh = io.open(path, "rb")
+    if not fh then return nil end
+    local data = fh:read("*a")
+    fh:close()
+    local ok, sha2 = pcall(require, "ffi/sha2")
+    if not ok or not data then return nil end
+    return sha2.sha256(data):lower()
+end
+
+-- Downloads `url` to `dest_path`. When `sha256` is known, the download must
+-- match it, and the mirrors are tried in turn after GitHub fails.
+local function _downloadVerified(url, dest_path, sha256)
+    local candidates = { url }
+    if sha256 then
+        for _, prefix in ipairs(DOWNLOAD_MIRRORS) do
+            candidates[#candidates + 1] = prefix .. url
+        end
+    end
+    local last_err
+    for _, candidate in ipairs(candidates) do
+        local ok, err = _httpGetToFile(candidate, dest_path)
+        if ok and sha256 and _sha256File(dest_path) ~= sha256 then
+            pcall(os.remove, dest_path)
+            ok, err = nil, "checksum mismatch"
+        end
+        if ok then return true end
+        logger.warn("simpleui updater: download failed from", candidate, "-", err)
+        last_err = err
+    end
+    return nil, last_err
 end
 
 -- ---------------------------------------------------------------------------
@@ -295,10 +341,12 @@ local function _parseRelease(body)
     local tag = data.tag_name
     if not tag then return nil, "tag_name missing from API response" end
 
-    local download_url
+    local download_url, sha256
     for _, asset in ipairs(data.assets or {}) do
         if asset.name == ASSET_NAME then
             download_url = asset.browser_download_url
+            -- GitHub reports "sha256:<hex>" for each uploaded asset.
+            sha256 = type(asset.digest) == "string" and asset.digest:match("^sha256:(%x+)$")
             break
         end
     end
@@ -316,6 +364,7 @@ local function _parseRelease(body)
     return {
         version      = tag:match("v?(.*)"),
         download_url = download_url,
+        sha256       = sha256 and #sha256 == 64 and sha256:lower() or nil,
         notes        = (notes and notes ~= "") and notes or nil,
         html_url     = data.html_url,
     }
@@ -413,7 +462,7 @@ end
 -- Download and installation
 -- ---------------------------------------------------------------------------
 
-local function _applyUpdate(download_url, new_version)
+local function _applyUpdate(download_url, new_version, sha256)
     local tmp_zip    = _tmpZipPath()
     local parent_dir = _plugin_dir:match("^(.+)/[^/]+$") or _plugin_dir
 
@@ -422,7 +471,7 @@ local function _applyUpdate(download_url, new_version)
     local ok_tr, Trapper = pcall(require, "ui/trapper")
 
     local function doDownloadAndInstall()
-        local dl_ok, dl_err = _httpGetToFile(download_url, tmp_zip)
+        local dl_ok, dl_err = _downloadVerified(download_url, tmp_zip, sha256)
         if not dl_ok then
             return { success = false, stage = "download", err = dl_err }
         end
@@ -518,7 +567,7 @@ local function _showUpdateDialog(release, current)
         text        = header .. notes_block .. "\n\n" .. _("Download and install now?"),
         ok_text     = _("Download and install"),
         cancel_text = _("Cancel"),
-        ok_callback = function() _applyUpdate(download_url, latest) end,
+        ok_callback = function() _applyUpdate(download_url, latest, release.sha256) end,
     }
 end
 

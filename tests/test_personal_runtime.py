@@ -1,7 +1,7 @@
 """Refresh ownership, version ordering, updater selection and translation checks."""
 from pathlib import Path
 from lupa.lua54 import LuaRuntime
-import polib
+import polib, tempfile
 ROOT=Path(__file__).resolve().parents[1]
 lua=LuaRuntime(unpack_returned_tuples=True)
 lua.globals().plugin_root=ROOT.as_posix()
@@ -83,6 +83,64 @@ assert(#shown==1 and shown[1].text:find("9.0.0-personal.11",1,true))
 assert(Updater.hasUpdate())
 assert(persisted.simpleui_personal_upd_dl_url==asset.."v9.0.0-personal.11/simpleui.koplugin.zip")
 ''')
+mirror=LuaRuntime(unpack_returned_tuples=True)
+mirror.globals().plugin_root=ROOT.as_posix()
+mirror.globals().tmp_dir=Path(tempfile.mkdtemp()).as_posix()
+mirror.execute(r'''
+package.path=plugin_root.."/?.lua;"..package.path
+local zip_hash=string.rep("ab",32)
+local served,requested,unpacked,confirms,restarts={},{},{},{},0
+local direct="https://github.com/dhhp2k1/simpleui.koplugin/releases/download/v9.0.0-personal.1/simpleui.koplugin.zip"
+local function releases(digest)
+ return {{tag_name="v9.0.0-personal.1",prerelease=true,body="Notes",
+ assets={{name="simpleui.koplugin.zip",digest=digest,browser_download_url=direct}}}}
+end
+local listed=releases("sha256:"..zip_hash)
+package.loaded["json"]={decode=function() return listed end}
+package.loaded["ffi/sha2"]={sha256=function(data) return data=="good zip" and zip_hash or string.rep("0",64) end}
+package.loaded["datastorage"]={getSettingsDir=function() return tmp_dir end}
+package.loaded["device"]={unpackArchive=function(_,zip) unpacked[#unpacked+1]=zip;return true end}
+package.loaded["features/dialogs/sui_dialogs"]={confirm=function(o) confirms[#confirms+1]=o end,
+askRestart=function() restarts=restarts+1 end}
+package.loaded["ui/uimanager"]={show=function() end,close=function() end,scheduleIn=function(_,_,fn) fn() end}
+package.loaded["logger"]={info=function() end,warn=function() end,err=function() end,dbg=function() end}
+package.loaded["util"]={trim=function(s) return s end}
+package.loaded["infra/sui_i18n"]={translate=function(s) return s end}
+package.loaded["infra/sui_core"]={Notify={toast=function() return {} end}}
+package.loaded["infra/sui_text"]={truncate=function(s) return s end}
+package.loaded["infra/sui_paths"]={getPluginDirNoSlash=function() return plugin_root end}
+package.loaded["socket"]={skip=function(n,...) return select(n+1,...) end}
+package.loaded["ltn12"]={sink={table=function(chunks)
+ return function(s) if s then chunks[#chunks+1]=s end;return 1 end end,
+ file=function(fh) return function(s) if s then fh:write(s) else fh:close() end;return 1 end end}}
+package.loaded["socket/http"]={request=function(req)
+ requested[#requested+1]=req.url
+ if req.url:find("api.github.com",1,true) then req.sink("fixture");return 1,200,{} end
+ local body=served[req.url:match("^https://([^/]+)/")]
+ if not body then return nil,"wantread" end
+ req.sink(body);req.sink(nil);return 1,200,{}
+end}
+G_reader_settings={readSetting=function() end,saveSetting=function() end}
+local Updater=require("infra/sui_updater")
+local function install()
+ requested,unpacked,confirms={},{},{}
+ Updater._doManualCheck("3.0.0-personal.1")
+ confirms[1].ok_callback()
+end
+-- GitHub's download host times out; the first mirror serves the right package.
+served={["gh-proxy.com"]="good zip"}
+install()
+assert(requested[2]==direct and requested[3]=="https://gh-proxy.com/"..direct,"mirror not tried after GitHub failed")
+assert(#unpacked==1 and restarts==1,"verified mirror download was not installed")
+-- A package that does not match the API's SHA-256 is never installed.
+served={["gh-proxy.com"]="tampered",["ghfast.top"]="tampered",["ghproxy.net"]="tampered"}
+install()
+assert(#requested==5 and #unpacked==0 and restarts==1,"unverified mirror download was installed")
+-- Without a digest from the API, nothing is fetched from a mirror.
+listed=releases(nil);served={["gh-proxy.com"]="good zip"}
+install()
+assert(#requested==2 and #unpacked==0,"mirror used without a digest to check")
+''')
 for name in ("simpleui.pot","zh_CN.po","zh_TW.po"):
     polib.pofile(str(ROOT/"locale"/name),check_for_duplicates=True).to_binary()
-print("PASS: refresh ownership, exception cleanup, disabled-plugin gate, version ordering, personal release selection and Chinese PO syntax.")
+print("PASS: refresh ownership, exception cleanup, disabled-plugin gate, version ordering, personal release selection, verified mirror downloads and Chinese PO syntax.")
