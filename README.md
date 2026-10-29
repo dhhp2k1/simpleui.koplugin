@@ -1,6 +1,6 @@
 # SimpleUI 个人版
 
-基于 Doctor Hetfield 的上游 **3.0.1**（已同步至上游 main `71ed399`，2026-10-29），个人版本 **3.0.0-personal.2**。
+基于 Doctor Hetfield 的上游 **3.0.1**（已同步至上游 main `71ed399`，2026-10-29），个人版本 **3.0.1-personal.1**。
 [个人分支](https://github.com/dhhp2k1/simpleui.koplugin/tree/personal/pw5) ·
 [下载安装包](https://github.com/dhhp2k1/simpleui.koplugin/releases) ·
 [原版项目](https://github.com/doctorhetfield-cmd/simpleui.koplugin)
@@ -10,10 +10,9 @@
 已在 PW5、固件 5.16.2.1.1、KOReader 2026.07.1 上完成开关书籍、休眠唤醒、
 隐藏恢复与批注保留，以及 LocalSend 收书后的书库分页验收。
 
-**当前分支包含尚未发布的实机修复；现有 personal.2 Release 资产不包含这些修复。**
 验证范围与已知限制见 [实机验证记录](docs/DEVICE_VALIDATION.md)。
 
-## 尚未发布的实机修复
+## 3.0.1-personal.1 实机修复
 
 - 书库页码在首页数据重建后保留；隐藏、恢复不再跳回第一页。
 - 末页缩短时退到最后一个有效页，不跳到第一页。

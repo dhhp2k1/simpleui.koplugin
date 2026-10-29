@@ -56,7 +56,8 @@ local function release(tag,url)
  return {tag_name=tag,prerelease=true,body="Notes",assets={{name="simpleui.koplugin.zip",
  browser_download_url=url or asset..tag.."/simpleui.koplugin.zip"}}}
 end
-local releases={release("v3.0.0-personal.2"),release("v3.0.0-personal.11"),
+-- Newer than any installed version, so the check never reads as stale.
+local releases={release("v3.0.0-personal.2"),release("v9.0.0-personal.11"),
 release("v99.0.0-personal.1","https://github.com/other/repo/releases/download/x/simpleui.koplugin.zip"),
 {tag_name="v99.0.0-personal.2",draft=true,assets={}}}
 package.loaded["json"]={decode=function() return releases end}
@@ -78,9 +79,9 @@ G_reader_settings={readSetting=function(_,k) return persisted[k] end,
 saveSetting=function(_,k,v) persisted[k]=v end}
 local Updater=require("infra/sui_updater")
 Updater._doManualCheck("3.0.0-personal.1")
-assert(#shown==1 and shown[1].text:find("3.0.0-personal.11",1,true))
+assert(#shown==1 and shown[1].text:find("9.0.0-personal.11",1,true))
 assert(Updater.hasUpdate())
-assert(persisted.simpleui_personal_upd_dl_url==asset.."v3.0.0-personal.11/simpleui.koplugin.zip")
+assert(persisted.simpleui_personal_upd_dl_url==asset.."v9.0.0-personal.11/simpleui.koplugin.zip")
 ''')
 for name in ("simpleui.pot","zh_CN.po","zh_TW.po"):
     polib.pofile(str(ROOT/"locale"/name),check_for_duplicates=True).to_binary()
