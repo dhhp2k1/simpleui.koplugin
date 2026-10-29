@@ -273,15 +273,16 @@ local function _installItemCache()
             return _orig_genItemTableFromPath(fc, path)
         end
         local key = _itc_key(path, fc)
-        if _itc and _itc.key == key then return _itc.t end
-        local result = _orig_genItemTableFromPath(fc, path)
+        if _itc and _itc.key == key then return _itc.t, _itc.readable end
+        -- Second value is the folder readability flag the caller uses to warn.
+        local result, readable = _orig_genItemTableFromPath(fc, path)
         -- Don't cache virtual series views: their synthetic path has no reliable mtime.
         if not (result and result._sg_is_series_view) then
-            _itc = { key = key, t = result }
+            _itc = { key = key, t = result, readable = readable }
         else
             _itc = nil
         end
-        return result
+        return result, readable
     end
 end
 
@@ -476,6 +477,22 @@ end
 
 -- Public wrapper used by other modules (sui_library_browse, sui_series_grouping).
 function M.resolveStyle(fc, dir_path, entry) return _resolveStyle(fc, dir_path, entry) end
+
+-- Lists the folders behind the folder cells of the chooser's current page, so
+-- that their covers are later planned from cached listings.
+function M.warmFolderListings(fc)
+    local items, perpage = fc.item_table, fc.perpage
+    if not (M.isEnabled() and items and perpage) then return end
+    local first = ((fc.page or 1) - 1) * perpage + 1
+    for i = first, math.min(first + perpage - 1, #items) do
+        local entry = items[i]
+        if entry.path and _isRealFolder(entry)
+                and not (entry.is_file or entry.file or entry.is_go_up) then
+            _resolveStyle(fc, entry.path, entry)
+            CoverFinder.getDirSummary(fc, entry.path)
+        end
+    end
+end
 
 -- Collect up to _COLLECT_MAX books from dir_path for the cover picker dialog.
 local _COLLECT_MAX = 50

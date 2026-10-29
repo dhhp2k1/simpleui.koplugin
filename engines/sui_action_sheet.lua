@@ -8,7 +8,7 @@
 --       icon     = "book_open",         -- SUIStyle.icon key (optional)
 --       message  = "Longer text",       -- wrapped text below the separator (optional);
 --                                       -- without a title it is the sheet's content and
---                                       -- is drawn as body text
+--                                       -- is drawn as body text; a long text scrolls
 --       message_end = function(ctx) return widget end,
 --                                       -- optional; widget at the end of the message line
 --                                       -- (e.g. a pager), the text wraps in the rest
@@ -135,6 +135,8 @@
 --   chevron        bool      rows only; draws a chevron at the end of the row,
 --                            for an item that shows a page; not drawn when the
 --                            item is disabled
+--   value          string    rows only; the current value, drawn small at the end
+--                            of the row, before the chevron or the check box
 --
 -- ActionSheet.pick(opts) shows a one-column chooser: `title`, `icon`, `name`,
 -- `fit_width` as in show, plus `items` and `on_cancel`. Tapping an item closes
@@ -189,6 +191,7 @@ local OverlapGroup    = require("ui/widget/overlapgroup")
 local RightContainer  = require("ui/widget/container/rightcontainer")
 local Size            = require("ui/size")
 local TextBoxWidget   = require("ui/widget/textboxwidget")
+local ScrollTextWidget = require("ui/widget/scrolltextwidget")
 local TextWidget      = require("ui/widget/textwidget")
 local UI              = require("infra/sui_core")
 local VerticalGroup   = require("ui/widget/verticalgroup")
@@ -277,10 +280,15 @@ end
 -- Header
 -- ---------------------------------------------------------------------------
 
+-- Share of the window's page height a message may take; a longer text scrolls
+-- so the sections below it stay inside the window.
+local MESSAGE_MAX_SHARE = 0.5
+
 -- Under a title the message is supporting text in a smaller size; alone it is
--- the content of the sheet and is drawn as body text.
-local function buildMessage(ctx, text, has_title, width)
-    return TextBoxWidget:new{
+-- the content of the sheet and is drawn as body text. A text taller than its
+-- share of the window scrolls.
+local function buildMessage(ctx, text, has_title, width, dialog)
+    local args = {
         text      = text,
         face      = Font:getFace(SUIStyle.FACE_REGULAR,
                         ctx.SZ(has_title and SUIStyle.FS_DETAIL or SUIStyle.FS_BODY)),
@@ -288,13 +296,20 @@ local function buildMessage(ctx, text, has_title, width)
         width     = width or ctx.inner_w,
         alignment = "left",
     }
+    local widget = TextBoxWidget:new(args)
+    local max_h  = ctx.page_h and math.floor(ctx.page_h * MESSAGE_MAX_SHARE)
+    if not max_h or widget:getSize().h <= max_h then return widget end
+    widget:free()
+    args.height = max_h
+    args.dialog = dialog
+    return ScrollTextWidget:new(args)
 end
 
 -- Message line: the text, and `trailing` (optional) at its far end.
-local function buildMessageLine(ctx, text, has_title, trailing)
-    if not trailing then return buildMessage(ctx, text, has_title) end
+local function buildMessageLine(ctx, text, has_title, trailing, dialog)
+    if not trailing then return buildMessage(ctx, text, has_title, nil, dialog) end
     local trailing_size = trailing:getSize()
-    local message = buildMessage(ctx, text, has_title, ctx.inner_w - trailing_size.w)
+    local message = buildMessage(ctx, text, has_title, ctx.inner_w - trailing_size.w, dialog)
     local h = math.max(message:getSize().h, trailing_size.h)
     return HorizontalGroup:new{
         align = "center",
@@ -347,7 +362,7 @@ local function buildHeader(ctx, opts, window, has_back)
             header[#header + 1] = VerticalSpan:new{ width = px(ctx, METRICS.header_pad_bottom) }
         end
         header[#header + 1] = buildMessageLine(ctx, opts.message, has_title,
-            opts.message_end and opts.message_end(ctx))
+            opts.message_end and opts.message_end(ctx), window:getWidget())
     end
     header[#header + 1] = VerticalSpan:new{ width = px(ctx, METRICS.header_pad_bottom) }
     return header
@@ -527,6 +542,18 @@ local function trailingWidth(item, scale)
     return scale(base)
 end
 
+-- Text of the value of `item` shown at the end of its row, in the size of the
+-- values of the settings windows; nil without a value.
+local function buildValue(ctx, item)
+    if not item.value then return nil end
+    return UI.makeColoredText{
+        text    = tostring(item.value),
+        face    = Font:getFace(SUIStyle.FACE_REGULAR, ctx.SZ(SUIStyle.FS_DETAIL)),
+        fgcolor = isEnabled(item) and COLOR.text_primary or COLOR.text_dim,
+        padding = 0,
+    }
+end
+
 -- Icon above the label, centred in a cell of `w` x `h`.
 local function buildTile(ctx, item, w, h)
     local fgcolor = isEnabled(item) and COLOR.text_primary or COLOR.text_dim
@@ -578,6 +605,8 @@ local function buildCellContent(ctx, item, cell_w, row_h, fgcolor, slot)
     local content  = HorizontalGroup:new{ align = "center" }
     local used     = 2 * pad + tick_w
     used = used + trailingWidth(item, function(base) return px(ctx, base) end)
+    local value = buildValue(ctx, item)
+    if value then used = used + value:getSize().w + gap end
 
     if slot then
         local icon = buildIcon(item,
@@ -618,6 +647,13 @@ end
 -- `cell_w` x `row_h`, inside the cell padding.
 local function buildTrailing(ctx, item, cell_w, row_h, fgcolor)
     local group = HorizontalGroup:new{ align = "center" }
+    local value = buildValue(ctx, item)
+    if value then
+        group[#group + 1] = value
+        if hasChevron(item) or hasToggle(item) then
+            group[#group + 1] = HorizontalSpan:new{ width = px(ctx, METRICS.cell_gap) }
+        end
+    end
     if item.value_preview then
         group[#group + 1] = SUIStyle.buildIconPreview(px(ctx, METRICS.cell_preview),
             { icon = item.value_preview, label = item.text })
@@ -657,7 +693,7 @@ local function buildCell(ctx, item, cell_w, row_h, slot)
         dimen = Geom:new{ w = cell_w, h = row_h },
         buildCellContent(ctx, item, cell_w, row_h, fgcolor, slot),
     }
-    if item.value_preview or hasChevron(item) or hasToggle(item) then
+    if item.value or item.value_preview or hasChevron(item) or hasToggle(item) then
         cell = OverlapGroup:new{
             dimen = Geom:new{ w = cell_w, h = row_h },
             cell,

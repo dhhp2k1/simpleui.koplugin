@@ -551,6 +551,13 @@ end
 -- Setting btn[w_key] alone is not enough: the render tree still points at
 -- the old widget until these slots are patched too.
 local function _syncButtonRenderSlot(btn, w_key, new_w)
+    -- Button:hide() may already have run (Menu:init hides the chevrons before
+    -- they are restyled). Button.hidden stays set, so later hide() calls are
+    -- no-ops: carry the flag over or the new widget paints anyway.
+    local old_w = btn[w_key]
+    if old_w and old_w.hide ~= nil and new_w.hide == nil then
+        new_w.hide = old_w.hide
+    end
     btn[w_key] = new_w
 
     local hg = btn.horizontal_group
@@ -586,6 +593,9 @@ end
 local function _placeInSlot(widget, w, h, edge)
     local paint = widget.paintTo
     widget.paintTo = function(self, bb, x, y)
+        -- Button:hide() only sets .hide, which ImageWidget honours but a
+        -- symbol glyph's TextWidget does not.
+        if self.hide then return end
         local sz = self:getSize()
         local dx = math.floor((w - sz.w) / 2)
         local side = edge and edge()
@@ -1815,6 +1825,9 @@ M.ICON = {
     arrow_down = "\u{E744}", -- arrow down (NerdFonts)
     move_page  = "\u{F0EC}", -- exchange / move
     layout     = "\u{F07E}", -- nf-fa-arrows_h (module width and position)
+    stack      = "\u{EC69}", -- view-agenda (two blocks one above the other)
+    width      = "\u{EE5F}", -- unfold-more-vertical (chevrons pointing outwards sideways)
+    percent    = "\u{EAEF}", -- percent sign
     update     = "\u{E769}", -- update / sync
     hide       = "\u{E908}", -- eye-off / hide (NerdFonts)
     show       = "\u{E907}", -- eye / show (NerdFonts)
@@ -1886,6 +1899,7 @@ M.ICON = {
     library     = "\u{F405}",  -- book
     style       = "\u{EAD7}",  -- paint palette
     quick_actions = "\u{EDD3}", -- lightning bolt (outline)
+    critter     = "\u{EAE8}",  -- paw
 
     -- Collections
     collection_add = "\u{EA33}", -- library with plus

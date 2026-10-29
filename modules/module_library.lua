@@ -22,6 +22,7 @@
 --      "flat_library_sort_mode" setting (see sortRaw below).
 
 local lfs    = require("libs/libkoreader-lfs")
+local util   = require("util")
 local _ = require("infra/sui_i18n").translate
 
 local Config       = require("infra/sui_config")
@@ -175,11 +176,15 @@ local function sortRaw(raw, mode, pfx)
             if mode == "size_desc" then return sizes[a] > sizes[b] else return sizes[a] < sizes[b] end
         end)
     elseif mode == "author_asc" then
-        table.sort(fps, function(a, b) return cachedAuthor(a):lower() < cachedAuthor(b):lower() end)
+        local keys = {}
+        for _, fp in ipairs(fps) do keys[fp] = util.stringLower(cachedAuthor(fp)) end
+        table.sort(fps, function(a, b) return keys[a] < keys[b] end)
     else -- "title_asc" / "title_desc" / unrecognized -> default
         local desc = (mode == "title_desc")
+        local keys = {}
+        for _, fp in ipairs(fps) do keys[fp] = util.stringLower(cachedTitle(fp)) end
         table.sort(fps, function(a, b)
-            local ta, tb = cachedTitle(a):lower(), cachedTitle(b):lower()
+            local ta, tb = keys[a], keys[b]
             if desc then return ta > tb else return ta < tb end
         end)
     end
@@ -298,6 +303,7 @@ end
 local mod = GridRenderer.makeModule{
     id          = "flat_library",
     name        = _("Flat Library"),
+    category    = "books",
     label       = _("Books"),
     label_fn    = function(pfx)
         return getSortMode(pfx or "") == "date_desc" and _("Recently added") or _("Books")

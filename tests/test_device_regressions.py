@@ -24,6 +24,7 @@ for _,name in ipairs({'ui/widget/container/centercontainer','ui/widget/container
  package.loaded[name]={}
 end
 package.loaded['libs/libkoreader-lfs']={attributes=function() return 'file' end}
+package.loaded['util']={stringLower=string.lower}
 package.loaded['modules/module_books_shared']={getBookData=function(fp) return {title=fp} end}
 package.loaded['features/library/sui_finished_books']={}
 package.loaded['ui/uimanager']={nextTick=function(_,fn) fn() end}

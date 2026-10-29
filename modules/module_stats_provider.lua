@@ -888,7 +888,8 @@ end
 
 --- Moves one library book between status buckets in the cached counts, so a
 --- single status change does not require recounting the whole library. No-op
---- when counts were never computed or the book is not part of the library.
+--- when counts were never computed or the book is not part of the library;
+--- counts are dropped for a recount when the library has not been scanned.
 --- The cached table is replaced rather than mutated: callers may still hold
 --- the previous one.
 function SP.applyStatusChange(fp, pre_percent, pre_status, post_percent, post_status)
@@ -900,16 +901,18 @@ function SP.applyStatusChange(fp, pre_percent, pre_status, post_percent, post_st
     local home = ok_scan and LibraryScan and LibraryScan.resolveHomeDir()
     if not home then return end
 
-    for _, lib_fp in ipairs(LibraryScan.getFileList(home)) do
-        if lib_fp == fp then
-            local counts = {}
-            for bucket, n in pairs(_status_cache) do counts[bucket] = n end
-            counts[from] = math.max(0, counts[from] - 1)
-            counts[to]   = counts[to] + 1
-            _status_cache = counts
-            return
-        end
+    local listed = LibraryScan.cachedContains(home, fp)
+    if listed == nil then
+        _status_cache = nil
+        return
     end
+    if not listed then return end
+
+    local counts = {}
+    for bucket, n in pairs(_status_cache) do counts[bucket] = n end
+    counts[from] = math.max(0, counts[from] - 1)
+    counts[to]   = counts[to] + 1
+    _status_cache = counts
 end
 
 --- Updates the ledger and the cached status counts for the book that was just
@@ -1480,6 +1483,14 @@ function SP.getStale()
         _cache = _loadStaleStatsFromDisk()
     end
     return _cache
+end
+
+--- The cached statistics when they were built today, nil otherwise. No DB
+--- access and no disk read: for callers that only show what is already there.
+function SP.getToday()
+    local t = os.date("*t")
+    local today = string.format("%04d-%02d-%02d", t.year, t.month, t.day)
+    return _cache_day == today and _cache or nil
 end
 
 return SP

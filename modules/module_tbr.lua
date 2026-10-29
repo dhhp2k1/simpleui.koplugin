@@ -204,10 +204,8 @@ local function addTBR(filepath)
         if not (RC.coll and RC.coll[TBR_COLL_NAME]) then
             RC:addCollection(TBR_COLL_NAME)
         end
-        -- Call the *original* (un-hooked) addItem by going through the metatable
-        -- directly — we stored the original in plugin._orig_rc_additem, but we
-        -- don't have access to plugin here.  Instead we build the entry manually,
-        -- matching what buildEntry / addItem would do.
+        -- Bypass the hooked addItem: build the entry manually, matching what
+        -- buildEntry / addItem would do.
         local ffiUtil = require("ffi/util")
         local lfs2    = require("libs/libkoreader-lfs")
         local real    = ffiUtil.realpath(filepath) or filepath
@@ -376,6 +374,7 @@ local source = Sources.bind("tbr")
 local tbr_module = GridRenderer.makeModule{
     id          = "tbr",
     name        = _("To Be Read"),
+    category    = "books",
     label       = Sources.label("tbr"),
     default_on  = false,
     is_book_mod = true,   -- needed for the surgical repaint of the swipe

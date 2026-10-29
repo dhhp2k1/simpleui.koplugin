@@ -32,6 +32,7 @@ local settings={}
 package.loaded["infra/sui_store"]={readSetting=function(_,k) return settings[k] end,saveSetting=function(_,k,v) settings[k]=v end}
 package.loaded["infra/sui_config"]={readChoice=function(k,_,default) return settings[k] or default end}
 package.loaded["infra/sui_i18n"]={translate=function(s) return s end}
+package.loaded["util"]={stringLower=string.lower}
 package.loaded["engines/sui_book_grid"]={makeModule=function(spec) return spec end,getBookTitle=function(fp) return fp end}
 package.loaded["features/library/sui_finished_books"]={isHidden=function() return false end}
 package.loaded["modules/module_books_shared"]={}

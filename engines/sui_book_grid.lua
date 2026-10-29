@@ -36,6 +36,7 @@
 
 local Memory          = require("infra/sui_memory")
 local T               = require("ffi/util").template
+local util            = require("util")
 local FrameContainer  = require("ui/widget/container/framecontainer")
 local Geom            = require("ui/geometry")
 local GestureRange    = require("ui/gesturerange")
@@ -586,7 +587,7 @@ end
 --
 -- opts:
 --   id          string    settings namespace (e.g. "tbr" or inst_id)
---   getFileList function  () -> { fp, ... } (ordered list of files)
+--   getFileList function  (ctx) -> { fp, ... } (ordered list of files)
 --   max_items   number?   max covers shown per page (default 5)
 --   cache_key   string?   cache key in ctx (default "_row_fps_" .. id)
 --   paged       bool?     if true and #fps > max_items, enables pagination via
@@ -690,7 +691,7 @@ function GridRenderer.build(w, ctx, opts)
 
     local fps = ctx[cache_key]
     if not fps then
-        fps = _filterFileList(opts.getFileList() or {}, opts, ctx)
+        fps = _filterFileList(opts.getFileList(ctx) or {}, opts, ctx)
         ctx[cache_key] = fps
     end
     if #fps == 0 then
@@ -871,6 +872,9 @@ function GridRenderer.build(w, ctx, opts)
         end
 
         local cell = VerticalGroup:new{ align = "center", cover_widget }
+        -- Width of the drawn cover: the slot minus its shadow inset. Bar and
+        -- label are centred on it, left-aligned in the cw-wide slot.
+        local card_w = math.max(1, cw - SUIStyle.coverShadowOffset(SUIStyle.SHADOW_MODULES))
 
         -- Captured below (when applicable) and merged into a single
         -- row_update_funcs[i] closure after this cell's elements are
@@ -883,16 +887,15 @@ function GridRenderer.build(w, ctx, opts)
             -- Wrapped in a single-slot OverlapGroup so a later refresh can
             -- just replace bar_container[1] with a freshly-built progress
             -- bar instead of rebuilding this whole cell.
-            local _bar_w = cw
             local _bar_h = D.RB_BAR_H
-            local _init_bar = UI.progressBar(_bar_w, bd.percent, _bar_h, ink.bar_fg, ink.bar_bg)
+            local _init_bar = UI.progressBar(card_w, bd.percent, _bar_h, ink.bar_fg, ink.bar_bg)
             local bar_container = OverlapGroup:new{
-                dimen = _init_bar:getSize(),
+                dimen = Geom:new{ w = cw, h = _init_bar:getSize().h },
                 _init_bar,
             }
             cell[#cell+1] = bar_container
             _update_bar = function(nd)
-                bar_container[1] = UI.progressBar(_bar_w, (nd and nd.percent or 0), _bar_h, ink.bar_fg, ink.bar_bg)
+                bar_container[1] = UI.progressBar(card_w, (nd and nd.percent or 0), _bar_h, ink.bar_fg, ink.bar_bg)
             end
         end
 
@@ -905,11 +908,14 @@ function GridRenderer.build(w, ctx, opts)
                 face      = pct_face,
                 bold      = pct_bold,
                 fgcolor   = _pct_fg,
-                max_width = cw,
+                max_width = card_w,
                 truncate_with_ellipsis = true,
                 alignment = "center",
             }
-            cell[#cell+1] = pct_w
+            cell[#cell+1] = OverlapGroup:new{
+                dimen = Geom:new{ w = cw, h = label_h },
+                CenterContainer:new{ dimen = Geom:new{ w = card_w, h = label_h }, pct_w },
+            }
             _update_text = function(nd)
                 UI.updateColoredText(pct_w,
                     opts.labelForItem and opts.labelForItem(nd)
@@ -1084,23 +1090,27 @@ end
 
 -- ---------------------------------------------------------------------------
 -- updateCovers(widget, ctx) — patches every cover slot recorded by build()
--- in place, calling SH.getBookCover for each. Returns true once every slot
--- either has its final cover or is confirmed missing.
+-- in place, calling SH.getBookCover for each slot not yet filled. Returns
+-- all_done (every slot has its final cover or is confirmed missing) and
+-- changed (a cover was patched in by this call).
 -- ---------------------------------------------------------------------------
 function GridRenderer.updateCovers(widget, _ctx)
-    if not widget or not widget._cover_slots then return true end
+    if not widget or not widget._cover_slots then return true, false end
     local SH = getSH()
-    if not SH then return true end
-    local all_done = true
+    if not SH then return true, false end
+    local all_done, changed = true, false
     for _, slot in ipairs(widget._cover_slots) do
-        local new_cover = SH.getBookCover(slot.fp, slot.w, slot.h)
-        if new_cover then
-            slot.container[slot.idx] = new_cover
-        elseif not Config.isCoverMissing(slot.fp) then
-            all_done = false
+        if not slot.done then
+            local new_cover = SH.getBookCover(slot.fp, slot.w, slot.h)
+            if new_cover then
+                slot.container[slot.idx] = new_cover
+                slot.done, changed = true, true
+            elseif not Config.isCoverMissing(slot.fp) then
+                all_done = false
+            end
         end
     end
-    return all_done
+    return all_done, changed
 end
 
 -- ---------------------------------------------------------------------------
@@ -1172,7 +1182,7 @@ function GridRenderer.updateStats(widget, ctx, opts)
     -- Re-derive the filtered file list exactly like build()'s cold-cache
     -- path.
     local cache_key = opts.cache_key or ("_row_fps_" .. id)
-    local fps = ctx[cache_key] or _filterFileList(opts.getFileList() or {}, opts, ctx)
+    local fps = ctx[cache_key] or _filterFileList(opts.getFileList(ctx) or {}, opts, ctx)
 
     -- Re-derive which page/slice is on screen right now, same math as
     -- build(). grid_rows/grid_cols come from `opts` (kept current by
@@ -1367,7 +1377,7 @@ function GridRenderer.listAllCollectionNames(exclude_names)
     end
     local others = {}
     for name in pairs(coll_set) do others[#others + 1] = name end
-    table.sort(others, function(a, b) return a:lower() < b:lower() end)
+    table.sort(others, function(a, b) return util.stringLower(a) < util.stringLower(b) end)
     for _, n in ipairs(others) do all[#all + 1] = n end
     return all
 end
@@ -1456,7 +1466,7 @@ function GridRenderer.sortCollection(coll_name, mode)
     local SH = getSH()
     if mode == "title_asc" or mode == "title_desc" then
         local titles = {}
-        for _, fp in ipairs(fps) do titles[fp] = GridRenderer.getBookTitle(fp):lower() end
+        for _, fp in ipairs(fps) do titles[fp] = util.stringLower(GridRenderer.getBookTitle(fp)) end
         table.sort(fps, function(a, b)
             if mode == "title_asc" then return titles[a] < titles[b] else return titles[a] > titles[b] end
         end)
@@ -1464,7 +1474,7 @@ function GridRenderer.sortCollection(coll_name, mode)
         local authors = {}
         for _, fp in ipairs(fps) do
             local bd = SH.getBookData(fp)
-            authors[fp] = (bd.authors or ""):lower()
+            authors[fp] = util.stringLower(bd.authors or "")
         end
         table.sort(fps, function(a, b) return authors[a] < authors[b] end)
     elseif mode == "percent_asc" or mode == "percent_desc" then
@@ -1706,6 +1716,7 @@ function GridRenderer.makeModule(spec)
     local M = {}
     M.id          = id
     M.name        = spec.name or id
+    M.category    = spec.category
     M.label       = spec.label
     M.enabled_key = spec.enabled_key or (id .. "_enabled")
     M.default_on  = spec.default_on or false
@@ -1772,7 +1783,8 @@ function GridRenderer.makeModule(spec)
 
     function M.build(w, ctx)
         local source = spec.getSource and spec.getSource(ctx) or spec
-        row_opts.getFileList  = function() return source.getFileList(ctx) end
+        -- Takes ctx per call: row_opts outlives the screen it was built for.
+        row_opts.getFileList  = source.getFileList
         row_opts.filterItem   = source.filterItem
         row_opts.labelForItem = source.labelForItem
         -- A source may bring its own kind of cell.

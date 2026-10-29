@@ -8,6 +8,7 @@
 local Blitbuffer       = require("ffi/blitbuffer")
 local BD               = require("ui/bidi")
 local Device           = require("device")
+local util             = require("util")
 local Font             = require("ui/font")
 local CenterContainer  = require("ui/widget/container/centercontainer")
 local FrameContainer   = require("ui/widget/container/framecontainer")
@@ -441,6 +442,8 @@ end
 function TiltedCover:paintTo(bb, x, y)
     local entry = self.entry
     local tops, heights = entry.tops, entry.heights
+    -- Night mode inverts the screen, so the cover is inverted back to its own colors.
+    local blit = Screen.night_mode and "invertblitFrom" or "blitFrom"
     local col = 0
     while col < self.w do
         local top = tops[col + 1]
@@ -456,7 +459,7 @@ function TiltedCover:paintTo(bb, x, y)
                     and heights[col + run + 1] == col_h do
                 run = run + 1
             end
-            bb:blitFrom(entry.bb, x + col, y + top, col, top, run, col_h)
+            bb[blit](bb, entry.bb, x + col, y + top, col, top, run, col_h)
             col = col + run
         end
     end
@@ -835,6 +838,7 @@ local M = {}
 
 M.id          = "coverdeck"
 M.name        = _("Cover Deck")
+M.category    = "books"
 M.label       = nil
 M.enabled_key = "coverdeck_enabled"
 M.default_on  = false
@@ -1300,16 +1304,18 @@ function M.build(w, ctx)
     return result
 end
 
+-- Patches in the covers that arrived since build(). Returns all_done (every
+-- slot resolved) and changed (a cover was patched in by this call).
 function M.updateCovers(widget, ctx)
-    if not widget or not widget._cover_slots then return true end
+    if not widget or not widget._cover_slots then return true, false end
     local SH = getSH()
-    if not SH then return true end
+    if not SH then return true, false end
     local pfx = (ctx and ctx.pfx) or ""
     local show_badge = showProgressBadge(pfx)
     local on_peeks   = showProgressBadgeOnPeeks(pfx)
-    local all_done = true
+    local all_done, changed = true, false
     for _, slot in ipairs(widget._cover_slots) do
-        local new_cover = loadSlotCover(SH, slot)
+        local new_cover = not slot.done and loadSlotCover(SH, slot)
         if new_cover then
             -- Re-apply the progress badge after a late cover load (build()
             -- already did this where it applies; the poll would otherwise
@@ -1322,11 +1328,12 @@ function M.updateCovers(widget, ctx)
             -- OverlapGroup paint cannot leave a mirrored value behind.
             new_cover.overlap_offset = { slot.base_x, slot.base_y }
             slot.container[slot.idx] = new_cover
-        elseif not Config.isCoverMissing(slot.fp) then
+            slot.done, changed = true, true
+        elseif not slot.done and not Config.isCoverMissing(slot.fp) then
             all_done = false
         end
     end
-    return all_done
+    return all_done, changed
 end
 
 function M.updateStats(widget, ctx)
@@ -1518,7 +1525,7 @@ function M.getMenuItems(ctx_menu)
         for name in pairs(coll_set) do
             coll_names[#coll_names + 1] = name
         end
-        table.sort(coll_names, function(a, b) return a:lower() < b:lower() end)
+        table.sort(coll_names, function(a, b) return util.stringLower(a) < util.stringLower(b) end)
 
         for _i, name in ipairs(coll_names) do
             options[#options + 1] = { value = COLLECTION_PREFIX .. name, label = name }

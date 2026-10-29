@@ -17,6 +17,7 @@ local store = {
  nilOrTrue=function(_,k) return persisted[k]~=false end,
  readSetting=function(self,k,d) return self:get(k,d) end,
  saveSetting=function(self,k,v) return self:set(k,v) end,
+ memoize=function(f) return f end,
 }
 package.loaded["infra/sui_store"] = store
 package.loaded["infra/sui_i18n"] = { translate=function(t) return t end }
