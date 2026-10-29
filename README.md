@@ -1,6 +1,6 @@
 # SimpleUI 个人版
 
-基于 Doctor Hetfield 的上游 **3.0.1**（已同步至上游 main `71ed399`，2026-10-29），个人版本 **3.0.1-personal.1**。
+基于 Doctor Hetfield 的上游 **3.0.1**（已同步至上游 main `71ed399`，2026-10-29），个人版本 **3.0.1-personal.2**。
 [个人分支](https://github.com/dhhp2k1/simpleui.koplugin/tree/personal/pw5) ·
 [下载安装包](https://github.com/dhhp2k1/simpleui.koplugin/releases) ·
 [原版项目](https://github.com/doctorhetfield-cmd/simpleui.koplugin)
