@@ -88,7 +88,7 @@ class XToKindleTests(unittest.TestCase):
                 tool._safe_image_url(url)
 
     def test_download_images_and_keep_order(self):
-        photo = b"\\xff\\xd8\\xff" + b"x" * 128
+        photo = bytes([0xFF, 0xD8, 0xFF]) + b"x" * 128
         class Opener:
             def open(self, request, timeout=None):
                 return Response(photo, {"Content-Length": str(len(photo))})
