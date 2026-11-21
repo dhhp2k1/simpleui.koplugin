@@ -132,6 +132,23 @@ class XToKindleTests(unittest.TestCase):
             with zipfile.ZipFile(out) as z:
                 self.assertEqual(z.read("mimetype"), b"application/epub+zip")
 
+    def test_epub_rejects_partial_image_packaging(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            md_path = Path(tmp) / "article.md"
+            md_path.write_text(TEXT + "\n![one](https://pbs.twimg.com/media/1.jpg)\n![two](https://pbs.twimg.com/media/2.jpg)", encoding="utf-8")
+            def fake_pandoc(argv, **kwargs):
+                target = Path(argv[argv.index("--output") + 1])
+                with zipfile.ZipFile(target, "w") as archive:
+                    archive.writestr("mimetype", "application/epub+zip")
+                    archive.writestr("META-INF/container.xml", "<container/>")
+                    archive.writestr("EPUB/media/image-001.jpg", b"single-image")
+            with mock.patch.object(tool.shutil, "which", return_value="/bin/pandoc"), \
+                 mock.patch.object(tool, "embed_images", return_value=(TEXT, 2)), \
+                 mock.patch.object(tool.subprocess, "run", side_effect=fake_pandoc):
+                with self.assertRaisesRegex(tool.ImportError_, "图片不完整"):
+                    tool.build_epub(md_path)
+            self.assertFalse(md_path.with_suffix(".epub").exists())
+
     def test_send_requires_explicit_command_and_valid_file(self):
         with tempfile.TemporaryDirectory() as tmp:
             md_path = Path(tmp) / "article.md"
