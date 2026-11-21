@@ -199,10 +199,13 @@ def build_epub(markdown_path: Path, output: Path | None = None, allow_missing: b
                 names = archive.namelist()
                 if archive.testzip() or "META-INF/container.xml" not in names:
                     raise ImportError_("EPUB 结构验证失败")
-                if image_count and not any(
+                packed_images = sum(
                     name.lower().endswith((".jpg", ".jpeg", ".png", ".gif")) for name in names
-                ):
-                    raise ImportError_("EPUB 缺失已下载图片，拒绝提交不完整文档")
+                )
+                if packed_images < image_count:
+                    raise ImportError_(
+                        f"EPUB 图片不完整：已下载 {image_count} 张，实际打包 {packed_images} 张"
+                    )
             temp_target.replace(target)
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired, OSError, zipfile.BadZipFile) as exc:
             raise ImportError_(f"EPUB 生成失败：{exc}") from exc
