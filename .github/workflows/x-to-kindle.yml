@@ -1,0 +1,25 @@
+name: X Article to Kindle checks
+
+on:
+  push:
+    branches:
+      - feature/x-article-to-kindle
+  pull_request:
+    paths:
+      - "tools/x_to_kindle.py"
+      - "tests/test_x_to_kindle.py"
+      - ".github/workflows/x-to-kindle.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  x-to-kindle:
+    name: X to Kindle offline tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -X utf8 tests/test_x_to_kindle.py
