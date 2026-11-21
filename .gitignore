@@ -47,3 +47,7 @@ luac.out
 /dist/
 __pycache__/
 .venv/
+
+# Local exported X articles / ebook files
+/articles/
+/books/
